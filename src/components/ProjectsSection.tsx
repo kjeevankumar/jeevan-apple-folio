@@ -12,29 +12,29 @@ interface ProjectsSectionProps {
 const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
   const projects = [
     {
+      title: 'My Portfolio Website',
+      description: 'Built a personal portfolio website to showcase my skills, education, and projects in a clean and responsive format.',
+      tech: ['HTML', 'CSS', 'JavaScript'],
+      year: 'Feb 2023 - May 2023',
+      achievement: 'Created a fully responsive design with smooth animations',
+      demo: '#',
+      github: '#'
+    },
+    {
+      title: 'An Intelligent Data-Driven Model for Securing In-Car Communications',
+      description: 'Built a model to detect and stop cyber-attacks in electric vehicles using CAN bus data. Used SVM with Social Spider Optimization for high accuracy in finding DoS attacks.',
+      tech: ['Python', 'Scikit-learn', 'Pandas', 'NumPy'],
+      year: 'Feb 2025 - Apr 2025',
+      achievement: 'Improved detection accuracy through machine learning optimization',
+      demo: '#',
+      github: '#'
+    },
+    {
       title: 'AI Chatbot Assistant',
-      description: 'Intelligent conversational AI built with Botpress and NLP technologies. Answers user queries with context-aware responses and natural language understanding.',
-      tech: ['Botpress', 'NLP', 'JavaScript', 'API Integration'],
-      year: '2025',
-      achievement: 'Improved response accuracy by 35% through advanced NLP models',
-      demo: '#',
-      github: '#'
-    },
-    {
-      title: 'EV Cybersecurity Detection System',
-      description: 'Advanced machine learning system using SVM + Social Spider Optimization to detect CAN Bus DoS attacks in electric vehicles.',
-      tech: ['Python', 'SVM', 'Machine Learning', 'Cybersecurity'],
-      year: '2025',
-      achievement: 'Improved detection accuracy by 18% using SVM+SSO algorithm',
-      demo: '#',
-      github: '#'
-    },
-    {
-      title: 'Personal Portfolio Website',
-      description: 'Modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. Features smooth animations, dark mode, and optimized performance.',
-      tech: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-      year: '2024',
-      achievement: '100% responsive design with 95+ Lighthouse performance score',
+      description: 'Created an AI chatbot using Botpress that answers technical questions and shares information about me. Built conversational flows to enable natural interaction and enhance user experience.',
+      tech: ['Botpress', 'NLP', 'Conversational AI'],
+      year: 'Apr 2025 - May 2025',
+      achievement: 'Developed natural conversational flows for enhanced user experience',
       demo: '#',
       github: '#'
     }
@@ -53,7 +53,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-blue-600 mb-2">{project.title.split(' ')[0]}</div>
-                    <div className="text-sm text-gray-600">{project.year}</div>
+                    <div className="text-sm text-gray-600">{project.year.split(' - ')[0]}</div>
                   </div>
                 </div>
               </div>

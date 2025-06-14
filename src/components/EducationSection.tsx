@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -22,20 +21,20 @@ const EducationSection: React.FC<EducationSectionProps> = ({ isVisible }) => {
     {
       degree: 'Intermediate (12th Grade) - MPC',
       institution: 'Viswasanthi Junior College',
-      location: 'Telangana',
+      location: 'Alampur \'X\' road, Telangana',
       duration: '2020 - 2022',
-      score: '95.2%',
+      score: '69.0%',
       status: 'Completed',
-      highlights: ['Mathematics, Physics, Chemistry', 'Merit certificate recipient', 'School topper in Mathematics']
+      highlights: ['Mathematics, Physics, Chemistry', 'Strong foundation in core subjects', 'Focus on analytical skills']
     },
     {
       degree: 'Secondary School (10th Grade)',
       institution: 'Z.H High School',
       location: 'Bhairapuram, Telangana',
       duration: '2019 - 2020',
-      score: '93.8%',
+      score: '95%',
       status: 'Completed',
-      highlights: ['State board examination', 'District level rank holder', 'Perfect attendance award']
+      highlights: ['State board examination', 'Strong academic performance', 'Active participation in school activities']
     }
   ];
 

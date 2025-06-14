@@ -9,19 +9,19 @@ interface SkillsSectionProps {
 
 const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
   const skills = {
-    languages: ['C', 'Python', 'Java', 'JavaScript', 'TypeScript'],
-    web: ['HTML', 'CSS', 'ReactJS', 'Tailwind CSS', 'Node.js'],
-    databases: ['MySQL', 'MongoDB', 'SQLite'],
-    tools: ['Git', 'GitHub', 'VS Code', 'Botpress', 'Google Colab'],
-    specialization: ['AI/ML', 'NLP', 'Cybersecurity', 'Data Analysis'],
-    soft: ['Communication', 'Teaching', 'Problem Solving', 'Teamwork', 'Adaptability']
+    languages: ['C', 'Python (familiar)'],
+    web: ['HTML', 'CSS', 'JavaScript'],
+    databases: ['MySQL', 'MongoDB (familiar)'],
+    cs_subjects: ['Data Structures', 'Algorithms', 'OOPs concepts', 'Operating Systems'],
+    tools: ['Git', 'VS Code', 'Dev Tools'],
+    soft: ['Communication', 'Teaching', 'Problem Solving', 'Teamwork', 'Adaptability', 'Time management']
   };
 
   return (
     <section id="skills" data-animate className="py-20 px-4 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <h2 className={`text-4xl font-bold text-center text-gray-900 mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          Skills & Technologies
+          Skills & Expertise
         </h2>
         <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <Card className="hover:shadow-lg hover:scale-105 transition-all duration-300">
@@ -52,7 +52,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
           
           <Card className="hover:shadow-lg hover:scale-105 transition-all duration-300">
             <CardContent className="p-6">
-              <h3 className="font-semibold text-lg mb-4 text-purple-600">Databases & Cloud</h3>
+              <h3 className="font-semibold text-lg mb-4 text-purple-600">Databases</h3>
               <div className="space-y-2">
                 {skills.databases.map((skill, index) => (
                   <Badge key={index} variant="secondary" className="mr-2 mb-2">
@@ -65,9 +65,9 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
           
           <Card className="hover:shadow-lg hover:scale-105 transition-all duration-300">
             <CardContent className="p-6">
-              <h3 className="font-semibold text-lg mb-4 text-orange-600">Tools & Platforms</h3>
+              <h3 className="font-semibold text-lg mb-4 text-orange-600">CS Subjects</h3>
               <div className="space-y-2">
-                {skills.tools.map((skill, index) => (
+                {skills.cs_subjects.map((skill, index) => (
                   <Badge key={index} variant="secondary" className="mr-2 mb-2">
                     {skill}
                   </Badge>
@@ -78,9 +78,9 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
 
           <Card className="hover:shadow-lg hover:scale-105 transition-all duration-300">
             <CardContent className="p-6">
-              <h3 className="font-semibold text-lg mb-4 text-red-600">Specialization</h3>
+              <h3 className="font-semibold text-lg mb-4 text-red-600">Tools & Platforms</h3>
               <div className="space-y-2">
-                {skills.specialization.map((skill, index) => (
+                {skills.tools.map((skill, index) => (
                   <Badge key={index} variant="secondary" className="mr-2 mb-2">
                     {skill}
                   </Badge>

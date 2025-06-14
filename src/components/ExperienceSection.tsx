@@ -11,31 +11,31 @@ interface ExperienceSectionProps {
 const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isVisible }) => {
   const experience = [
     {
-      title: 'Web Development Intern',
-      company: 'Tech Solutions Pvt Ltd',
-      duration: 'Jun 2023 - Aug 2023',
-      type: 'Internship',
-      description: 'Worked on front-end development using React and Tailwind CSS. Built responsive web applications and collaborated with senior developers.',
-      technologies: ['React', 'JavaScript', 'Tailwind CSS', 'Git'],
-      achievements: ['Delivered 3 client projects', 'Improved page load speed by 40%', 'Mentored 2 junior interns']
+      title: 'Programming Instructor - C',
+      company: 'Linux Computer Coaching Center',
+      duration: 'Jan 2023 - Apr 2023',
+      type: 'Teaching',
+      description: 'Taught C programming from basics to advanced concepts with real-time examples. Helped students develop clean coding practices and improve their logical thinking abilities.',
+      technologies: ['C Programming', 'Teaching', 'Problem Solving'],
+      achievements: ['Improved student success rates', 'Developed custom teaching materials', 'Mentored beginners in programming']
     },
     {
-      title: 'Python Developer',
-      company: 'Freelance Projects',
-      duration: 'Jan 2023 - May 2023',
-      type: 'Freelance',
-      description: 'Developed automation scripts and data analysis tools for small businesses. Created web scraping solutions and database management systems.',
-      technologies: ['Python', 'SQLite', 'Pandas', 'BeautifulSoup'],
-      achievements: ['Completed 5+ projects', 'Automated manual processes', 'Client satisfaction: 4.8/5']
+      title: 'Medha Spoken English Trainee',
+      company: 'Medha Program',
+      duration: 'Jun 2022 - Dec 2022',
+      type: 'Training',
+      description: 'Actively participated in spoken English training, public speaking exercises, and stage presentations. Focused on improving communication skills and building professional confidence.',
+      technologies: ['Public Speaking', 'Communication', 'Presentation Skills'],
+      achievements: ['Gained fluency in English', 'Improved confidence in public speaking', 'Enhanced professional communication skills']
     },
     {
-      title: 'Technical Team Lead',
-      company: 'College Tech Club',
-      duration: 'Aug 2022 - Present',
-      type: 'Leadership',
-      description: 'Leading a team of 15+ students in organizing technical events and workshops. Responsible for project coordination and mentoring junior students.',
-      technologies: ['Project Management', 'Team Leadership', 'Event Planning'],
-      achievements: ['Organized 10+ workshops', 'Increased club participation by 200%', 'Won inter-college competition']
+      title: 'Hackathon Participant',
+      company: 'College Tech Competitions',
+      duration: 'Oct 2023 - Present',
+      type: 'Team Project',
+      description: 'Participated in multiple hackathons, working in team environments to solve complex problems under time constraints. Developed technical and collaborative skills through hands-on project development.',
+      technologies: ['Team Collaboration', 'Problem Solving', 'Rapid Development'],
+      achievements: ['Built functional prototypes in 48 hours', 'Enhanced teamwork abilities', 'Applied technical knowledge in practical scenarios']
     }
   ];
 
@@ -50,7 +50,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isVisible }) => {
             <Card key={index} className="hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden">
               <CardContent className="p-6">
                 <div className="flex items-start justify-between mb-4">
-                  <Badge variant={exp.type === 'Internship' ? 'default' : exp.type === 'Freelance' ? 'secondary' : 'outline'} className="mb-2">
+                  <Badge variant={exp.type === 'Teaching' ? 'default' : exp.type === 'Training' ? 'secondary' : 'outline'} className="mb-2">
                     {exp.type}
                   </Badge>
                   <Briefcase className="w-5 h-5 text-blue-600" />
@@ -64,7 +64,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isVisible }) => {
                 <p className="text-gray-600 mb-4 text-sm leading-relaxed">{exp.description}</p>
                 
                 <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-gray-700 mb-2">Technologies:</h4>
+                  <h4 className="text-sm font-semibold text-gray-700 mb-2">Skills Used:</h4>
                   <div className="flex flex-wrap gap-2">
                     {exp.technologies.map((tech, techIndex) => (
                       <Badge key={techIndex} variant="outline" className="text-xs">
