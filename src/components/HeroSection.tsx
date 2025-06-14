@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Code, Sparkles, Zap, Download, Linkedin, Github, Mail } from 'lucide-react';
@@ -31,7 +32,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 overflow-hidden">
+    <section className="min-h-screen flex flex-col justify-center relative bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 overflow-hidden">
       {/* Enhanced CSS-based background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-100/30 rounded-full blur-3xl animate-float"></div>
@@ -45,9 +46,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
         <Zap className="absolute bottom-1/3 left-1/5 w-7 h-7 text-pink-400/30 animate-float" style={{ animationDelay: '2.5s' }} />
       </div>
 
-      {/* Main content grid and all other elements */}
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+      {/* Main content */}
+      <div className="container mx-auto px-4 relative z-10 flex-grow flex items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto w-full">
           <div className="relative order-2 lg:order-1">
             <div className="relative w-full max-w-lg mx-auto">
               <div className="absolute -inset-8 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-2xl animate-pulse-glow"></div>
@@ -101,7 +102,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-6">
                 <Button 
                   size="lg" 
                   onClick={() => scrollToSection('projects')}
@@ -119,43 +121,55 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                 </Button>
               </div>
 
-              <div className="mt-6">
+              {/* Resume Button */}
+              <div className="mb-8">
                 <Button 
                   size="lg"
                   onClick={handleResumeClick}
-                  className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-500 shadow-lg hover:shadow-xl flex items-center gap-2 animate-pulse-glow"
+                  className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-500 shadow-lg hover:shadow-xl flex items-center gap-2 animate-pulse-glow mx-auto lg:mx-0"
                 >
                   <Download className="w-5 h-5 animate-pulse" />
                   Request Resume
                 </Button>
               </div>
 
-              <div className="flex justify-center lg:justify-start gap-4 mt-6">
+              {/* Social Media Icons */}
+              <div className="flex justify-center lg:justify-start gap-4 mb-8">
                 <a 
                   href="http://www.linkedin.com/in/k-jeevan-kumar-5333b32b8" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="p-2 bg-blue-100 rounded-full hover:bg-blue-200 transition-all duration-300 hover:scale-110"
+                  className="p-3 bg-blue-100 rounded-full hover:bg-blue-200 transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg"
                 >
-                  <Linkedin className="w-5 h-5 text-blue-600" />
+                  <Linkedin className="w-6 h-6 text-blue-600" />
                 </a>
                 <a 
                   href="https://github.com/kjeevankumar?tab=repositories" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-all duration-300 hover:scale-110"
+                  className="p-3 bg-gray-100 rounded-full hover:bg-gray-200 transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg"
                 >
-                  <Github className="w-5 h-5 text-gray-800" />
+                  <Github className="w-6 h-6 text-gray-800" />
                 </a>
                 <button 
                   onClick={() => window.open('mailto:kjeevankumar@gmail.com?subject=Hi Jeevan - Portfolio Contact', '_blank')}
-                  className="p-2 bg-red-100 rounded-full hover:bg-red-200 transition-all duration-300 hover:scale-110"
+                  className="p-3 bg-red-100 rounded-full hover:bg-red-200 transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg"
                 >
-                  <Mail className="w-5 h-5 text-red-600" />
+                  <Mail className="w-6 h-6 text-red-600" />
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-              <div className="flex justify-center lg:justify-start gap-8 mt-8 pt-8 border-t border-gray-100">
+      {/* Statistics Section - Now properly positioned */}
+      <div className="container mx-auto px-4 relative z-10 pb-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12">
+            <div></div> {/* Empty space for image column */}
+            <div className="text-center lg:text-left">
+              <div className="flex justify-center lg:justify-start gap-8 pt-4 border-t border-gray-200">
                 <div className="text-center hover:scale-110 transition-transform duration-300">
                   <div className="text-2xl font-bold text-gray-900">4+</div>
                   <div className="text-sm text-gray-500">Years Learning</div>
@@ -174,13 +188,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
         </div>
       </div>
 
+      {/* Scroll Button - Fixed positioning */}
       {showScrollButton && (
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
           <button 
             onClick={handleScrollToAbout}
             className="group cursor-pointer hover:scale-110 transition-all duration-500"
           >
-            <div className="flex flex-col items-center gap-3 p-3 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl hover:bg-white transition-all duration-500">
+            <div className="flex flex-col items-center gap-3 p-4 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl hover:bg-white transition-all duration-500 border border-gray-200">
               <span className="text-gray-600 text-xs font-medium group-hover:text-blue-600 transition-colors duration-500">
                 Scroll to explore
               </span>

@@ -3,9 +3,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Linkedin, Github, Mail, Instagram, Facebook, MapPin, Send, CheckCircle, AlertCircle, MessageSquare, Zap, Globe } from 'lucide-react';
+import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { Mail, Phone, MapPin, Linkedin, Github, Twitter, Instagram, Facebook, Send, CheckCircle, AlertCircle } from 'lucide-react';
 
 interface ContactSectionProps {
   isVisible: boolean;
@@ -14,399 +14,368 @@ interface ContactSectionProps {
 interface FormData {
   name: string;
   email: string;
+  subject: string;
   message: string;
 }
 
 interface FormErrors {
   name?: string;
   email?: string;
+  subject?: string;
   message?: string;
 }
 
 const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
-  const [formData, setFormData] = useState<FormData>({ name: '', email: '', message: '' });
+  const { toast } = useToast();
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
-  const { toast } = useToast();
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
-    } else if (formData.name.trim().length < 2) {
+    } else if (formData.name.length < 2) {
       newErrors.name = 'Name must be at least 2 characters';
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
-    
+
+    if (!formData.subject.trim()) {
+      newErrors.subject = 'Subject is required';
+    } else if (formData.subject.length < 5) {
+      newErrors.subject = 'Subject must be at least 5 characters';
+    }
+
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required';
-    } else if (formData.message.trim().length < 10) {
+    } else if (formData.message.length < 10) {
       newErrors.message = 'Message must be at least 10 characters';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleInputChange = (field: keyof FormData, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
     
-    // Clear error when user starts typing
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: undefined }));
+    if (errors[name as keyof FormErrors]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: undefined
+      }));
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!validateForm()) return;
-    
+    if (!validateForm()) {
+      toast({
+        title: "Validation Error",
+        description: "Please fix the errors in the form before submitting.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    
-    toast({
-      title: "Message sent successfully!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
-    
-    // Reset form after success
-    setTimeout(() => {
-      setFormData({ name: '', email: '', message: '' });
-      setIsSuccess(false);
-    }, 3000);
-  };
 
-  const handleWhatsAppClick = () => {
-    window.open('https://wa.me/917816006682', '_blank');
-  };
-
-  const handleEmailClick = () => {
-    window.open('mailto:kjeevankumar@gmail.com?subject=Let\'s Connect - Portfolio Inquiry', '_blank');
-  };
-
-  const handleResumeClick = () => {
-    window.open('https://drive.google.com/uc?export=download&id=10eh84qoXZZ2l1ipWY0zg8swLkNTGTAJu', '_blank');
+    try {
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      setIsSubmitted(true);
+      toast({
+        title: "Message Sent Successfully! 🎉",
+        description: "Thank you for reaching out. I'll get back to you soon!",
+      });
+      
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => setIsSubmitted(false), 3000);
+      
+    } catch (error) {
+      toast({
+        title: "Failed to Send Message",
+        description: "Please try again or contact me directly via email.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const socialLinks = [
-    { 
-      id: 'linkedin',
-      name: 'LinkedIn', 
-      icon: Linkedin, 
-      url: 'http://www.linkedin.com/in/k-jeevan-kumar-5333b32b8',
-      color: 'from-blue-600 to-blue-700',
-      hoverColor: 'hover:from-blue-700 hover:to-blue-800'
+    {
+      icon: Linkedin,
+      label: 'LinkedIn',
+      href: 'http://www.linkedin.com/in/k-jeevan-kumar-5333b32b8',
+      color: 'text-blue-600 hover:text-blue-700',
+      bgColor: 'bg-blue-50 hover:bg-blue-100'
     },
-    { 
-      id: 'github',
-      name: 'GitHub', 
-      icon: Github, 
-      url: 'https://github.com/kjeevankumar?tab=repositories',
-      color: 'from-gray-800 to-gray-900',
-      hoverColor: 'hover:from-gray-900 hover:to-black'
+    {
+      icon: Github,
+      label: 'GitHub',
+      href: 'https://github.com/kjeevankumar?tab=repositories',
+      color: 'text-gray-800 hover:text-gray-900',
+      bgColor: 'bg-gray-50 hover:bg-gray-100'
     },
-    { 
-      id: 'email',
-      name: 'Email', 
-      icon: Mail, 
-      action: handleEmailClick,
-      color: 'from-red-600 to-red-700',
-      hoverColor: 'hover:from-red-700 hover:to-red-800'
-    },
-    { 
-      id: 'instagram',
-      name: 'Instagram', 
-      icon: Instagram, 
-      url: 'https://www.instagram.com/k_jeevan_kumar_944?igsh=ZHB0Ym14MDc3aGlq',
-      color: 'from-pink-600 to-purple-600',
-      hoverColor: 'hover:from-pink-700 hover:to-purple-700'
-    },
-    { 
-      id: 'facebook',
-      name: 'Facebook', 
-      icon: Facebook, 
-      url: 'https://www.facebook.com/share/1Qkt3C16hv/?mibextid=qi2Omg',
-      color: 'from-blue-700 to-blue-800',
-      hoverColor: 'hover:from-blue-800 hover:to-blue-900'
-    },
-    { 
-      id: 'whatsapp',
-      name: 'WhatsApp', 
-      icon: MessageSquare,
-      action: handleWhatsAppClick,
-      color: 'from-green-500 to-green-600',
-      hoverColor: 'hover:from-green-600 hover:to-green-700'
+    {
+      icon: Mail,
+      label: 'Email',
+      href: 'mailto:kjeevankumar@gmail.com?subject=Hi Jeevan - Portfolio Contact',
+      color: 'text-red-600 hover:text-red-700',
+      bgColor: 'bg-red-50 hover:bg-red-100'
     }
   ];
 
-  const messageCharCount = formData.message.length;
-  const maxChars = 500;
-
   return (
-    <section id="contact" data-animate className="py-12 md:py-20 px-4 relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.1),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,119,198,0.1),transparent_50%)]"></div>
-      </div>
+    <>
+      <style>
+        {`
+          @keyframes socialPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+          }
+          
+          .social-icon {
+            animation: socialPulse 3s ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+          }
+          
+          .social-icon:hover {
+            animation: none;
+            transform: scale(1.1);
+          }
+        `}
+      </style>
       
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Title */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className={`text-3xl md:text-5xl font-bold mb-4 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <span className="animated-gradient-text">Let's Connect & Collaborate</span>
-          </h2>
-          <p className={`text-lg md:text-xl text-gray-600 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            Ready to bring your ideas to life? Let's start the conversation.
-          </p>
-        </div>
+      <section 
+        id="contact" 
+        data-animate
+        className={`py-20 bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Let's <span className="animated-gradient-text">Connect</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Ready to collaborate or discuss opportunities? I'd love to hear from you!
+            </p>
+          </div>
 
-        <div className={`grid lg:grid-cols-2 gap-8 lg:gap-12 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          {/* Contact Form */}
-          <div className="order-2 lg:order-1">
-            <Card className="relative overflow-hidden border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
-              {/* Animated Border */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-75"></div>
-              <div className="absolute inset-[2px] bg-white rounded-lg"></div>
-              
-              <CardContent className="relative z-10 p-4 sm:p-6 md:p-8 space-y-4 md:space-y-6">
-                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
-                  {/* Name Field */}
-                  <div className="relative">
+          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <Card className="p-8 shadow-xl border-0 bg-white/80 backdrop-blur-sm hover:shadow-2xl transition-all duration-500">
+              <CardContent className="p-0">
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Send Me a Message</h3>
+                  <p className="text-gray-600">Fill out the form below and I'll get back to you as soon as possible.</p>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="name" className="text-gray-700 font-medium">Full Name *</Label>
+                      <Input
+                        id="name"
+                        name="name"
+                        type="text"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className={`h-12 ${errors.name ? 'border-red-500 focus:border-red-500' : 'focus:border-blue-500'}`}
+                        placeholder="Your full name"
+                        disabled={isSubmitting}
+                      />
+                      {errors.name && (
+                        <p className="text-red-500 text-sm flex items-center gap-1">
+                          <AlertCircle className="w-4 h-4" />
+                          {errors.name}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="email" className="text-gray-700 font-medium">Email Address *</Label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className={`h-12 ${errors.email ? 'border-red-500 focus:border-red-500' : 'focus:border-blue-500'}`}
+                        placeholder="your.email@example.com"
+                        disabled={isSubmitting}
+                      />
+                      {errors.email && (
+                        <p className="text-red-500 text-sm flex items-center gap-1">
+                          <AlertCircle className="w-4 h-4" />
+                          {errors.email}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="subject" className="text-gray-700 font-medium">Subject *</Label>
                     <Input
-                      value={formData.name}
-                      onChange={(e) => handleInputChange('name', e.target.value)}
-                      className={`peer pt-6 pb-2 px-4 text-base border-2 transition-all duration-300 ${
-                        errors.name ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'
-                      }`}
-                      placeholder=" "
+                      id="subject"
+                      name="subject"
+                      type="text"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      className={`h-12 ${errors.subject ? 'border-red-500 focus:border-red-500' : 'focus:border-blue-500'}`}
+                      placeholder="What's this about?"
+                      disabled={isSubmitting}
                     />
-                    <label className="absolute left-4 top-2 text-sm text-gray-500 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-blue-600">
-                      Your Name
-                    </label>
-                    {errors.name && (
-                      <div className="flex items-center mt-1 text-red-500 text-sm">
-                        <AlertCircle className="w-4 h-4 mr-1" />
-                        {errors.name}
-                      </div>
+                    {errors.subject && (
+                      <p className="text-red-500 text-sm flex items-center gap-1">
+                        <AlertCircle className="w-4 h-4" />
+                        {errors.subject}
+                      </p>
                     )}
                   </div>
 
-                  {/* Email Field */}
-                  <div className="relative">
-                    <Input
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => handleInputChange('email', e.target.value)}
-                      className={`peer pt-6 pb-2 px-4 text-base border-2 transition-all duration-300 ${
-                        errors.email ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'
-                      }`}
-                      placeholder=" "
-                    />
-                    <label className="absolute left-4 top-2 text-sm text-gray-500 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-blue-600">
-                      Your Email
-                    </label>
-                    {errors.email && (
-                      <div className="flex items-center mt-1 text-red-500 text-sm">
-                        <AlertCircle className="w-4 h-4 mr-1" />
-                        {errors.email}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Message Field */}
-                  <div className="relative">
+                  <div className="space-y-2">
+                    <Label htmlFor="message" className="text-gray-700 font-medium">Message *</Label>
                     <Textarea
+                      id="message"
+                      name="message"
                       value={formData.message}
-                      onChange={(e) => handleInputChange('message', e.target.value)}
-                      className={`peer pt-6 pb-2 px-4 text-base border-2 transition-all duration-300 min-h-[100px] sm:min-h-[120px] resize-none ${
-                        errors.message ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'
-                      }`}
-                      placeholder=" "
-                      maxLength={maxChars}
+                      onChange={handleInputChange}
+                      className={`min-h-[150px] resize-none ${errors.message ? 'border-red-500 focus:border-red-500' : 'focus:border-blue-500'}`}
+                      placeholder="Tell me about your project, ideas, or just say hello!"
+                      disabled={isSubmitting}
                     />
-                    <label className="absolute left-4 top-2 text-sm text-gray-500 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-blue-600">
-                      Your Message
-                    </label>
-                    <div className="flex justify-between items-center mt-1">
+                    <div className="flex justify-between items-center">
                       {errors.message ? (
-                        <div className="flex items-center text-red-500 text-sm">
-                          <AlertCircle className="w-4 h-4 mr-1" />
+                        <p className="text-red-500 text-sm flex items-center gap-1">
+                          <AlertCircle className="w-4 h-4" />
                           {errors.message}
-                        </div>
+                        </p>
                       ) : (
                         <div></div>
                       )}
-                      <span className={`text-sm ${messageCharCount > maxChars * 0.8 ? 'text-orange-500' : 'text-gray-400'}`}>
-                        {messageCharCount}/{maxChars}
+                      <span className={`text-sm ${formData.message.length > 500 ? 'text-red-500' : 'text-gray-500'}`}>
+                        {formData.message.length} / 1000
                       </span>
                     </div>
                   </div>
 
-                  {/* Submit Button */}
                   <Button
                     type="submit"
-                    disabled={isSubmitting || isSuccess}
-                    className={`w-full py-3 text-base font-semibold transition-all duration-300 ${
-                      isSuccess 
-                        ? 'bg-green-600 hover:bg-green-600' 
-                        : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
-                    } transform hover:scale-105`}
+                    size="lg"
+                    disabled={isSubmitting || isSubmitted}
+                    className="w-full h-12 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg disabled:hover:scale-100"
                   >
                     {isSubmitting ? (
-                      <div className="flex items-center">
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                        Sending...
-                      </div>
-                    ) : isSuccess ? (
-                      <div className="flex items-center">
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent mr-2"></div>
+                        Sending Message...
+                      </>
+                    ) : isSubmitted ? (
+                      <>
                         <CheckCircle className="w-5 h-5 mr-2" />
                         Message Sent!
-                      </div>
+                      </>
                     ) : (
-                      <div className="flex items-center">
+                      <>
                         <Send className="w-5 h-5 mr-2" />
                         Send Message
-                      </div>
+                      </>
                     )}
                   </Button>
                 </form>
               </CardContent>
             </Card>
-          </div>
-          
-          {/* Contact Info */}
-          <div className="order-1 lg:order-2 space-y-6 md:space-y-8">
-            {/* Contact Info Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Response Time Card */}
-              <Card className="p-4 bg-gradient-to-br from-blue-50 to-indigo-50 border-0 shadow-lg">
-                <div className="flex items-center space-x-3">
-                  <div className="p-2 bg-blue-100 rounded-lg">
-                    <Zap className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800">Quick Response</h4>
-                    <p className="text-sm text-gray-600">Within 24 hours</p>
-                  </div>
-                </div>
-              </Card>
 
-              {/* Location Card */}
-              <Card className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 border-0 shadow-lg">
-                <div className="flex items-center space-x-3">
-                  <div className="p-2 bg-green-100 rounded-lg">
-                    <Globe className="w-5 h-5 text-green-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800">Global Remote</h4>
-                    <p className="text-sm text-gray-600">Available worldwide</p>
-                  </div>
-                </div>
-              </Card>
-            </div>
-
-            {/* Social Links */}
-            <div>
-              <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-center">Connect With Me</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
-                {socialLinks.map((social, index) => {
-                  const IconComponent = social.icon;
-                  return (
-                    <div
-                      key={social.id}
-                      className="opacity-100 transition-all duration-300 hover:scale-105"
-                      onMouseEnter={() => setHoveredIcon(social.id)}
-                      onMouseLeave={() => setHoveredIcon(null)}
-                      style={{ 
-                        animationDelay: `${index * 0.1}s`,
-                        animation: 'fadeIn 0.6s ease-out forwards'
-                      }}
-                    >
-                      {social.url ? (
-                        <a
-                          href={social.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`block p-3 md:p-4 rounded-xl bg-gradient-to-br ${social.color} ${social.hoverColor} text-white shadow-lg transition-all duration-300 transform hover:scale-110 hover:shadow-xl group`}
-                        >
-                          <div className="flex flex-col items-center space-y-2">
-                            <IconComponent className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform duration-300" />
-                            <span className={`text-xs md:text-sm font-medium transition-all duration-300 ${
-                              hoveredIcon === social.id ? 'opacity-100 translate-y-0' : 'opacity-70'
-                            }`}>
-                              {social.name}
-                            </span>
-                          </div>
+            <div className="space-y-8">
+              <Card className="p-8 shadow-xl border-0 bg-white/80 backdrop-blur-sm">
+                <CardContent className="p-0">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                  
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                        <Mail className="w-6 h-6 text-blue-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900">Email</h4>
+                        <a href="mailto:kjeevankumar@gmail.com" className="text-blue-600 hover:text-blue-700 transition-colors">
+                          kjeevankumar@gmail.com
                         </a>
-                      ) : (
-                        <button
-                          onClick={social.action}
-                          className={`w-full p-3 md:p-4 rounded-xl bg-gradient-to-br ${social.color} ${social.hoverColor} text-white shadow-lg transition-all duration-300 transform hover:scale-110 hover:shadow-xl group`}
-                        >
-                          <div className="flex flex-col items-center space-y-2">
-                            <IconComponent className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform duration-300" />
-                            <span className={`text-xs md:text-sm font-medium transition-all duration-300 ${
-                              hoveredIcon === social.id ? 'opacity-100 translate-y-0' : 'opacity-70'
-                            }`}>
-                              {social.name}
-                            </span>
-                          </div>
-                        </button>
-                      )}
+                      </div>
                     </div>
-                  );
-                })}
-              </div>
-            </div>
-            
-            {/* Resume Download */}
-            <div className="text-center">
-              <p className="text-gray-600 mb-4">Want to know more about my experience?</p>
-              <Button 
-                variant="outline" 
-                onClick={handleResumeClick}
-                className="border-2 border-blue-200 text-blue-600 hover:bg-blue-50 hover:border-blue-300 transition-all duration-300 transform hover:scale-105 px-6 md:px-8 py-2 md:py-3"
-              >
-                <div className="flex items-center">
-                  <svg className="w-4 h-4 md:w-5 md:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  Download Resume
-                </div>
-              </Button>
+
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                        <Phone className="w-6 h-6 text-green-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900">Phone</h4>
+                        <p className="text-gray-600">Available upon request</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                        <MapPin className="w-6 h-6 text-purple-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900">Location</h4>
+                        <p className="text-gray-600">Telangana, India 🇮🇳</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="p-8 shadow-xl border-0 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+                <CardContent className="p-0">
+                  <h3 className="text-2xl font-bold mb-6">Follow Me</h3>
+                  <p className="mb-6 text-blue-100">Connect with me on social media for updates and insights!</p>
+                  
+                  <div className="flex flex-wrap gap-4">
+                    {socialLinks.map((social, index) => (
+                      <a
+                        key={social.label}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="social-icon group flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-3 rounded-lg transition-all duration-300 border border-white/20 hover:border-white/40"
+                        style={{ '--delay': `${index * 0.5}s` } as React.CSSProperties}
+                      >
+                        <social.icon className="w-5 h-5" />
+                        <span className="font-medium">{social.label}</span>
+                      </a>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
-      </div>
-
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
-    </section>
+      </section>
+    </>
   );
 };
 
