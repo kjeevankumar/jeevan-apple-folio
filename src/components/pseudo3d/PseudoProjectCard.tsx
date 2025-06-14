@@ -23,6 +23,8 @@ const PseudoProjectCard: React.FC<PseudoProjectCardProps> = ({
   const handleDemoClick = () => {
     if (hasDemo && demo !== '#') {
       window.open(demo, '_blank');
+    } else {
+      window.open(github, '_blank');
     }
   };
 
@@ -66,16 +68,11 @@ const PseudoProjectCard: React.FC<PseudoProjectCardProps> = ({
           <div className="flex gap-3">
             <Button 
               size="sm" 
-              className={`flex items-center gap-2 transform transition-all duration-200 ${
-                hasDemo 
-                  ? 'bg-blue-600 hover:bg-blue-700 hover:scale-105' 
-                  : 'bg-gray-400 cursor-not-allowed'
-              }`}
+              className="bg-blue-600 hover:bg-blue-700 flex items-center gap-2 transform hover:scale-105 transition-all duration-200"
               onClick={handleDemoClick}
-              disabled={!hasDemo}
             >
               <ExternalLink className="w-3 h-3" />
-              {hasDemo ? 'Demo' : 'Coming Soon'}
+              {hasDemo ? 'Demo' : 'View Code'}
             </Button>
             <Button 
               size="sm" 
