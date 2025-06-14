@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Code, Sparkles, Zap, Download, Linkedin, Github, Mail } from 'lucide-react';
@@ -163,24 +162,24 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
         </div>
       </div>
 
-      {/* Statistics Section - Now properly positioned */}
-      <div className="container mx-auto px-4 relative z-10 pb-8">
+      {/* Statistics Section - Enhanced mobile spacing */}
+      <div className="container mx-auto px-4 relative z-10 pb-12 md:pb-16">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12">
             <div></div> {/* Empty space for image column */}
             <div className="text-center lg:text-left">
-              <div className="flex justify-center lg:justify-start gap-8 pt-4 border-t border-gray-200">
+              <div className="flex justify-center lg:justify-start gap-6 md:gap-8 pt-4 border-t border-gray-200">
                 <div className="text-center hover:scale-110 transition-transform duration-300">
-                  <div className="text-2xl font-bold text-gray-900">4+</div>
-                  <div className="text-sm text-gray-500">Years Learning</div>
+                  <div className="text-xl md:text-2xl font-bold text-gray-900">4+</div>
+                  <div className="text-xs md:text-sm text-gray-500">Years Learning</div>
                 </div>
                 <div className="text-center hover:scale-110 transition-transform duration-300">
-                  <div className="text-2xl font-bold text-gray-900">15+</div>
-                  <div className="text-sm text-gray-500">Projects</div>
+                  <div className="text-xl md:text-2xl font-bold text-gray-900">15+</div>
+                  <div className="text-xs md:text-sm text-gray-500">Projects</div>
                 </div>
                 <div className="text-center hover:scale-110 transition-transform duration-300">
-                  <div className="text-2xl font-bold text-gray-900">6+</div>
-                  <div className="text-sm text-gray-500">Certifications</div>
+                  <div className="text-xl md:text-2xl font-bold text-gray-900">6+</div>
+                  <div className="text-xs md:text-sm text-gray-500">Certifications</div>
                 </div>
               </div>
             </div>
@@ -188,19 +187,19 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
         </div>
       </div>
 
-      {/* Scroll Button - Fixed positioning */}
+      {/* Scroll Button - Improved positioning for mobile */}
       {showScrollButton && (
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+        <div className="absolute bottom-16 md:bottom-24 left-1/2 transform -translate-x-1/2 z-20">
           <button 
             onClick={handleScrollToAbout}
             className="group cursor-pointer hover:scale-110 transition-all duration-500"
           >
-            <div className="flex flex-col items-center gap-3 p-4 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl hover:bg-white transition-all duration-500 border border-gray-200">
+            <div className="flex flex-col items-center gap-2 md:gap-3 p-3 md:p-4 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl hover:bg-white transition-all duration-500 border border-gray-200">
               <span className="text-gray-600 text-xs font-medium group-hover:text-blue-600 transition-colors duration-500">
                 Scroll to explore
               </span>
               <div className="relative">
-                <ArrowDown className="w-5 h-5 text-gray-500 group-hover:text-blue-600 animate-float transition-colors duration-500" />
+                <ArrowDown className="w-4 h-4 md:w-5 md:h-5 text-gray-500 group-hover:text-blue-600 animate-float transition-colors duration-500" />
                 <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
             </div>
