@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Phone, MapPin, Linkedin, Github, Twitter, Instagram, Facebook, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Github, Twitter, Instagram, Facebook, Send, CheckCircle, AlertCircle, Settings } from 'lucide-react';
 
 interface ContactSectionProps {
   isVisible: boolean;
@@ -36,6 +36,16 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [googleSheetsUrl, setGoogleSheetsUrl] = useState('');
+  const [showConfig, setShowConfig] = useState(false);
+
+  // Load Google Sheets URL from localStorage
+  useEffect(() => {
+    const savedUrl = localStorage.getItem('googleSheetsWebAppUrl');
+    if (savedUrl) {
+      setGoogleSheetsUrl(savedUrl);
+    }
+  }, []);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -85,6 +95,17 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
     }
   };
 
+  const saveGoogleSheetsUrl = () => {
+    if (googleSheetsUrl.trim()) {
+      localStorage.setItem('googleSheetsWebAppUrl', googleSheetsUrl.trim());
+      setShowConfig(false);
+      toast({
+        title: "Configuration Saved",
+        description: "Google Sheets URL has been saved successfully!",
+      });
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -97,24 +118,56 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
       return;
     }
 
+    if (!googleSheetsUrl.trim()) {
+      toast({
+        title: "Configuration Required",
+        description: "Please configure your Google Sheets URL first.",
+        variant: "destructive",
+      });
+      setShowConfig(true);
+      return;
+    }
+
     setIsSubmitting(true);
+    console.log("Submitting form to Google Sheets:", googleSheetsUrl);
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      const submissionData = {
+        timestamp: new Date().toISOString(),
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        subject: formData.subject.trim(),
+        message: formData.message.trim(),
+        source: 'Portfolio Website'
+      };
+
+      console.log("Submission data:", submissionData);
+
+      const response = await fetch(googleSheetsUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData)
+      });
+
+      // Since we're using no-cors mode, we can't check response status
+      // We'll assume success if no error was thrown
       setIsSubmitted(true);
       toast({
         title: "Message Sent Successfully! 🎉",
-        description: "Thank you for reaching out. I'll get back to you soon!",
+        description: "Thank you for reaching out. Your message has been saved to Google Sheets and I'll get back to you soon!",
       });
       
       setFormData({ name: '', email: '', subject: '', message: '' });
       setTimeout(() => setIsSubmitted(false), 3000);
       
     } catch (error) {
+      console.error("Error submitting to Google Sheets:", error);
       toast({
         title: "Failed to Send Message",
-        description: "Please try again or contact me directly via email.",
+        description: "There was an error submitting your message. Please try again or contact me directly via email.",
         variant: "destructive",
       });
     } finally {
@@ -187,12 +240,44 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
           <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             <Card className="p-8 shadow-xl border-0 bg-white/80 backdrop-blur-sm hover:shadow-2xl transition-all duration-500">
               <CardContent className="p-0">
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Send Me a Message</h3>
-                  <p className="text-gray-600">Fill out the form below and I'll get back to you as soon as possible.</p>
+                <div className="mb-8 flex items-center justify-between">
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Send Me a Message</h3>
+                    <p className="text-gray-600">Fill out the form below and I'll get back to you as soon as possible.</p>
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowConfig(!showConfig)}
+                    className="ml-4"
+                  >
+                    <Settings className="w-4 h-4" />
+                  </Button>
                 </div>
 
+                {showConfig && (
+                  <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <h4 className="font-semibold text-gray-900 mb-2">Google Sheets Configuration</h4>
+                    <p className="text-sm text-gray-600 mb-3">
+                      Enter your Google Apps Script web app URL to connect the form to Google Sheets.
+                    </p>
+                    <div className="flex gap-2">
+                      <Input
+                        type="url"
+                        placeholder="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec"
+                        value={googleSheetsUrl}
+                        onChange={(e) => setGoogleSheetsUrl(e.target.value)}
+                        className="flex-1"
+                      />
+                      <Button onClick={saveGoogleSheetsUrl} size="sm">
+                        Save
+                      </Button>
+                    </div>
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="name" className="text-gray-700 font-medium">Full Name *</Label>
@@ -290,7 +375,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
                     {isSubmitting ? (
                       <>
                         <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent mr-2"></div>
-                        Sending Message...
+                        Sending to Google Sheets...
                       </>
                     ) : isSubmitted ? (
                       <>
@@ -308,6 +393,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
               </CardContent>
             </Card>
 
+            
             <div className="space-y-8">
               <Card className="p-8 shadow-xl border-0 bg-white/80 backdrop-blur-sm">
                 <CardContent className="p-0">
