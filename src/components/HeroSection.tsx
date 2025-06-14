@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Code, Sparkles, Zap, Download, Linkedin, Github, Mail } from 'lucide-react';
 
@@ -8,6 +7,22 @@ interface HeroSectionProps {
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
+  const [showScrollButton, setShowScrollButton] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroSection = document.getElementById('hero');
+      if (heroSection) {
+        const rect = heroSection.getBoundingClientRect();
+        // Hide scroll button when hero section is out of view
+        setShowScrollButton(rect.bottom > 100);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleResumeClick = () => {
     // Direct download link for Google Drive
     window.open('https://drive.google.com/uc?export=download&id=10eh84qoXZZ2l1ipWY0zg8swLkNTGTAJu', '_blank');
@@ -107,13 +122,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                 </Button>
               </div>
 
-              {/* Enhanced Resume Download Button */}
+              {/* Enhanced Resume Download Button with Professional Animation */}
               <div className="mt-6">
                 <Button 
                   size="lg"
                   onClick={handleResumeClick}
-                  className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2 animate-bounce"
-                  style={{ animationDelay: '2s' }}
+                  className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-500 shadow-lg hover:shadow-xl flex items-center gap-2 animate-pulse-glow"
                 >
                   <Download className="w-5 h-5 animate-pulse" />
                   Request Resume
@@ -166,21 +180,25 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
         </div>
       </div>
 
-      {/* Enhanced Scroll Indicator - Positioned to the right side to avoid Years Learning */}
-      <button 
-        onClick={handleScrollToAbout}
-        className="fixed bottom-8 right-8 z-20 group cursor-pointer hover:scale-110 transition-all duration-300"
-      >
-        <div className="flex flex-col items-center gap-3 p-3 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl hover:bg-white transition-all duration-300">
-          <span className="text-gray-600 text-xs font-medium group-hover:text-blue-600 transition-colors duration-300">
-            Scroll to explore
-          </span>
-          <div className="relative">
-            <ArrowDown className="w-5 h-5 text-gray-500 group-hover:text-blue-600 animate-bounce transition-colors duration-300" />
-            <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </div>
+      {/* Enhanced Scroll Indicator - Only visible in Hero section */}
+      {showScrollButton && (
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+          <button 
+            onClick={handleScrollToAbout}
+            className="group cursor-pointer hover:scale-110 transition-all duration-500"
+          >
+            <div className="flex flex-col items-center gap-3 p-3 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl hover:bg-white transition-all duration-500">
+              <span className="text-gray-600 text-xs font-medium group-hover:text-blue-600 transition-colors duration-500">
+                Scroll to explore
+              </span>
+              <div className="relative">
+                <ArrowDown className="w-5 h-5 text-gray-500 group-hover:text-blue-600 animate-float transition-colors duration-500" />
+                <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+            </div>
+          </button>
         </div>
-      </button>
+      )}
     </section>
   );
 };

@@ -62,57 +62,51 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
               </p>
             </div>
             
-            {/* Enhanced Animated Social Media Icons */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
+            {/* Professional Slow Animated Social Media Icons */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
               <a 
                 href="http://www.linkedin.com/in/k-jeevan-kumar-5333b32b8" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-500 group transform hover:scale-125 hover:rotate-12 animate-bounce"
-                style={{ animationDelay: '0s' }}
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-1000 group transform hover:scale-110 opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards]"
               >
-                <Linkedin className="w-6 h-6 text-blue-600 group-hover:text-blue-700 transition-all duration-300 group-hover:animate-pulse" />
+                <Linkedin className="w-6 h-6 text-blue-600 group-hover:text-blue-700 transition-all duration-700" />
               </a>
               <a 
                 href="https://github.com/kjeevankumar?tab=repositories" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-500 group transform hover:scale-125 hover:-rotate-12 animate-bounce"
-                style={{ animationDelay: '0.2s' }}
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-1000 group transform hover:scale-110 opacity-0 animate-[fadeInUp_1s_ease-out_0.4s_forwards]"
               >
-                <Github className="w-6 h-6 text-gray-800 group-hover:text-gray-900 transition-all duration-300 group-hover:animate-spin" />
+                <Github className="w-6 h-6 text-gray-800 group-hover:text-gray-900 transition-all duration-700" />
               </a>
               <button 
                 onClick={handleEmailClick}
-                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-500 group transform hover:scale-125 hover:rotate-12 animate-bounce"
-                style={{ animationDelay: '0.4s' }}
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-1000 group transform hover:scale-110 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]"
               >
-                <Mail className="w-6 h-6 text-red-600 group-hover:text-red-700 transition-all duration-300 group-hover:animate-pulse" />
+                <Mail className="w-6 h-6 text-red-600 group-hover:text-red-700 transition-all duration-700" />
               </button>
               <a 
                 href="https://www.instagram.com/k_jeevan_kumar_944?igsh=ZHB0Ym14MDc3aGlq" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-500 group transform hover:scale-125 hover:-rotate-12 animate-bounce"
-                style={{ animationDelay: '0.6s' }}
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-1000 group transform hover:scale-110 opacity-0 animate-[fadeInUp_1s_ease-out_0.8s_forwards]"
               >
-                <Instagram className="w-6 h-6 text-pink-600 group-hover:text-pink-700 transition-all duration-300 group-hover:animate-ping" />
+                <Instagram className="w-6 h-6 text-pink-600 group-hover:text-pink-700 transition-all duration-700" />
               </a>
               <a 
                 href="https://www.facebook.com/share/1Qkt3C16hv/?mibextid=qi2Omg" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-500 group transform hover:scale-125 hover:rotate-12 animate-bounce"
-                style={{ animationDelay: '0.8s' }}
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-1000 group transform hover:scale-110 opacity-0 animate-[fadeInUp_1s_ease-out_1s_forwards]"
               >
-                <Facebook className="w-6 h-6 text-blue-700 group-hover:text-blue-800 transition-all duration-300 group-hover:animate-pulse" />
+                <Facebook className="w-6 h-6 text-blue-700 group-hover:text-blue-800 transition-all duration-700" />
               </a>
               <button 
                 onClick={handleWhatsAppClick}
-                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-500 group transform hover:scale-125 hover:-rotate-12 animate-bounce"
-                style={{ animationDelay: '1s' }}
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-1000 group transform hover:scale-110 opacity-0 animate-[fadeInUp_1s_ease-out_1.2s_forwards]"
               >
-                <div className="w-6 h-6 bg-green-500 rounded flex items-center justify-center group-hover:bg-green-600 transition-all duration-300 group-hover:animate-spin">
+                <div className="w-6 h-6 bg-green-500 rounded flex items-center justify-center group-hover:bg-green-600 transition-all duration-700">
                   <span className="text-white text-xs font-bold">W</span>
                 </div>
               </button>
@@ -122,7 +116,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
               <p className="text-sm text-gray-500 mb-2">Ready to collaborate?</p>
               <Button 
                 variant="outline" 
-                className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                className="border-blue-200 text-blue-600 hover:bg-blue-50 transition-all duration-500"
                 onClick={handleResumeClick}
               >
                 Download Resume

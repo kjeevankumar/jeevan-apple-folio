@@ -138,6 +138,18 @@
   }
 }
 
+/* Professional fade-in animation for contact icons */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .animate-fade-in {
   animation: fade-in 1s ease-out;
 }
