@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Code, Sparkles, Zap, Download, Linkedin, Github, Mail } from 'lucide-react';
@@ -11,6 +10,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
   const handleResumeClick = () => {
     // Direct download link for Google Drive
     window.open('https://drive.google.com/uc?export=download&id=10eh84qoXZZ2l1ipWY0zg8swLkNTGTAJu', '_blank');
+  };
+
+  const handleScrollToAbout = () => {
+    scrollToSection('about');
   };
 
   return (
@@ -162,13 +165,21 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-gray-400 text-sm">Scroll to explore</span>
-          <ArrowDown className="w-6 h-6 text-gray-400 animate-pulse" />
+      {/* Enhanced Scroll Indicator */}
+      <button 
+        onClick={handleScrollToAbout}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 group cursor-pointer hover:scale-110 transition-all duration-300"
+      >
+        <div className="flex flex-col items-center gap-3 p-4 rounded-full bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl hover:bg-white/90 transition-all duration-300">
+          <span className="text-gray-600 text-sm font-medium group-hover:text-blue-600 transition-colors duration-300">
+            Scroll to explore
+          </span>
+          <div className="relative">
+            <ArrowDown className="w-6 h-6 text-gray-500 group-hover:text-blue-600 animate-bounce transition-colors duration-300" />
+            <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
         </div>
-      </div>
+      </button>
     </section>
   );
 };
