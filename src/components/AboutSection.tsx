@@ -16,7 +16,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full transform rotate-6"></div>
               <div className="absolute inset-2 bg-white rounded-full shadow-2xl overflow-hidden hover:shadow-3xl transition-shadow duration-300">
                 <img 
-                  src="/lovable-uploads/59a9f00c-4453-4a8f-9c54-485c98272fe3.png" 
+                  src="/lovable-uploads/daf2f8cf-32b9-488b-bd40-dd9697cca109.png" 
                   alt="K. Jeevan Kumar - Professional"
                   className="w-full h-full object-cover rounded-full hover:scale-105 transition-transform duration-500"
                 />
@@ -27,7 +27,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
           <div className="space-y-6">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">About Me</h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Currently a 3rd year B.Tech student at Malla Reddy Institute of Engineering and Technology, specializing in Artificial Intelligence and Machine Learning. I have hands-on experience in web development, teaching, and machine learning research.
+              Currently a 4th year B.Tech student at Malla Reddy Institute of Engineering and Technology, specializing in Artificial Intelligence and Machine Learning. I have hands-on experience in web development, teaching, and machine learning research.
             </p>
             <p className="text-lg text-gray-600 leading-relaxed">
               My strengths include coding, creativity, and continuous learning. I have experience as a programming instructor, spoken English trainee, and hackathon participant. I believe in building technology that makes a positive impact on society.

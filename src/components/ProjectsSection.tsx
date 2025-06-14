@@ -30,11 +30,11 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
       github: '#'
     },
     {
-      title: 'Student Result Management System',
-      description: 'Comprehensive web-based application for managing student academic records, results, and generating automated reports.',
-      tech: ['Python', 'Web Development', 'Database Management', 'UI/UX'],
+      title: 'Personal Portfolio Website',
+      description: 'Modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. Features smooth animations, dark mode, and optimized performance.',
+      tech: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
       year: '2024',
-      achievement: 'Streamlined academic record management for 500+ students',
+      achievement: '100% responsive design with 95+ Lighthouse performance score',
       demo: '#',
       github: '#'
     }

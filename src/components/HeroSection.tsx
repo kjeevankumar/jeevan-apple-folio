@@ -18,7 +18,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
       </div>
 
       {/* Floating Tech Icons */}
-      <div className="absolute inset0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none">
         <Code className="absolute top-1/4 left-1/6 w-8 h-8 text-blue-400/30 animate-float" style={{ animationDelay: '0.5s' }} />
         <Sparkles className="absolute top-1/3 right-1/5 w-6 h-6 text-purple-400/30 animate-float" style={{ animationDelay: '1.5s' }} />
         <Zap className="absolute bottom-1/3 left-1/5 w-7 h-7 text-pink-400/30 animate-float" style={{ animationDelay: '2.5s' }} />
@@ -74,7 +74,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
               </div>
               
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-                <span className="gradient-text">K. Jeevan Kumar</span>
+                <span className="animated-gradient-text">K. Jeevan Kumar</span>
               </h1>
               
               <div className="space-y-4 mb-8">
@@ -108,15 +108,15 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
               {/* Quick Stats */}
               <div className="flex justify-center lg:justify-start gap-8 mt-8 pt-8 border-t border-gray-100">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">3+</div>
+                  <div className="text-2xl font-bold text-gray-900">4+</div>
                   <div className="text-sm text-gray-500">Years Learning</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">10+</div>
+                  <div className="text-2xl font-bold text-gray-900">15+</div>
                   <div className="text-sm text-gray-500">Projects</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">5+</div>
+                  <div className="text-2xl font-bold text-gray-900">6+</div>
                   <div className="text-sm text-gray-500">Certifications</div>
                 </div>
               </div>
