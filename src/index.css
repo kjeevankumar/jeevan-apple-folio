@@ -150,6 +150,48 @@
   }
 }
 
+/* Pseudo-3D Animations */
+@keyframes pseudo3dEntrance {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(30deg) translateY(50px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotateX(0deg) translateY(0px) scale(1);
+  }
+}
+
+@keyframes floatingOrb {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+  25% {
+    transform: translateY(-15px) translateX(5px) scale(1.05);
+  }
+  50% {
+    transform: translateY(-5px) translateX(-3px) scale(1);
+  }
+  75% {
+    transform: translateY(-12px) translateX(8px) scale(1.02);
+  }
+}
+
+@keyframes tiltFloat {
+  0%, 100% {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px);
+  }
+  25% {
+    transform: perspective(1000px) rotateX(5deg) rotateY(-3deg) translateY(-8px);
+  }
+  50% {
+    transform: perspective(1000px) rotateX(-2deg) rotateY(2deg) translateY(-4px);
+  }
+  75% {
+    transform: perspective(1000px) rotateX(3deg) rotateY(-1deg) translateY(-10px);
+  }
+}
+
 .animate-fade-in {
   animation: fade-in 1s ease-out;
 }
@@ -193,4 +235,124 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Pseudo-3D Components */
+.pseudo-3d-container {
+  perspective: 1000px;
+}
+
+.pseudo-3d-card {
+  animation: pseudo3dEntrance 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  opacity: 0;
+  height: 280px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.pseudo-3d-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-style: preserve-3d;
+  border-radius: 12px;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.pseudo-3d-card:hover .pseudo-3d-card-inner {
+  transform: perspective(1000px) rotateY(180deg) scale(1.02);
+}
+
+.pseudo-3d-card-front,
+.pseudo-3d-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pseudo-3d-card-front {
+  background: white;
+  border: 1px solid #e5e7eb;
+}
+
+.pseudo-3d-card-back {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transform: rotateY(180deg);
+}
+
+.pseudo-3d-project-card {
+  animation: pseudo3dEntrance 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  opacity: 0;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.pseudo-3d-project-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-style: preserve-3d;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+.pseudo-3d-project-card:hover .pseudo-3d-project-inner {
+  transform: perspective(1000px) rotateX(-8deg) rotateY(5deg) translateY(-10px) scale(1.02);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.15),
+    0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.floating-skill-orb {
+  animation: floatingOrb 4s ease-in-out infinite;
+  will-change: transform;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.floating-skill-orb:hover {
+  animation: tiltFloat 2s ease-in-out infinite;
+  transform: scale(1.1);
+}
+
+/* Mouse tilt effect for skill cards */
+.pseudo-3d-card:not(:hover) .pseudo-3d-card-inner {
+  animation: tiltFloat 6s ease-in-out infinite;
+}
+
+/* Staggered animation delays */
+.pseudo-3d-card:nth-child(1) { animation-delay: 0ms; }
+.pseudo-3d-card:nth-child(2) { animation-delay: 200ms; }
+.pseudo-3d-card:nth-child(3) { animation-delay: 400ms; }
+.pseudo-3d-card:nth-child(4) { animation-delay: 600ms; }
+.pseudo-3d-card:nth-child(5) { animation-delay: 800ms; }
+.pseudo-3d-card:nth-child(6) { animation-delay: 1000ms; }
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .pseudo-3d-card,
+  .pseudo-3d-project-card,
+  .floating-skill-orb {
+    animation: none;
+    opacity: 1;
+  }
+  
+  .pseudo-3d-card:hover .pseudo-3d-card-inner,
+  .pseudo-3d-project-card:hover .pseudo-3d-project-inner {
+    transform: scale(1.05);
+  }
 }

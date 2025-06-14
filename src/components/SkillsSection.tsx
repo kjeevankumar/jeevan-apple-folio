@@ -1,8 +1,7 @@
 
 import React from 'react';
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import SkillSphere from './3d/SkillSphere';
+import PseudoSkillCard from './pseudo3d/PseudoSkillCard';
+import FloatingSkillOrb from './pseudo3d/FloatingSkillOrb';
 
 interface SkillsSectionProps {
   isVisible: boolean;
@@ -18,97 +17,78 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
     soft: ['Communication', 'Teaching', 'Problem Solving', 'Teamwork', 'Adaptability', 'Time management']
   };
 
+  const floatingSkills = [
+    { name: 'React', color: '#61dafb', size: 'large' as const, position: { top: '10%', left: '85%' }, delay: 0 },
+    { name: 'Python', color: '#3776ab', size: 'medium' as const, position: { top: '60%', left: '90%' }, delay: 500 },
+    { name: 'JS', color: '#f7df1e', size: 'small' as const, position: { top: '30%', left: '5%' }, delay: 1000 },
+    { name: 'CSS', color: '#1572b6', size: 'medium' as const, position: { top: '70%', left: '8%' }, delay: 1500 },
+    { name: 'Git', color: '#f05032', size: 'small' as const, position: { top: '15%', left: '15%' }, delay: 2000 },
+    { name: 'SQL', color: '#336791', size: 'small' as const, position: { top: '50%', left: '12%' }, delay: 2500 }
+  ];
+
   return (
-    <section id="skills" data-animate className="py-20 px-4 bg-gray-50">
-      <div className="max-w-6xl mx-auto">
+    <section id="skills" data-animate className="py-20 px-4 bg-gray-50 relative overflow-hidden">
+      <div className="max-w-6xl mx-auto relative">
         <h2 className={`text-4xl font-bold text-center text-gray-900 mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           Skills & Expertise
         </h2>
         
-        {/* 3D Skills Visualization */}
-        <div className={`mb-16 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h3 className="text-2xl font-semibold text-center mb-8 text-gray-800">Interactive 3D Skills</h3>
-          <SkillSphere />
+        {/* Floating Skill Orbs */}
+        <div className="absolute inset-0 pointer-events-none">
+          {floatingSkills.map((skill, index) => (
+            <FloatingSkillOrb
+              key={index}
+              skill={skill.name}
+              color={skill.color}
+              size={skill.size}
+              delay={skill.delay}
+              position={skill.position}
+            />
+          ))}
         </div>
 
-        <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <Card className="hover:shadow-lg hover:scale-105 transition-all duration-300">
-            <CardContent className="p-6">
-              <h3 className="font-semibold text-lg mb-4 text-blue-600">Programming Languages</h3>
-              <div className="space-y-2">
-                {skills.languages.map((skill, index) => (
-                  <Badge key={index} variant="secondary" className="mr-2 mb-2">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+        <div className={`pseudo-3d-container grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <PseudoSkillCard
+            title="Programming Languages"
+            skills={skills.languages}
+            color="text-blue-600"
+            delay={0}
+          />
           
-          <Card className="hover:shadow-lg hover:scale-105 transition-all duration-300">
-            <CardContent className="p-6">
-              <h3 className="font-semibold text-lg mb-4 text-green-600">Web Technologies</h3>
-              <div className="space-y-2">
-                {skills.web.map((skill, index) => (
-                  <Badge key={index} variant="secondary" className="mr-2 mb-2">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          <PseudoSkillCard
+            title="Web Technologies"
+            skills={skills.web}
+            color="text-green-600"
+            delay={200}
+          />
           
-          <Card className="hover:shadow-lg hover:scale-105 transition-all duration-300">
-            <CardContent className="p-6">
-              <h3 className="font-semibold text-lg mb-4 text-purple-600">Databases</h3>
-              <div className="space-y-2">
-                {skills.databases.map((skill, index) => (
-                  <Badge key={index} variant="secondary" className="mr-2 mb-2">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          <PseudoSkillCard
+            title="Databases"
+            skills={skills.databases}
+            color="text-purple-600"
+            delay={400}
+          />
           
-          <Card className="hover:shadow-lg hover:scale-105 transition-all duration-300">
-            <CardContent className="p-6">
-              <h3 className="font-semibold text-lg mb-4 text-orange-600">CS Subjects</h3>
-              <div className="space-y-2">
-                {skills.cs_subjects.map((skill, index) => (
-                  <Badge key={index} variant="secondary" className="mr-2 mb-2">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          <PseudoSkillCard
+            title="CS Subjects"
+            skills={skills.cs_subjects}
+            color="text-orange-600"
+            delay={600}
+          />
 
-          <Card className="hover:shadow-lg hover:scale-105 transition-all duration-300">
-            <CardContent className="p-6">
-              <h3 className="font-semibold text-lg mb-4 text-red-600">Tools & Platforms</h3>
-              <div className="space-y-2">
-                {skills.tools.map((skill, index) => (
-                  <Badge key={index} variant="secondary" className="mr-2 mb-2">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          <PseudoSkillCard
+            title="Tools & Platforms"
+            skills={skills.tools}
+            color="text-red-600"
+            delay={800}
+          />
 
-          <Card className="hover:shadow-lg hover:scale-105 transition-all duration-300">
-            <CardContent className="p-6">
-              <h3 className="font-semibold text-lg mb-4 text-pink-600">Soft Skills</h3>
-              <div className="space-y-2">
-                {skills.soft.map((skill, index) => (
-                  <Badge key={index} variant="secondary" className="mr-2 mb-2">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          <PseudoSkillCard
+            title="Soft Skills"
+            skills={skills.soft}
+            color="text-pink-600"
+            delay={1000}
+          />
         </div>
       </div>
     </section>

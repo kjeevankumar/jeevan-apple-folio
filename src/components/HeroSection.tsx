@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Code, Sparkles, Zap, Download, Linkedin, Github, Mail } from 'lucide-react';
-import Scene3D from './3d/Scene3D';
-import ParticleBackground from './3d/ParticleBackground';
 
 interface HeroSectionProps {
   scrollToSection: (sectionId: string) => void;
@@ -34,11 +32,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
 
   return (
     <section className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 overflow-hidden">
-      {/* 3D Background Elements */}
-      <ParticleBackground />
-      <Scene3D />
-
-      {/* ... keep existing code (floating background elements) */}
+      {/* Enhanced CSS-based background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-100/30 rounded-full blur-3xl animate-float"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-100/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
@@ -51,7 +45,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
         <Zap className="absolute bottom-1/3 left-1/5 w-7 h-7 text-pink-400/30 animate-float" style={{ animationDelay: '2.5s' }} />
       </div>
 
-      {/* ... keep existing code (main content grid and all other elements) */}
+      {/* Main content grid and all other elements */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
           <div className="relative order-2 lg:order-1">
