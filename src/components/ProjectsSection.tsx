@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from 'lucide-react';
+import ProjectCard3D from './3d/ProjectCard3D';
 
 interface ProjectsSectionProps {
   isVisible: boolean;
@@ -46,6 +47,22 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
         <h2 className={`text-4xl font-bold text-center text-gray-900 mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           Featured Projects
         </h2>
+        
+        {/* 3D Project Showcase */}
+        <div className={`mb-16 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <h3 className="text-2xl font-semibold text-center mb-8 text-gray-800">3D Project Preview</h3>
+          <div className="grid md:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <ProjectCard3D
+                key={index}
+                title={project.title}
+                description={project.description}
+                tech={project.tech}
+              />
+            ))}
+          </div>
+        </div>
+
         <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {projects.map((project, index) => (
             <Card key={index} className="hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden">

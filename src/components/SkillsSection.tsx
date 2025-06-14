@@ -2,6 +2,7 @@
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import SkillSphere from './3d/SkillSphere';
 
 interface SkillsSectionProps {
   isVisible: boolean;
@@ -23,6 +24,13 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
         <h2 className={`text-4xl font-bold text-center text-gray-900 mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           Skills & Expertise
         </h2>
+        
+        {/* 3D Skills Visualization */}
+        <div className={`mb-16 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <h3 className="text-2xl font-semibold text-center mb-8 text-gray-800">Interactive 3D Skills</h3>
+          <SkillSphere />
+        </div>
+
         <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <Card className="hover:shadow-lg hover:scale-105 transition-all duration-300">
             <CardContent className="p-6">

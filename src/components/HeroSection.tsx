@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Code, Sparkles, Zap, Download, Linkedin, Github, Mail } from 'lucide-react';
+import Scene3D from './3d/Scene3D';
+import ParticleBackground from './3d/ParticleBackground';
 
 interface HeroSectionProps {
   scrollToSection: (sectionId: string) => void;
@@ -14,7 +16,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
       const heroSection = document.getElementById('hero');
       if (heroSection) {
         const rect = heroSection.getBoundingClientRect();
-        // Hide scroll button when hero section is out of view
         setShowScrollButton(rect.bottom > 100);
       }
     };
@@ -24,7 +25,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
   }, []);
 
   const handleResumeClick = () => {
-    // Direct download link for Google Drive
     window.open('https://drive.google.com/uc?export=download&id=10eh84qoXZZ2l1ipWY0zg8swLkNTGTAJu', '_blank');
   };
 
@@ -34,7 +34,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
 
   return (
     <section className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 overflow-hidden">
-      {/* Floating Background Elements */}
+      {/* 3D Background Elements */}
+      <ParticleBackground />
+      <Scene3D />
+
+      {/* ... keep existing code (floating background elements) */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-100/30 rounded-full blur-3xl animate-float"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-100/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
@@ -47,9 +51,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
         <Zap className="absolute bottom-1/3 left-1/5 w-7 h-7 text-pink-400/30 animate-float" style={{ animationDelay: '2.5s' }} />
       </div>
 
+      {/* ... keep existing code (main content grid and all other elements) */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-          {/* Left Column - Photo Section */}
           <div className="relative order-2 lg:order-1">
             <div className="relative w-full max-w-lg mx-auto">
               <div className="absolute -inset-8 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-2xl animate-pulse-glow"></div>
@@ -81,7 +85,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
             </div>
           </div>
 
-          {/* Right Column - Text Content */}
           <div className="text-center lg:text-left space-y-8 order-1 lg:order-2">
             <div className="animate-fade-in">
               <div className="inline-block mb-4">
@@ -122,7 +125,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                 </Button>
               </div>
 
-              {/* Enhanced Resume Download Button with Professional Animation */}
               <div className="mt-6">
                 <Button 
                   size="lg"
@@ -134,7 +136,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                 </Button>
               </div>
 
-              {/* Quick Social Links */}
               <div className="flex justify-center lg:justify-start gap-4 mt-6">
                 <a 
                   href="http://www.linkedin.com/in/k-jeevan-kumar-5333b32b8" 
@@ -160,7 +161,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                 </button>
               </div>
 
-              {/* Quick Stats */}
               <div className="flex justify-center lg:justify-start gap-8 mt-8 pt-8 border-t border-gray-100">
                 <div className="text-center hover:scale-110 transition-transform duration-300">
                   <div className="text-2xl font-bold text-gray-900">4+</div>
@@ -180,7 +180,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
         </div>
       </div>
 
-      {/* Enhanced Scroll Indicator - Only visible in Hero section */}
       {showScrollButton && (
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
           <button 
