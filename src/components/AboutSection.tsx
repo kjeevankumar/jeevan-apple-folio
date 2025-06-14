@@ -2,12 +2,52 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Download } from 'lucide-react';
+import { useToast } from "@/hooks/use-toast";
+import AnimatedCounter from './AnimatedCounter';
 
 interface AboutSectionProps {
   isVisible: boolean;
 }
 
 const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
+  const { toast } = useToast();
+
+  const handleResumeDownload = () => {
+    try {
+      // Convert Google Drive share link to direct download
+      const fileId = "10eh84qoXZZ2l1ipWY0zg8swLkNTGTAJu";
+      const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+      
+      // Create a temporary link and trigger download
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = 'K_Jeevan_Kumar_Resume.pdf';
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      toast({
+        title: "Download Started",
+        description: "Your resume download has been initiated successfully!",
+      });
+    } catch (error) {
+      console.error('Download error:', error);
+      toast({
+        title: "Download Error",
+        description: "There was an issue downloading the resume. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleViewProjects = () => {
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="about" data-animate className="py-20 px-4 relative">
       <div className="max-w-6xl mx-auto">
@@ -60,12 +100,14 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button 
+                  onClick={handleResumeDownload}
                   className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
                 >
                   <Download className="w-4 h-4" />
                   Download Resume
                 </Button>
                 <Button 
+                  onClick={handleViewProjects}
                   variant="outline" 
                   className="border-2 border-gray-300 hover:border-blue-400 text-gray-700 hover:text-blue-600 px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-300"
                 >
@@ -75,22 +117,30 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
             </div>
           </div>
 
-          {/* Achievement Stats */}
+          {/* Achievement Stats - Now with animated counters */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-12 mt-8 border-t border-gray-100">
             <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600">20+</div>
+              <div className="text-2xl font-bold text-blue-600">
+                <AnimatedCounter end={20} suffix="+" isVisible={isVisible} delay={200} />
+              </div>
               <div className="text-sm text-gray-500">Students Taught</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600">3</div>
+              <div className="text-2xl font-bold text-purple-600">
+                <AnimatedCounter end={3} isVisible={isVisible} delay={400} />
+              </div>
               <div className="text-sm text-gray-500">Major Projects</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-600">6</div>
+              <div className="text-2xl font-bold text-green-600">
+                <AnimatedCounter end={6} isVisible={isVisible} delay={600} />
+              </div>
               <div className="text-sm text-gray-500">Certifications</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-indigo-600">8.5</div>
+              <div className="text-2xl font-bold text-indigo-600">
+                <AnimatedCounter end={8.5} decimals={1} isVisible={isVisible} delay={800} />
+              </div>
               <div className="text-sm text-gray-500">CGPA</div>
             </div>
           </div>
