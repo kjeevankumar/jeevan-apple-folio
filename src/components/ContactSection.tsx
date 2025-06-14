@@ -11,6 +11,14 @@ interface ContactSectionProps {
 }
 
 const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
+  const handleWhatsAppClick = () => {
+    window.open('https://wa.me/917816006682', '_blank');
+  };
+
+  const handleEmailClick = () => {
+    window.open('mailto:kjeevankumar@gmail.com?subject=Let\'s Connect - Portfolio Inquiry', '_blank');
+  };
+
   return (
     <section id="contact" data-animate className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
@@ -50,32 +58,62 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
-              <a href="#" className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group">
+              <a 
+                href="http://www.linkedin.com/in/k-jeevan-kumar-5333b32b8" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+              >
                 <Linkedin className="w-6 h-6 text-blue-600 group-hover:text-blue-700" />
               </a>
-              <a href="#" className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group">
+              <a 
+                href="https://github.com/kjeevankumar?tab=repositories" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+              >
                 <Github className="w-6 h-6 text-gray-800 group-hover:text-gray-900" />
               </a>
-              <a href="#" className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group">
+              <button 
+                onClick={handleEmailClick}
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+              >
                 <Mail className="w-6 h-6 text-red-600 group-hover:text-red-700" />
-              </a>
-              <a href="#" className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group">
+              </button>
+              <a 
+                href="https://www.instagram.com/k_jeevan_kumar_944?igsh=ZHB0Ym14MDc3aGlq" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+              >
                 <Instagram className="w-6 h-6 text-pink-600 group-hover:text-pink-700" />
               </a>
-              <a href="#" className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group">
+              <a 
+                href="https://www.facebook.com/share/1Qkt3C16hv/?mibextid=qi2Omg" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+              >
                 <Facebook className="w-6 h-6 text-blue-700 group-hover:text-blue-800" />
               </a>
-              <a href="#" className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group">
-                <div className="w-6 h-6 bg-green-500 rounded flex items-center justify-center">
+              <button 
+                onClick={handleWhatsAppClick}
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+              >
+                <div className="w-6 h-6 bg-green-500 rounded flex items-center justify-center group-hover:bg-green-600">
                   <span className="text-white text-xs font-bold">W</span>
                 </div>
-              </a>
+              </button>
             </div>
             
             <div className="text-center">
               <p className="text-sm text-gray-500 mb-2">Ready to collaborate?</p>
-              <Button variant="outline" className="border-blue-200 text-blue-600 hover:bg-blue-50">
-                Download Resume
+              <Button 
+                variant="outline" 
+                className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                onClick={() => window.open('mailto:kjeevankumar@gmail.com?subject=Resume Request - Portfolio', '_blank')}
+              >
+                Request Resume
               </Button>
             </div>
           </div>

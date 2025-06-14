@@ -1,13 +1,18 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Code, Sparkles, Zap, Download } from 'lucide-react';
+import { ArrowDown, Code, Sparkles, Zap, Download, Linkedin, Github, Mail } from 'lucide-react';
 
 interface HeroSectionProps {
   scrollToSection: (sectionId: string) => void;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
+  const handleResumeClick = () => {
+    // For now, open email to request resume
+    window.open('mailto:kjeevankumar@gmail.com?subject=Resume Request - Portfolio&body=Hi Jeevan,%0D%0A%0D%0AI would like to request your resume.%0D%0A%0D%0AThank you!', '_blank');
+  };
+
   return (
     <section className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 overflow-hidden">
       {/* Floating Background Elements */}
@@ -17,7 +22,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
         <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-pink-100/40 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }}></div>
       </div>
 
-      {/* Floating Tech Icons */}
       <div className="absolute inset-0 pointer-events-none">
         <Code className="absolute top-1/4 left-1/6 w-8 h-8 text-blue-400/30 animate-float" style={{ animationDelay: '0.5s' }} />
         <Sparkles className="absolute top-1/3 right-1/5 w-6 h-6 text-purple-400/30 animate-float" style={{ animationDelay: '1.5s' }} />
@@ -29,18 +33,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
           {/* Left Column - Photo Section */}
           <div className="relative order-2 lg:order-1">
             <div className="relative w-full max-w-lg mx-auto">
-              {/* Decorative Background Elements */}
               <div className="absolute -inset-8 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-2xl animate-pulse-glow"></div>
               <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-20 animate-float"></div>
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-15 animate-float" style={{ animationDelay: '1s' }}></div>
               
-              {/* Main Photo Container */}
               <div className="relative">
                 <div className="w-80 h-80 lg:w-96 lg:h-96 mx-auto relative">
-                  {/* Rotating Background Ring */}
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 via-purple-500/30 to-pink-500/30 rounded-full animate-spin" style={{ animationDuration: '20s' }}></div>
                   
-                  {/* Photo Frame */}
                   <div className="absolute inset-3 bg-white rounded-full shadow-2xl overflow-hidden border-4 border-white backdrop-blur-sm">
                     <img 
                       src="/lovable-uploads/12c910ed-b896-47a9-aa87-7d3591664f02.png" 
@@ -48,13 +48,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                       className="w-full h-full object-cover rounded-full hover:scale-105 transition-transform duration-500"
                     />
                     
-                    {/* Overlay Gradient */}
                     <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 via-transparent to-transparent rounded-full"></div>
                   </div>
                 </div>
               </div>
 
-              {/* Floating Status Badge */}
               <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
                 <div className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg animate-bounce flex items-center gap-2">
                   <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
@@ -109,12 +107,39 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
               <div className="mt-6">
                 <Button 
                   size="lg"
+                  onClick={handleResumeClick}
                   className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2 animate-bounce"
                   style={{ animationDelay: '2s' }}
                 >
                   <Download className="w-5 h-5 animate-pulse" />
-                  Download Resume
+                  Request Resume
                 </Button>
+              </div>
+
+              {/* Quick Social Links */}
+              <div className="flex justify-center lg:justify-start gap-4 mt-6">
+                <a 
+                  href="http://www.linkedin.com/in/k-jeevan-kumar-5333b32b8" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-2 bg-blue-100 rounded-full hover:bg-blue-200 transition-all duration-300 hover:scale-110"
+                >
+                  <Linkedin className="w-5 h-5 text-blue-600" />
+                </a>
+                <a 
+                  href="https://github.com/kjeevankumar?tab=repositories" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-all duration-300 hover:scale-110"
+                >
+                  <Github className="w-5 h-5 text-gray-800" />
+                </a>
+                <button 
+                  onClick={() => window.open('mailto:kjeevankumar@gmail.com?subject=Hi Jeevan - Portfolio Contact', '_blank')}
+                  className="p-2 bg-red-100 rounded-full hover:bg-red-200 transition-all duration-300 hover:scale-110"
+                >
+                  <Mail className="w-5 h-5 text-red-600" />
+                </button>
               </div>
 
               {/* Quick Stats */}
