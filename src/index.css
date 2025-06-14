@@ -245,7 +245,7 @@
 .pseudo-3d-card {
   animation: pseudo3dEntrance 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   opacity: 0;
-  height: 280px;
+  min-height: 180px;
   perspective: 1000px;
   cursor: pointer;
 }
@@ -273,7 +273,7 @@
   height: 100%;
   backface-visibility: hidden;
   border-radius: 12px;
-  padding: 24px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
 }

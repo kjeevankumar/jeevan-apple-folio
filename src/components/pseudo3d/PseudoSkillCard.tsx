@@ -17,10 +17,10 @@ const PseudoSkillCard: React.FC<PseudoSkillCardProps> = ({ title, skills, color,
     >
       <div className="pseudo-3d-card-inner">
         <div className="pseudo-3d-card-front">
-          <h3 className={`font-semibold text-lg mb-4 ${color}`}>{title}</h3>
-          <div className="space-y-2">
+          <h3 className={`font-semibold text-lg mb-3 ${color}`}>{title}</h3>
+          <div className="flex-1 flex flex-wrap gap-2 content-start">
             {skills.map((skill, index) => (
-              <Badge key={index} variant="secondary" className="mr-2 mb-2">
+              <Badge key={index} variant="secondary" className="text-xs">
                 {skill}
               </Badge>
             ))}
