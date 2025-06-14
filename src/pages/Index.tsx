@@ -10,6 +10,7 @@ import CertificationsSection from '@/components/CertificationsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import FloatingNav from '@/components/FloatingNav';
+import PageLoader from '@/components/PageLoader';
 
 interface VisibilityState {
   [key: string]: boolean;
@@ -17,8 +18,32 @@ interface VisibilityState {
 
 const Index = () => {
   const [isVisible, setIsVisible] = useState<VisibilityState>({});
+  const [isPageLoading, setIsPageLoading] = useState(true);
+  const [isContentReady, setIsContentReady] = useState(false);
 
   useEffect(() => {
+    // Simulate initial loading time
+    const loadingTimer = setTimeout(() => {
+      setIsPageLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(loadingTimer);
+  }, []);
+
+  useEffect(() => {
+    if (!isPageLoading) {
+      // Small delay before showing content for smooth transition
+      const contentTimer = setTimeout(() => {
+        setIsContentReady(true);
+      }, 300);
+
+      return () => clearTimeout(contentTimer);
+    }
+  }, [isPageLoading]);
+
+  useEffect(() => {
+    if (!isContentReady) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -30,14 +55,14 @@ const Index = () => {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: '50px' }
     );
 
     const sections = document.querySelectorAll('[data-animate]');
     sections.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
-  }, []);
+  }, [isContentReady]);
 
   const scrollToSection = (sectionId: string) => {
     if (sectionId === '') {
@@ -50,21 +75,31 @@ const Index = () => {
     }
   };
 
+  const handleLoadingComplete = () => {
+    setIsPageLoading(false);
+  };
+
   return (
-    <div className="min-h-screen bg-white">
-      <FloatingNav scrollToSection={scrollToSection} />
-      <section id="hero">
-        <HeroSection scrollToSection={scrollToSection} />
-      </section>
-      <AboutSection isVisible={isVisible.about} />
-      <EducationSection isVisible={isVisible.education} />
-      <ExperienceSection isVisible={isVisible.experience} />
-      <SkillsSection isVisible={isVisible.skills} />
-      <ProjectsSection isVisible={isVisible.projects} />
-      <CertificationsSection isVisible={isVisible.certifications} />
-      <ContactSection isVisible={isVisible.contact} />
-      <Footer />
-    </div>
+    <>
+      <PageLoader isLoading={isPageLoading} onLoadingComplete={handleLoadingComplete} />
+      
+      <div className={`min-h-screen bg-white transition-opacity duration-1000 ${
+        isContentReady ? 'opacity-100' : 'opacity-0'
+      }`}>
+        <FloatingNav scrollToSection={scrollToSection} />
+        <section id="hero">
+          <HeroSection scrollToSection={scrollToSection} />
+        </section>
+        <AboutSection isVisible={isVisible.about} />
+        <EducationSection isVisible={isVisible.education} />
+        <ExperienceSection isVisible={isVisible.experience} />
+        <SkillsSection isVisible={isVisible.skills} />
+        <ProjectsSection isVisible={isVisible.projects} />
+        <CertificationsSection isVisible={isVisible.certifications} />
+        <ContactSection isVisible={isVisible.contact} />
+        <Footer />
+      </div>
+    </>
   );
 };
 

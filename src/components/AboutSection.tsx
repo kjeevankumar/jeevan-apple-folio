@@ -1,9 +1,10 @@
 
-import React from 'react';
-import { Button } from "@/components/ui/button";
+import React, { useState } from 'react';
 import { Download } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import AnimatedCounter from './AnimatedCounter';
+import LoadingButton from './LoadingButton';
+import TransitionWrapper from './TransitionWrapper';
 
 interface AboutSectionProps {
   isVisible: boolean;
@@ -11,8 +12,11 @@ interface AboutSectionProps {
 
 const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
   const { toast } = useToast();
+  const [isDownloading, setIsDownloading] = useState(false);
 
-  const handleResumeDownload = () => {
+  const handleResumeDownload = async () => {
+    setIsDownloading(true);
+    
     try {
       // Convert Google Drive share link to direct download
       const fileId = "10eh84qoXZZ2l1ipWY0zg8swLkNTGTAJu";
@@ -38,6 +42,11 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
         description: "There was an issue downloading the resume. Please try again.",
         variant: "destructive",
       });
+    } finally {
+      // Add delay to show loading state
+      setTimeout(() => {
+        setIsDownloading(false);
+      }, 1500);
     }
   };
 
@@ -52,17 +61,19 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
     <section id="about" data-animate className="py-20 px-4 relative">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            About Me
-          </h2>
-        </div>
+        <TransitionWrapper isVisible={isVisible} delay={100}>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              About Me
+            </h2>
+          </div>
+        </TransitionWrapper>
 
         {/* Content section with side-by-side layout */}
-        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Column - Photo */}
-            <div className="relative order-2 lg:order-1">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column - Photo */}
+          <TransitionWrapper isVisible={isVisible} delay={300} direction="left" className="order-2 lg:order-1">
+            <div className="relative">
               <div className="relative w-full max-w-md mx-auto">
                 <div className="absolute -inset-4 bg-gradient-to-br from-blue-100/60 to-purple-100/60 rounded-3xl transform rotate-3 animate-pulse"></div>
                 <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden p-2">
@@ -79,9 +90,11 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
                 <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-15 animate-float" style={{ animationDelay: '1s' }}></div>
               </div>
             </div>
+          </TransitionWrapper>
 
-            {/* Right Column - Content */}
-            <div className="space-y-6 order-1 lg:order-2">
+          {/* Right Column - Content */}
+          <TransitionWrapper isVisible={isVisible} delay={500} direction="right" className="order-1 lg:order-2">
+            <div className="space-y-6">
               <p className="text-lg text-gray-600 leading-relaxed">
                 I'm a dedicated 4th-year B.Tech student specializing in <span className="font-semibold text-blue-600">Artificial Intelligence and Machine Learning</span> at Malla Reddy Institute of Engineering and Technology. With a strong foundation in programming and web development, I've successfully combined theoretical knowledge with practical application.
               </p>
@@ -99,52 +112,66 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button 
+                <LoadingButton 
                   onClick={handleResumeDownload}
+                  isLoading={isDownloading}
                   className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
                 >
                   <Download className="w-4 h-4" />
                   Download Resume
-                </Button>
-                <Button 
+                </LoadingButton>
+                <LoadingButton 
                   onClick={handleViewProjects}
                   variant="outline" 
                   className="border-2 border-gray-300 hover:border-blue-400 text-gray-700 hover:text-blue-600 px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-300"
                 >
                   View Projects
-                </Button>
+                </LoadingButton>
               </div>
             </div>
-          </div>
-
-          {/* Achievement Stats - Now with animated counters */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-12 mt-8 border-t border-gray-100">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600">
-                <AnimatedCounter end={20} suffix="+" isVisible={isVisible} delay={200} />
-              </div>
-              <div className="text-sm text-gray-500">Students Taught</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600">
-                <AnimatedCounter end={3} isVisible={isVisible} delay={400} />
-              </div>
-              <div className="text-sm text-gray-500">Major Projects</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-green-600">
-                <AnimatedCounter end={6} isVisible={isVisible} delay={600} />
-              </div>
-              <div className="text-sm text-gray-500">Certifications</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-indigo-600">
-                <AnimatedCounter end={8.5} decimals={1} isVisible={isVisible} delay={800} />
-              </div>
-              <div className="text-sm text-gray-500">CGPA</div>
-            </div>
-          </div>
+          </TransitionWrapper>
         </div>
+
+        {/* Achievement Stats - Now with staggered animated counters */}
+        <TransitionWrapper isVisible={isVisible} delay={700}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-12 mt-8 border-t border-gray-100">
+            <TransitionWrapper isVisible={isVisible} delay={800}>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-600">
+                  <AnimatedCounter end={20} suffix="+" isVisible={isVisible} delay={200} />
+                </div>
+                <div className="text-sm text-gray-500">Students Taught</div>
+              </div>
+            </TransitionWrapper>
+            
+            <TransitionWrapper isVisible={isVisible} delay={900}>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-purple-600">
+                  <AnimatedCounter end={3} isVisible={isVisible} delay={400} />
+                </div>
+                <div className="text-sm text-gray-500">Major Projects</div>
+              </div>
+            </TransitionWrapper>
+            
+            <TransitionWrapper isVisible={isVisible} delay={1000}>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-green-600">
+                  <AnimatedCounter end={6} isVisible={isVisible} delay={600} />
+                </div>
+                <div className="text-sm text-gray-500">Certifications</div>
+              </div>
+            </TransitionWrapper>
+            
+            <TransitionWrapper isVisible={isVisible} delay={1100}>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-indigo-600">
+                  <AnimatedCounter end={8.5} decimals={1} isVisible={isVisible} delay={800} />
+                </div>
+                <div className="text-sm text-gray-500">CGPA</div>
+              </div>
+            </TransitionWrapper>
+          </div>
+        </TransitionWrapper>
       </div>
     </section>
   );
