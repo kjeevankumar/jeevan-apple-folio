@@ -7,8 +7,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { ArrowDown, Mail, Github, Linkedin } from 'lucide-react';
 
+interface VisibilityState {
+  [key: string]: boolean;
+}
+
 const Index = () => {
-  const [isVisible, setIsVisible] = useState({});
+  const [isVisible, setIsVisible] = useState<VisibilityState>({});
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -95,10 +99,12 @@ const Index = () => {
             <div className="relative">
               <div className="w-80 h-80 mx-auto relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full transform rotate-6"></div>
-                <div className="absolute inset-4 bg-white rounded-full shadow-2xl flex items-center justify-center">
-                  <div className="w-64 h-64 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-6xl font-bold">
-                    JK
-                  </div>
+                <div className="absolute inset-4 bg-white rounded-full shadow-2xl overflow-hidden">
+                  <img 
+                    src="/lovable-uploads/12c910ed-b896-47a9-aa87-7d3591664f02.png" 
+                    alt="K. Jeevan Kumar"
+                    className="w-full h-full object-cover rounded-full"
+                  />
                 </div>
               </div>
             </div>
