@@ -14,9 +14,10 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
       tech: ['HTML', 'CSS', 'JavaScript'],
       year: 'Feb 2023 - May 2023',
       achievement: 'Created a fully responsive design with smooth animations',
-      demo: '#',
+      demo: 'https://your-actual-portfolio-link.com', // Replace with your actual portfolio URL
       github: 'https://github.com/kjeevankumar?tab=repositories',
-      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop'
+      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop',
+      hasDemo: true
     },
     {
       title: 'Intelligent Data-Driven Security Model',
@@ -26,7 +27,8 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
       achievement: 'Improved detection accuracy through machine learning optimization',
       demo: '#',
       github: 'https://github.com/kjeevankumar?tab=repositories',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop'
+      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop',
+      hasDemo: false
     },
     {
       title: 'AI Chatbot Assistant',
@@ -36,7 +38,8 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
       achievement: 'Developed natural conversational flows for enhanced user experience',
       demo: '#',
       github: 'https://github.com/kjeevankumar?tab=repositories',
-      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop'
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop',
+      hasDemo: false
     }
   ];
 
@@ -59,6 +62,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
               demo={project.demo}
               github={project.github}
               image={project.image}
+              hasDemo={project.hasDemo}
               delay={index * 200}
             />
           ))}

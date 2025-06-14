@@ -13,12 +13,19 @@ interface PseudoProjectCardProps {
   demo: string;
   github: string;
   image: string;
+  hasDemo?: boolean;
   delay: number;
 }
 
 const PseudoProjectCard: React.FC<PseudoProjectCardProps> = ({ 
-  title, description, tech, year, achievement, demo, github, image, delay 
+  title, description, tech, year, achievement, demo, github, image, hasDemo = true, delay 
 }) => {
+  const handleDemoClick = () => {
+    if (hasDemo && demo !== '#') {
+      window.open(demo, '_blank');
+    }
+  };
+
   return (
     <div 
       className="pseudo-3d-project-card group"
@@ -57,9 +64,18 @@ const PseudoProjectCard: React.FC<PseudoProjectCardProps> = ({
           </div>
           
           <div className="flex gap-3">
-            <Button size="sm" className="bg-blue-600 hover:bg-blue-700 flex items-center gap-2 transform hover:scale-105 transition-all duration-200">
+            <Button 
+              size="sm" 
+              className={`flex items-center gap-2 transform transition-all duration-200 ${
+                hasDemo 
+                  ? 'bg-blue-600 hover:bg-blue-700 hover:scale-105' 
+                  : 'bg-gray-400 cursor-not-allowed'
+              }`}
+              onClick={handleDemoClick}
+              disabled={!hasDemo}
+            >
               <ExternalLink className="w-3 h-3" />
-              Demo
+              {hasDemo ? 'Demo' : 'Coming Soon'}
             </Button>
             <Button 
               size="sm" 
