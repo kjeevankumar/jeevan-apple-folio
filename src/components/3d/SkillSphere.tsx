@@ -34,7 +34,7 @@ const SkillOrb: React.FC<SkillOrbProps> = ({ skill, position, color }) => {
     >
       <mesh>
         <sphereGeometry args={[0.4, 32, 32]} />
-        <meshStandardMaterial color={color} transparent opacity={0.8} />
+        <meshStandardMaterial attach="material" color={color} transparent opacity={0.8} />
       </mesh>
       <Text
         position={[0, 0, 0.5]}

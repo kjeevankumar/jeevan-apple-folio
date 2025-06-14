@@ -17,7 +17,7 @@ const FloatingGeometry: React.FC<{ position: [number, number, number] }> = ({ po
 
   return (
     <Box ref={meshRef} position={position} args={[0.5, 0.5, 0.5]}>
-      <meshStandardMaterial color="#667eea" transparent opacity={0.7} />
+      <meshStandardMaterial attach="material" color="#667eea" transparent opacity={0.7} />
     </Box>
   );
 };
@@ -35,7 +35,7 @@ const FloatingSphere: React.FC<{ position: [number, number, number] }> = ({ posi
 
   return (
     <Sphere ref={meshRef} position={position} args={[0.3]}>
-      <meshStandardMaterial color="#764ba2" transparent opacity={0.6} />
+      <meshStandardMaterial attach="material" color="#764ba2" transparent opacity={0.6} />
     </Sphere>
   );
 };
@@ -53,7 +53,7 @@ const FloatingTorus: React.FC<{ position: [number, number, number] }> = ({ posit
 
   return (
     <Torus ref={meshRef} position={position} args={[0.4, 0.1, 16, 32]}>
-      <meshStandardMaterial color="#f093fb" transparent opacity={0.5} />
+      <meshStandardMaterial attach="material" color="#f093fb" transparent opacity={0.5} />
     </Torus>
   );
 };

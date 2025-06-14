@@ -28,7 +28,7 @@ const Card3D: React.FC<{ title: string; isHovered: boolean }> = ({ title, isHove
   return (
     <group ref={meshRef}>
       <Box args={[3, 2, 0.1]}>
-        <meshStandardMaterial color="#667eea" />
+        <meshStandardMaterial attach="material" color="#667eea" />
       </Box>
       <Text
         position={[0, 0, 0.1]}
