@@ -19,6 +19,11 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
     window.open('mailto:kjeevankumar@gmail.com?subject=Let\'s Connect - Portfolio Inquiry', '_blank');
   };
 
+  const handleResumeClick = () => {
+    // Direct download link for Google Drive
+    window.open('https://drive.google.com/uc?export=download&id=10eh84qoXZZ2l1ipWY0zg8swLkNTGTAJu', '_blank');
+  };
+
   return (
     <section id="contact" data-animate className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
@@ -111,9 +116,9 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
               <Button 
                 variant="outline" 
                 className="border-blue-200 text-blue-600 hover:bg-blue-50"
-                onClick={() => window.open('mailto:kjeevankumar@gmail.com?subject=Resume Request - Portfolio', '_blank')}
+                onClick={handleResumeClick}
               >
-                Request Resume
+                Download Resume
               </Button>
             </div>
           </div>

@@ -9,8 +9,8 @@ interface HeroSectionProps {
 
 const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
   const handleResumeClick = () => {
-    // For now, open email to request resume
-    window.open('mailto:kjeevankumar@gmail.com?subject=Resume Request - Portfolio&body=Hi Jeevan,%0D%0A%0D%0AI would like to request your resume.%0D%0A%0D%0AThank you!', '_blank');
+    // Direct download link for Google Drive
+    window.open('https://drive.google.com/uc?export=download&id=10eh84qoXZZ2l1ipWY0zg8swLkNTGTAJu', '_blank');
   };
 
   return (
