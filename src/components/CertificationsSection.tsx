@@ -17,8 +17,20 @@ const CertificationsSection: React.FC<CertificationsSectionProps> = ({ isVisible
       status: 'Latest'
     },
     { 
+      title: 'Infosys Springboard Generative AI', 
+      platform: 'Infosys Springboard',
+      date: 'March 2025',
+      status: 'Latest'
+    },
+    { 
       title: 'Mastering Python Programming', 
       platform: 'Infosys Springboard',
+      date: 'February 2025',
+      status: 'Recent'
+    },
+    { 
+      title: 'Fundamental AI Concepts', 
+      platform: 'Microsoft',
       date: 'February 2025',
       status: 'Recent'
     },
@@ -29,22 +41,10 @@ const CertificationsSection: React.FC<CertificationsSectionProps> = ({ isVisible
       status: 'Certified'
     },
     { 
-      title: 'Data Structures & Algorithms', 
-      platform: 'Coding Ninjas',
+      title: 'Cisco Python Certificate', 
+      platform: 'Cisco Networking Academy',
       date: '2024',
-      status: 'Completed'
-    },
-    { 
-      title: 'Web Development Fundamentals', 
-      platform: 'Internshala',
-      date: '2024',
-      status: 'Completed'
-    },
-    { 
-      title: 'ReactJS Development', 
-      platform: 'SkillUp',
-      date: '2024',
-      status: 'Completed'
+      status: 'Certified'
     }
   ];
 
@@ -56,18 +56,18 @@ const CertificationsSection: React.FC<CertificationsSectionProps> = ({ isVisible
         </h2>
         <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {certifications.map((cert, index) => (
-            <Card key={index} className="hover:shadow-lg hover:scale-105 transition-all duration-300">
+            <Card key={index} className="hover:shadow-lg hover:scale-105 transition-all duration-300 hover-lift">
               <CardContent className="p-6">
                 <div className="flex items-start justify-between mb-4">
                   <Badge 
                     variant={cert.status === 'Latest' ? 'default' : cert.status === 'Recent' ? 'secondary' : 'outline'}
-                    className="mb-2"
+                    className="mb-2 animate-pulse"
                   >
                     {cert.status}
                   </Badge>
-                  <Award className="w-5 h-5 text-blue-600" />
+                  <Award className="w-5 h-5 text-blue-600 animate-bounce" style={{ animationDelay: `${index * 0.1}s` }} />
                 </div>
-                <h3 className="font-semibold text-lg mb-2">{cert.title}</h3>
+                <h3 className="font-semibold text-lg mb-2 hover:text-blue-600 transition-colors duration-300">{cert.title}</h3>
                 <p className="text-blue-600 text-sm font-medium mb-2">{cert.platform}</p>
                 <div className="flex items-center text-gray-500 text-sm">
                   <Calendar className="w-4 h-4 mr-1" />

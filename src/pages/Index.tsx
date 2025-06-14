@@ -9,6 +9,7 @@ import ProjectsSection from '@/components/ProjectsSection';
 import CertificationsSection from '@/components/CertificationsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import FloatingNav from '@/components/FloatingNav';
 
 interface VisibilityState {
   [key: string]: boolean;
@@ -39,6 +40,10 @@ const Index = () => {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
+    if (sectionId === '') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -47,7 +52,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <HeroSection scrollToSection={scrollToSection} />
+      <FloatingNav scrollToSection={scrollToSection} />
+      <section id="hero">
+        <HeroSection scrollToSection={scrollToSection} />
+      </section>
       <AboutSection isVisible={isVisible.about} />
       <EducationSection isVisible={isVisible.education} />
       <ExperienceSection isVisible={isVisible.experience} />

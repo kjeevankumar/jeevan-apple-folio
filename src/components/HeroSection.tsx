@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Code, Sparkles, Zap } from 'lucide-react';
+import { ArrowDown, Code, Sparkles, Zap, Download } from 'lucide-react';
 
 interface HeroSectionProps {
   scrollToSection: (sectionId: string) => void;
@@ -68,7 +68,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
           <div className="text-center lg:text-left space-y-8 order-1 lg:order-2">
             <div className="animate-fade-in">
               <div className="inline-block mb-4">
-                <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
+                <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium animate-pulse">
                   👋 Hi, I'm
                 </span>
               </div>
@@ -91,7 +91,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                 <Button 
                   size="lg" 
                   onClick={() => scrollToSection('projects')}
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl animate-pulse"
                 >
                   View Projects
                 </Button>
@@ -99,23 +99,35 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                   variant="outline" 
                   size="lg"
                   onClick={() => scrollToSection('contact')}
-                  className="border-2 border-gray-300 hover:border-blue-400 text-gray-700 hover:text-blue-600 px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-300"
+                  className="border-2 border-gray-300 hover:border-blue-400 text-gray-700 hover:text-blue-600 px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-300 hover:shadow-lg"
                 >
                   Contact Me
                 </Button>
               </div>
 
+              {/* Enhanced Resume Download Button */}
+              <div className="mt-6">
+                <Button 
+                  size="lg"
+                  className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2 animate-bounce"
+                  style={{ animationDelay: '2s' }}
+                >
+                  <Download className="w-5 h-5 animate-pulse" />
+                  Download Resume
+                </Button>
+              </div>
+
               {/* Quick Stats */}
               <div className="flex justify-center lg:justify-start gap-8 mt-8 pt-8 border-t border-gray-100">
-                <div className="text-center">
+                <div className="text-center hover:scale-110 transition-transform duration-300">
                   <div className="text-2xl font-bold text-gray-900">4+</div>
                   <div className="text-sm text-gray-500">Years Learning</div>
                 </div>
-                <div className="text-center">
+                <div className="text-center hover:scale-110 transition-transform duration-300">
                   <div className="text-2xl font-bold text-gray-900">15+</div>
                   <div className="text-sm text-gray-500">Projects</div>
                 </div>
-                <div className="text-center">
+                <div className="text-center hover:scale-110 transition-transform duration-300">
                   <div className="text-2xl font-bold text-gray-900">6+</div>
                   <div className="text-sm text-gray-500">Certifications</div>
                 </div>
@@ -129,7 +141,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
         <div className="flex flex-col items-center gap-2">
           <span className="text-gray-400 text-sm">Scroll to explore</span>
-          <ArrowDown className="w-6 h-6 text-gray-400" />
+          <ArrowDown className="w-6 h-6 text-gray-400 animate-pulse" />
         </div>
       </div>
     </section>
