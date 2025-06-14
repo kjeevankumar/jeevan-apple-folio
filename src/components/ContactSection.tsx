@@ -62,50 +62,57 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
               </p>
             </div>
             
+            {/* Enhanced Animated Social Media Icons */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
               <a 
                 href="http://www.linkedin.com/in/k-jeevan-kumar-5333b32b8" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-500 group transform hover:scale-125 hover:rotate-12 animate-bounce"
+                style={{ animationDelay: '0s' }}
               >
-                <Linkedin className="w-6 h-6 text-blue-600 group-hover:text-blue-700" />
+                <Linkedin className="w-6 h-6 text-blue-600 group-hover:text-blue-700 transition-all duration-300 group-hover:animate-pulse" />
               </a>
               <a 
                 href="https://github.com/kjeevankumar?tab=repositories" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-500 group transform hover:scale-125 hover:-rotate-12 animate-bounce"
+                style={{ animationDelay: '0.2s' }}
               >
-                <Github className="w-6 h-6 text-gray-800 group-hover:text-gray-900" />
+                <Github className="w-6 h-6 text-gray-800 group-hover:text-gray-900 transition-all duration-300 group-hover:animate-spin" />
               </a>
               <button 
                 onClick={handleEmailClick}
-                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-500 group transform hover:scale-125 hover:rotate-12 animate-bounce"
+                style={{ animationDelay: '0.4s' }}
               >
-                <Mail className="w-6 h-6 text-red-600 group-hover:text-red-700" />
+                <Mail className="w-6 h-6 text-red-600 group-hover:text-red-700 transition-all duration-300 group-hover:animate-pulse" />
               </button>
               <a 
                 href="https://www.instagram.com/k_jeevan_kumar_944?igsh=ZHB0Ym14MDc3aGlq" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-500 group transform hover:scale-125 hover:-rotate-12 animate-bounce"
+                style={{ animationDelay: '0.6s' }}
               >
-                <Instagram className="w-6 h-6 text-pink-600 group-hover:text-pink-700" />
+                <Instagram className="w-6 h-6 text-pink-600 group-hover:text-pink-700 transition-all duration-300 group-hover:animate-ping" />
               </a>
               <a 
                 href="https://www.facebook.com/share/1Qkt3C16hv/?mibextid=qi2Omg" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-500 group transform hover:scale-125 hover:rotate-12 animate-bounce"
+                style={{ animationDelay: '0.8s' }}
               >
-                <Facebook className="w-6 h-6 text-blue-700 group-hover:text-blue-800" />
+                <Facebook className="w-6 h-6 text-blue-700 group-hover:text-blue-800 transition-all duration-300 group-hover:animate-pulse" />
               </a>
               <button 
                 onClick={handleWhatsAppClick}
-                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+                className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-500 group transform hover:scale-125 hover:-rotate-12 animate-bounce"
+                style={{ animationDelay: '1s' }}
               >
-                <div className="w-6 h-6 bg-green-500 rounded flex items-center justify-center group-hover:bg-green-600">
+                <div className="w-6 h-6 bg-green-500 rounded flex items-center justify-center group-hover:bg-green-600 transition-all duration-300 group-hover:animate-spin">
                   <span className="text-white text-xs font-bold">W</span>
                 </div>
               </button>

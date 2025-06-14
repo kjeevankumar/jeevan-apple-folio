@@ -18,7 +18,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
       year: 'Feb 2023 - May 2023',
       achievement: 'Created a fully responsive design with smooth animations',
       demo: '#',
-      github: '#'
+      github: 'https://github.com/kjeevankumar?tab=repositories'
     },
     {
       title: 'An Intelligent Data-Driven Model for Securing In-Car Communications',
@@ -27,7 +27,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
       year: 'Feb 2025 - Apr 2025',
       achievement: 'Improved detection accuracy through machine learning optimization',
       demo: '#',
-      github: '#'
+      github: 'https://github.com/kjeevankumar?tab=repositories'
     },
     {
       title: 'AI Chatbot Assistant',
@@ -36,7 +36,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
       year: 'Apr 2025 - May 2025',
       achievement: 'Developed natural conversational flows for enhanced user experience',
       demo: '#',
-      github: '#'
+      github: 'https://github.com/kjeevankumar?tab=repositories'
     }
   ];
 
@@ -76,7 +76,12 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
                     <ExternalLink className="w-3 h-3" />
                     Demo
                   </Button>
-                  <Button size="sm" variant="outline" className="flex items-center gap-2">
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="flex items-center gap-2"
+                    onClick={() => window.open(project.github, '_blank')}
+                  >
                     <Github className="w-3 h-3" />
                     Code
                   </Button>

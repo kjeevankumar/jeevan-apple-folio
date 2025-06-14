@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Code, Sparkles, Zap, Download, Linkedin, Github, Mail } from 'lucide-react';
@@ -165,10 +166,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
         </div>
       </div>
 
-      {/* Enhanced Scroll Indicator - Positioned slightly higher */}
+      {/* Enhanced Scroll Indicator - Positioned to the right side to avoid Years Learning */}
       <button 
         onClick={handleScrollToAbout}
-        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20 group cursor-pointer hover:scale-110 transition-all duration-300"
+        className="fixed bottom-8 right-8 z-20 group cursor-pointer hover:scale-110 transition-all duration-300"
       >
         <div className="flex flex-col items-center gap-3 p-3 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl hover:bg-white transition-all duration-300">
           <span className="text-gray-600 text-xs font-medium group-hover:text-blue-600 transition-colors duration-300">
