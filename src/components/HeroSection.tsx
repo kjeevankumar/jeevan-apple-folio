@@ -1,0 +1,139 @@
+
+import React from 'react';
+import { Button } from "@/components/ui/button";
+import { ArrowDown, Code, Sparkles, Zap } from 'lucide-react';
+
+interface HeroSectionProps {
+  scrollToSection: (sectionId: string) => void;
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
+  return (
+    <section className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 overflow-hidden">
+      {/* Floating Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-100/30 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-100/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-pink-100/40 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }}></div>
+      </div>
+
+      {/* Floating Tech Icons */}
+      <div className="absolute inset-0 pointer-events-none">
+        <Code className="absolute top-1/4 left-1/6 w-8 h-8 text-blue-400/30 animate-float" style={{ animationDelay: '0.5s' }} />
+        <Sparkles className="absolute top-1/3 right-1/5 w-6 h-6 text-purple-400/30 animate-float" style={{ animationDelay: '1.5s' }} />
+        <Zap className="absolute bottom-1/3 left-1/5 w-7 h-7 text-pink-400/30 animate-float" style={{ animationDelay: '2.5s' }} />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          {/* Left Column - Photo Section */}
+          <div className="relative order-2 lg:order-1">
+            <div className="relative w-full max-w-lg mx-auto">
+              {/* Decorative Background Elements */}
+              <div className="absolute -inset-8 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-2xl animate-pulse-glow"></div>
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-20 animate-float"></div>
+              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-15 animate-float" style={{ animationDelay: '1s' }}></div>
+              
+              {/* Main Photo Container */}
+              <div className="relative">
+                <div className="w-80 h-80 lg:w-96 lg:h-96 mx-auto relative">
+                  {/* Rotating Background Ring */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 via-purple-500/30 to-pink-500/30 rounded-full animate-spin" style={{ animationDuration: '20s' }}></div>
+                  
+                  {/* Photo Frame */}
+                  <div className="absolute inset-3 bg-white rounded-full shadow-2xl overflow-hidden border-4 border-white backdrop-blur-sm">
+                    <img 
+                      src="/lovable-uploads/12c910ed-b896-47a9-aa87-7d3591664f02.png" 
+                      alt="K. Jeevan Kumar"
+                      className="w-full h-full object-cover rounded-full hover:scale-105 transition-transform duration-500"
+                    />
+                    
+                    {/* Overlay Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 via-transparent to-transparent rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating Status Badge */}
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+                <div className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg animate-bounce flex items-center gap-2">
+                  <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                  Available for opportunities
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column - Text Content */}
+          <div className="text-center lg:text-left space-y-8 order-1 lg:order-2">
+            <div className="animate-fade-in">
+              <div className="inline-block mb-4">
+                <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
+                  👋 Hello, I'm
+                </span>
+              </div>
+              
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                <span className="gradient-text">K. Jeevan Kumar</span>
+              </h1>
+              
+              <div className="space-y-4 mb-8">
+                <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
+                  A passionate <span className="font-semibold text-blue-600">developer</span> and future 
+                  <span className="font-semibold text-purple-600"> tech leader</span>
+                </p>
+                <p className="text-lg text-gray-500">
+                  Building tomorrow's technology from Telangana 🇮🇳
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Button 
+                  size="lg" 
+                  onClick={() => scrollToSection('projects')}
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  View My Work
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  onClick={() => scrollToSection('contact')}
+                  className="border-2 border-gray-300 hover:border-blue-400 text-gray-700 hover:text-blue-600 px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-300"
+                >
+                  Get In Touch
+                </Button>
+              </div>
+
+              {/* Quick Stats */}
+              <div className="flex justify-center lg:justify-start gap-8 mt-8 pt-8 border-t border-gray-100">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-gray-900">3+</div>
+                  <div className="text-sm text-gray-500">Years Learning</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-gray-900">10+</div>
+                  <div className="text-sm text-gray-500">Projects</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-gray-900">5+</div>
+                  <div className="text-sm text-gray-500">Certifications</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-gray-400 text-sm">Scroll to explore</span>
+          <ArrowDown className="w-6 h-6 text-gray-400" />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default HeroSection;

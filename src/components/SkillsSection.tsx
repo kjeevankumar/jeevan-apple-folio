@@ -1,0 +1,82 @@
+
+import React from 'react';
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+
+interface SkillsSectionProps {
+  isVisible: boolean;
+}
+
+const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
+  const skills = {
+    languages: ['Python', 'C', 'Java'],
+    web: ['HTML', 'CSS', 'JavaScript'],
+    frameworks: ['ReactJS', 'Tailwind CSS'],
+    tools: ['GitHub', 'Git', 'VS Code']
+  };
+
+  return (
+    <section id="skills" data-animate className="py-20 px-4 bg-gray-50">
+      <div className="max-w-6xl mx-auto">
+        <h2 className={`text-4xl font-bold text-center text-gray-900 mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          Skills & Technologies
+        </h2>
+        <div className={`grid md:grid-cols-2 lg:grid-cols-4 gap-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <Card className="hover:shadow-lg hover:scale-105 transition-all duration-300">
+            <CardContent className="p-6">
+              <h3 className="font-semibold text-lg mb-4 text-blue-600">Programming Languages</h3>
+              <div className="space-y-2">
+                {skills.languages.map((skill, index) => (
+                  <Badge key={index} variant="secondary" className="mr-2 mb-2">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card className="hover:shadow-lg hover:scale-105 transition-all duration-300">
+            <CardContent className="p-6">
+              <h3 className="font-semibold text-lg mb-4 text-green-600">Web Technologies</h3>
+              <div className="space-y-2">
+                {skills.web.map((skill, index) => (
+                  <Badge key={index} variant="secondary" className="mr-2 mb-2">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card className="hover:shadow-lg hover:scale-105 transition-all duration-300">
+            <CardContent className="p-6">
+              <h3 className="font-semibold text-lg mb-4 text-purple-600">Frameworks & Libraries</h3>
+              <div className="space-y-2">
+                {skills.frameworks.map((skill, index) => (
+                  <Badge key={index} variant="secondary" className="mr-2 mb-2">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card className="hover:shadow-lg hover:scale-105 transition-all duration-300">
+            <CardContent className="p-6">
+              <h3 className="font-semibold text-lg mb-4 text-orange-600">Tools</h3>
+              <div className="space-y-2">
+                {skills.tools.map((skill, index) => (
+                  <Badge key={index} variant="secondary" className="mr-2 mb-2">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default SkillsSection;
