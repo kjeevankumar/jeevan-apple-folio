@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Linkedin, Github, Mail, Instagram, Facebook, Clock, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Linkedin, Github, Mail, Instagram, Facebook, Clock, MapPin, Send, CheckCircle, AlertCircle, MessageSquare, Zap, Globe } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
 interface ContactSectionProps {
@@ -154,7 +154,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
     { 
       id: 'whatsapp',
       name: 'WhatsApp', 
-      icon: () => <div className="w-6 h-6 bg-white rounded flex items-center justify-center"><span className="text-green-600 text-xs font-bold">W</span></div>,
+      icon: MessageSquare,
       action: handleWhatsAppClick,
       color: 'from-green-500 to-green-600',
       hoverColor: 'hover:from-green-600 hover:to-green-700'
@@ -165,7 +165,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
   const maxChars = 500;
 
   return (
-    <section id="contact" data-animate className="py-20 px-4 relative overflow-hidden">
+    <section id="contact" data-animate className="py-12 md:py-20 px-4 relative overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.1),transparent_50%)]"></div>
@@ -174,24 +174,24 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
       
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Animated Title */}
-        <div className="text-center mb-16">
-          <h2 className={`text-5xl font-bold mb-4 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className={`text-3xl md:text-5xl font-bold mb-4 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <span className="animated-gradient-text">Let's Connect & Collaborate</span>
           </h2>
-          <p className={`text-xl text-gray-600 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <p className={`text-lg md:text-xl text-gray-600 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             Ready to bring your ideas to life? Let's start the conversation.
           </p>
         </div>
 
-        <div className={`grid lg:grid-cols-2 gap-12 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className={`grid lg:grid-cols-2 gap-8 lg:gap-12 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* Enhanced Contact Form */}
           <Card className="relative overflow-hidden border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
             {/* Animated Border */}
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-75"></div>
             <div className="absolute inset-[2px] bg-white rounded-lg"></div>
             
-            <CardContent className="relative z-10 p-8 space-y-6">
-              <form onSubmit={handleSubmit}>
+            <CardContent className="relative z-10 p-6 md:p-8 space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name Field */}
                 <div className="relative">
                   <Input
@@ -296,72 +296,101 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
           </Card>
           
           {/* Enhanced Contact Info */}
-          <div className="space-y-8">
-            {/* Status Card */}
-            <Card className="p-6 bg-gradient-to-br from-green-50 to-blue-50 border-0 shadow-lg">
+          <div className="space-y-6 md:space-y-8">
+            {/* Contact Info Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Response Time Card */}
+              <Card className="p-4 bg-gradient-to-br from-blue-50 to-indigo-50 border-0 shadow-lg">
+                <div className="flex items-center space-x-3">
+                  <div className="p-2 bg-blue-100 rounded-lg">
+                    <Zap className="w-5 h-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800">Quick Response</h4>
+                    <p className="text-sm text-gray-600">Within 24 hours</p>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Location Card */}
+              <Card className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 border-0 shadow-lg">
+                <div className="flex items-center space-x-3">
+                  <div className="p-2 bg-green-100 rounded-lg">
+                    <Globe className="w-5 h-5 text-green-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800">Global Remote</h4>
+                    <p className="text-sm text-gray-600">Available worldwide</p>
+                  </div>
+                </div>
+              </Card>
+            </div>
+
+            {/* Time Zone Card */}
+            <Card className="p-4 bg-gradient-to-br from-purple-50 to-pink-50 border-0 shadow-lg">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="font-semibold text-gray-800">Available for Projects</span>
+                  <div className="p-2 bg-purple-100 rounded-lg">
+                    <Clock className="w-5 h-5 text-purple-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800">Current Time</h4>
+                    <p className="text-sm text-gray-600">{currentTime.toLocaleTimeString()}</p>
+                  </div>
                 </div>
-                <Badge variant="secondary" className="bg-green-100 text-green-800">
-                  Online
+                <Badge variant="secondary" className="bg-purple-100 text-purple-800">
+                  IST
                 </Badge>
-              </div>
-              <div className="mt-4 flex items-center text-sm text-gray-600">
-                <Clock className="w-4 h-4 mr-2" />
-                <span>Local time: {currentTime.toLocaleTimeString()}</span>
-              </div>
-              <div className="flex items-center text-sm text-gray-600 mt-2">
-                <MapPin className="w-4 h-4 mr-2" />
-                <span>Usually responds within 24 hours</span>
               </div>
             </Card>
 
             {/* Enhanced Social Links */}
             <div>
-              <h3 className="text-2xl font-semibold mb-6 text-center">Connect With Me</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {socialLinks.map((social, index) => (
-                  <div
-                    key={social.id}
-                    className={`relative opacity-0 animate-[fadeInUp_0.8s_ease-out_${0.1 * (index + 1)}s_forwards]`}
-                    onMouseEnter={() => setHoveredIcon(social.id)}
-                    onMouseLeave={() => setHoveredIcon(null)}
-                  >
-                    {social.url ? (
-                      <a
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`block p-4 rounded-xl bg-gradient-to-br ${social.color} ${social.hoverColor} text-white shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl group`}
-                      >
-                        <div className="flex flex-col items-center space-y-2">
-                          <social.icon className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
-                          <span className={`text-sm font-medium transition-all duration-300 ${
-                            hoveredIcon === social.id ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
-                          }`}>
-                            {social.name}
-                          </span>
-                        </div>
-                      </a>
-                    ) : (
-                      <button
-                        onClick={social.action}
-                        className={`w-full p-4 rounded-xl bg-gradient-to-br ${social.color} ${social.hoverColor} text-white shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl group`}
-                      >
-                        <div className="flex flex-col items-center space-y-2">
-                          <social.icon className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
-                          <span className={`text-sm font-medium transition-all duration-300 ${
-                            hoveredIcon === social.id ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
-                          }`}>
-                            {social.name}
-                          </span>
-                        </div>
-                      </button>
-                    )}
-                  </div>
-                ))}
+              <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-center">Connect With Me</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
+                {socialLinks.map((social, index) => {
+                  const IconComponent = social.icon;
+                  return (
+                    <div
+                      key={social.id}
+                      className={`relative opacity-0 animate-[fadeInUp_0.8s_ease-out_${0.1 * (index + 1)}s_forwards]`}
+                      onMouseEnter={() => setHoveredIcon(social.id)}
+                      onMouseLeave={() => setHoveredIcon(null)}
+                    >
+                      {social.url ? (
+                        <a
+                          href={social.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`block p-3 md:p-4 rounded-xl bg-gradient-to-br ${social.color} ${social.hoverColor} text-white shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl group`}
+                        >
+                          <div className="flex flex-col items-center space-y-2">
+                            <IconComponent className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform duration-300" />
+                            <span className={`text-xs md:text-sm font-medium transition-all duration-300 ${
+                              hoveredIcon === social.id ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+                            }`}>
+                              {social.name}
+                            </span>
+                          </div>
+                        </a>
+                      ) : (
+                        <button
+                          onClick={social.action}
+                          className={`w-full p-3 md:p-4 rounded-xl bg-gradient-to-br ${social.color} ${social.hoverColor} text-white shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl group`}
+                        >
+                          <div className="flex flex-col items-center space-y-2">
+                            <IconComponent className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform duration-300" />
+                            <span className={`text-xs md:text-sm font-medium transition-all duration-300 ${
+                              hoveredIcon === social.id ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+                            }`}>
+                              {social.name}
+                            </span>
+                          </div>
+                        </button>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
             
@@ -371,10 +400,10 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
               <Button 
                 variant="outline" 
                 onClick={handleResumeClick}
-                className="border-2 border-blue-200 text-blue-600 hover:bg-blue-50 hover:border-blue-300 transition-all duration-300 transform hover:scale-105 px-8 py-3"
+                className="border-2 border-blue-200 text-blue-600 hover:bg-blue-50 hover:border-blue-300 transition-all duration-300 transform hover:scale-105 px-6 md:px-8 py-2 md:py-3"
               >
                 <div className="flex items-center">
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 md:w-5 md:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                   Download Resume
