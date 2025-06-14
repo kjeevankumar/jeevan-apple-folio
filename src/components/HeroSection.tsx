@@ -165,17 +165,17 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
         </div>
       </div>
 
-      {/* Enhanced Scroll Indicator */}
+      {/* Enhanced Scroll Indicator - Positioned slightly higher */}
       <button 
         onClick={handleScrollToAbout}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 group cursor-pointer hover:scale-110 transition-all duration-300"
+        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20 group cursor-pointer hover:scale-110 transition-all duration-300"
       >
-        <div className="flex flex-col items-center gap-3 p-4 rounded-full bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl hover:bg-white/90 transition-all duration-300">
-          <span className="text-gray-600 text-sm font-medium group-hover:text-blue-600 transition-colors duration-300">
+        <div className="flex flex-col items-center gap-3 p-3 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl hover:bg-white transition-all duration-300">
+          <span className="text-gray-600 text-xs font-medium group-hover:text-blue-600 transition-colors duration-300">
             Scroll to explore
           </span>
           <div className="relative">
-            <ArrowDown className="w-6 h-6 text-gray-500 group-hover:text-blue-600 animate-bounce transition-colors duration-300" />
+            <ArrowDown className="w-5 h-5 text-gray-500 group-hover:text-blue-600 animate-bounce transition-colors duration-300" />
             <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
         </div>

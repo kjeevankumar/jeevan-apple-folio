@@ -9,25 +9,36 @@ interface AboutSectionProps {
 
 const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
   return (
-    <section id="about" data-animate className="py-20 px-4">
+    <section id="about" data-animate className="py-20 px-4 relative">
       <div className="max-w-6xl mx-auto">
-        <div className={`grid md:grid-cols-2 gap-12 items-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="relative">
-            <div className="w-80 h-80 mx-auto relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full transform rotate-6 animate-pulse"></div>
-              <div className="absolute inset-2 bg-white rounded-full shadow-2xl overflow-hidden hover:shadow-3xl transition-shadow duration-300">
+        {/* Header with background photo */}
+        <div className="relative mb-12 text-center">
+          {/* Background photo behind the heading */}
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 z-0">
+            <div className="w-40 h-40 mx-auto relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-100/60 to-purple-100/60 rounded-full transform rotate-6 animate-pulse"></div>
+              <div className="absolute inset-2 bg-white/80 rounded-full shadow-xl overflow-hidden backdrop-blur-sm">
                 <img 
                   src="/lovable-uploads/daf2f8cf-32b9-488b-bd40-dd9697cca109.png" 
                   alt="K. Jeevan Kumar - Professional"
-                  className="w-full h-full object-cover rounded-full hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover rounded-full opacity-90"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/5 via-transparent to-transparent rounded-full"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 via-transparent to-transparent rounded-full"></div>
               </div>
             </div>
           </div>
-          <div className="space-y-6">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">About Me</h2>
-            
+          
+          {/* About Me heading with background overlay */}
+          <div className="relative z-10 pt-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6 bg-white/80 backdrop-blur-sm rounded-lg px-6 py-3 inline-block shadow-lg">
+              About Me
+            </h2>
+          </div>
+        </div>
+
+        {/* Content section */}
+        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="space-y-6 max-w-4xl mx-auto">
             <p className="text-lg text-gray-600 leading-relaxed">
               I'm a dedicated 4th-year B.Tech student specializing in <span className="font-semibold text-blue-600">Artificial Intelligence and Machine Learning</span> at Malla Reddy Institute of Engineering and Technology. With a strong foundation in programming and web development, I've successfully combined theoretical knowledge with practical application.
             </p>
@@ -44,7 +55,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
               With expertise in <span className="font-semibold">Python, C, JavaScript, HTML/CSS</span>, and databases like <span className="font-semibold">MySQL and MongoDB</span>, I'm actively seeking internship opportunities and collaborations to contribute to innovative projects that make a positive impact on society.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
               <Button 
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
               >
