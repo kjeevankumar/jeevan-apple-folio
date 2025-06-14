@@ -1,10 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Linkedin, Github, Mail, Instagram, Facebook, Clock, MapPin, Send, CheckCircle, AlertCircle, MessageSquare, Zap, Globe } from 'lucide-react';
+import { Linkedin, Github, Mail, Instagram, Facebook, MapPin, Send, CheckCircle, AlertCircle, MessageSquare, Zap, Globe } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
 interface ContactSectionProps {
@@ -28,15 +29,8 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [currentTime, setCurrentTime] = useState(new Date());
   const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
   const { toast } = useToast();
-
-  // Update time every minute
-  useEffect(() => {
-    const timer = setInterval(() => setCurrentTime(new Date()), 60000);
-    return () => clearInterval(timer);
-  }, []);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -172,7 +166,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
       </div>
       
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Animated Title */}
+        {/* Title */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className={`text-3xl md:text-5xl font-bold mb-4 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <span className="animated-gradient-text">Let's Connect & Collaborate</span>
@@ -183,119 +177,121 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
         </div>
 
         <div className={`grid lg:grid-cols-2 gap-8 lg:gap-12 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          {/* Enhanced Contact Form */}
-          <Card className="relative overflow-hidden border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
-            {/* Animated Border */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-75"></div>
-            <div className="absolute inset-[2px] bg-white rounded-lg"></div>
-            
-            <CardContent className="relative z-10 p-6 md:p-8 space-y-6">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name Field */}
-                <div className="relative">
-                  <Input
-                    value={formData.name}
-                    onChange={(e) => handleInputChange('name', e.target.value)}
-                    className={`peer pt-6 pb-2 px-4 text-base border-2 transition-all duration-300 ${
-                      errors.name ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'
-                    }`}
-                    placeholder=" "
-                  />
-                  <label className="absolute left-4 top-2 text-sm text-gray-500 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-blue-600">
-                    Your Name
-                  </label>
-                  {errors.name && (
-                    <div className="flex items-center mt-1 text-red-500 text-sm animate-fadeInUp">
-                      <AlertCircle className="w-4 h-4 mr-1" />
-                      {errors.name}
-                    </div>
-                  )}
-                </div>
-
-                {/* Email Field */}
-                <div className="relative">
-                  <Input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
-                    className={`peer pt-6 pb-2 px-4 text-base border-2 transition-all duration-300 ${
-                      errors.email ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'
-                    }`}
-                    placeholder=" "
-                  />
-                  <label className="absolute left-4 top-2 text-sm text-gray-500 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-blue-600">
-                    Your Email
-                  </label>
-                  {errors.email && (
-                    <div className="flex items-center mt-1 text-red-500 text-sm animate-fadeInUp">
-                      <AlertCircle className="w-4 h-4 mr-1" />
-                      {errors.email}
-                    </div>
-                  )}
-                </div>
-
-                {/* Message Field */}
-                <div className="relative">
-                  <Textarea
-                    value={formData.message}
-                    onChange={(e) => handleInputChange('message', e.target.value)}
-                    className={`peer pt-6 pb-2 px-4 text-base border-2 transition-all duration-300 min-h-[120px] resize-none ${
-                      errors.message ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'
-                    }`}
-                    placeholder=" "
-                    maxLength={maxChars}
-                  />
-                  <label className="absolute left-4 top-2 text-sm text-gray-500 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-blue-600">
-                    Your Message
-                  </label>
-                  <div className="flex justify-between items-center mt-1">
-                    {errors.message ? (
-                      <div className="flex items-center text-red-500 text-sm animate-fadeInUp">
+          {/* Contact Form */}
+          <div className="order-2 lg:order-1">
+            <Card className="relative overflow-hidden border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
+              {/* Animated Border */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-75"></div>
+              <div className="absolute inset-[2px] bg-white rounded-lg"></div>
+              
+              <CardContent className="relative z-10 p-4 sm:p-6 md:p-8 space-y-4 md:space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                  {/* Name Field */}
+                  <div className="relative">
+                    <Input
+                      value={formData.name}
+                      onChange={(e) => handleInputChange('name', e.target.value)}
+                      className={`peer pt-6 pb-2 px-4 text-base border-2 transition-all duration-300 ${
+                        errors.name ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'
+                      }`}
+                      placeholder=" "
+                    />
+                    <label className="absolute left-4 top-2 text-sm text-gray-500 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-blue-600">
+                      Your Name
+                    </label>
+                    {errors.name && (
+                      <div className="flex items-center mt-1 text-red-500 text-sm">
                         <AlertCircle className="w-4 h-4 mr-1" />
-                        {errors.message}
+                        {errors.name}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Email Field */}
+                  <div className="relative">
+                    <Input
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      className={`peer pt-6 pb-2 px-4 text-base border-2 transition-all duration-300 ${
+                        errors.email ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'
+                      }`}
+                      placeholder=" "
+                    />
+                    <label className="absolute left-4 top-2 text-sm text-gray-500 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-blue-600">
+                      Your Email
+                    </label>
+                    {errors.email && (
+                      <div className="flex items-center mt-1 text-red-500 text-sm">
+                        <AlertCircle className="w-4 h-4 mr-1" />
+                        {errors.email}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Message Field */}
+                  <div className="relative">
+                    <Textarea
+                      value={formData.message}
+                      onChange={(e) => handleInputChange('message', e.target.value)}
+                      className={`peer pt-6 pb-2 px-4 text-base border-2 transition-all duration-300 min-h-[100px] sm:min-h-[120px] resize-none ${
+                        errors.message ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'
+                      }`}
+                      placeholder=" "
+                      maxLength={maxChars}
+                    />
+                    <label className="absolute left-4 top-2 text-sm text-gray-500 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-blue-600">
+                      Your Message
+                    </label>
+                    <div className="flex justify-between items-center mt-1">
+                      {errors.message ? (
+                        <div className="flex items-center text-red-500 text-sm">
+                          <AlertCircle className="w-4 h-4 mr-1" />
+                          {errors.message}
+                        </div>
+                      ) : (
+                        <div></div>
+                      )}
+                      <span className={`text-sm ${messageCharCount > maxChars * 0.8 ? 'text-orange-500' : 'text-gray-400'}`}>
+                        {messageCharCount}/{maxChars}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting || isSuccess}
+                    className={`w-full py-3 text-base font-semibold transition-all duration-300 ${
+                      isSuccess 
+                        ? 'bg-green-600 hover:bg-green-600' 
+                        : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
+                    } transform hover:scale-105`}
+                  >
+                    {isSubmitting ? (
+                      <div className="flex items-center">
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                        Sending...
+                      </div>
+                    ) : isSuccess ? (
+                      <div className="flex items-center">
+                        <CheckCircle className="w-5 h-5 mr-2" />
+                        Message Sent!
                       </div>
                     ) : (
-                      <div></div>
+                      <div className="flex items-center">
+                        <Send className="w-5 h-5 mr-2" />
+                        Send Message
+                      </div>
                     )}
-                    <span className={`text-sm ${messageCharCount > maxChars * 0.8 ? 'text-orange-500' : 'text-gray-400'}`}>
-                      {messageCharCount}/{maxChars}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Submit Button */}
-                <Button
-                  type="submit"
-                  disabled={isSubmitting || isSuccess}
-                  className={`w-full py-3 text-base font-semibold transition-all duration-300 ${
-                    isSuccess 
-                      ? 'bg-green-600 hover:bg-green-600' 
-                      : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
-                  } transform hover:scale-105`}
-                >
-                  {isSubmitting ? (
-                    <div className="flex items-center">
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                      Sending...
-                    </div>
-                  ) : isSuccess ? (
-                    <div className="flex items-center">
-                      <CheckCircle className="w-5 h-5 mr-2" />
-                      Message Sent!
-                    </div>
-                  ) : (
-                    <div className="flex items-center">
-                      <Send className="w-5 h-5 mr-2" />
-                      Send Message
-                    </div>
-                  )}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
           
-          {/* Enhanced Contact Info */}
-          <div className="space-y-6 md:space-y-8">
+          {/* Contact Info */}
+          <div className="order-1 lg:order-2 space-y-6 md:space-y-8">
             {/* Contact Info Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Response Time Card */}
@@ -325,25 +321,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
               </Card>
             </div>
 
-            {/* Time Zone Card */}
-            <Card className="p-4 bg-gradient-to-br from-purple-50 to-pink-50 border-0 shadow-lg">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className="p-2 bg-purple-100 rounded-lg">
-                    <Clock className="w-5 h-5 text-purple-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800">Current Time</h4>
-                    <p className="text-sm text-gray-600">{currentTime.toLocaleTimeString()}</p>
-                  </div>
-                </div>
-                <Badge variant="secondary" className="bg-purple-100 text-purple-800">
-                  IST
-                </Badge>
-              </div>
-            </Card>
-
-            {/* Enhanced Social Links */}
+            {/* Social Links */}
             <div>
               <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-center">Connect With Me</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
@@ -352,21 +330,25 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
                   return (
                     <div
                       key={social.id}
-                      className={`relative opacity-0 animate-[fadeInUp_0.8s_ease-out_${0.1 * (index + 1)}s_forwards]`}
+                      className="opacity-100 transition-all duration-300 hover:scale-105"
                       onMouseEnter={() => setHoveredIcon(social.id)}
                       onMouseLeave={() => setHoveredIcon(null)}
+                      style={{ 
+                        animationDelay: `${index * 0.1}s`,
+                        animation: 'fadeIn 0.6s ease-out forwards'
+                      }}
                     >
                       {social.url ? (
                         <a
                           href={social.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`block p-3 md:p-4 rounded-xl bg-gradient-to-br ${social.color} ${social.hoverColor} text-white shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl group`}
+                          className={`block p-3 md:p-4 rounded-xl bg-gradient-to-br ${social.color} ${social.hoverColor} text-white shadow-lg transition-all duration-300 transform hover:scale-110 hover:shadow-xl group`}
                         >
                           <div className="flex flex-col items-center space-y-2">
                             <IconComponent className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform duration-300" />
                             <span className={`text-xs md:text-sm font-medium transition-all duration-300 ${
-                              hoveredIcon === social.id ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+                              hoveredIcon === social.id ? 'opacity-100 translate-y-0' : 'opacity-70'
                             }`}>
                               {social.name}
                             </span>
@@ -375,12 +357,12 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
                       ) : (
                         <button
                           onClick={social.action}
-                          className={`w-full p-3 md:p-4 rounded-xl bg-gradient-to-br ${social.color} ${social.hoverColor} text-white shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl group`}
+                          className={`w-full p-3 md:p-4 rounded-xl bg-gradient-to-br ${social.color} ${social.hoverColor} text-white shadow-lg transition-all duration-300 transform hover:scale-110 hover:shadow-xl group`}
                         >
                           <div className="flex flex-col items-center space-y-2">
                             <IconComponent className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform duration-300" />
                             <span className={`text-xs md:text-sm font-medium transition-all duration-300 ${
-                              hoveredIcon === social.id ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+                              hoveredIcon === social.id ? 'opacity-100 translate-y-0' : 'opacity-70'
                             }`}>
                               {social.name}
                             </span>
@@ -412,6 +394,19 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </section>
   );
 };
