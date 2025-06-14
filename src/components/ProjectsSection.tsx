@@ -11,10 +11,10 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
     {
       title: 'Portfolio Website',
       description: 'Built a personal portfolio website to showcase my skills, education, and projects in a clean and responsive format.',
-      tech: ['HTML', 'CSS', 'JavaScript'],
-      year: 'Feb 2023 - May 2023',
+      tech: ['React', 'TypeScript', 'Tailwind CSS'],
+      year: '2024 - 2025',
       achievement: 'Created a fully responsive design with smooth animations',
-      demo: 'https://your-actual-portfolio-link.com', // Replace with your actual portfolio URL
+      demo: 'https://jeevan-portfolio.lovable.app',
       github: 'https://github.com/kjeevankumar?tab=repositories',
       image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop',
       hasDemo: true
