@@ -15,7 +15,8 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
       year: 'Feb 2023 - May 2023',
       achievement: 'Created a fully responsive design with smooth animations',
       demo: '#',
-      github: 'https://github.com/kjeevankumar?tab=repositories'
+      github: 'https://github.com/kjeevankumar?tab=repositories',
+      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop'
     },
     {
       title: 'An Intelligent Data-Driven Model for Securing In-Car Communications',
@@ -24,7 +25,8 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
       year: 'Feb 2025 - Apr 2025',
       achievement: 'Improved detection accuracy through machine learning optimization',
       demo: '#',
-      github: 'https://github.com/kjeevankumar?tab=repositories'
+      github: 'https://github.com/kjeevankumar?tab=repositories',
+      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop'
     },
     {
       title: 'AI Chatbot Assistant',
@@ -33,7 +35,8 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
       year: 'Apr 2025 - May 2025',
       achievement: 'Developed natural conversational flows for enhanced user experience',
       demo: '#',
-      github: 'https://github.com/kjeevankumar?tab=repositories'
+      github: 'https://github.com/kjeevankumar?tab=repositories',
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop'
     }
   ];
 
@@ -55,6 +58,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
               achievement={project.achievement}
               demo={project.demo}
               github={project.github}
+              image={project.image}
               delay={index * 200}
             />
           ))}

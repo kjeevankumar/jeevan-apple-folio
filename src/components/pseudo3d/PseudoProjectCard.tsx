@@ -12,11 +12,12 @@ interface PseudoProjectCardProps {
   achievement: string;
   demo: string;
   github: string;
+  image: string;
   delay: number;
 }
 
 const PseudoProjectCard: React.FC<PseudoProjectCardProps> = ({ 
-  title, description, tech, year, achievement, demo, github, delay 
+  title, description, tech, year, achievement, demo, github, image, delay 
 }) => {
   return (
     <div 
@@ -24,14 +25,20 @@ const PseudoProjectCard: React.FC<PseudoProjectCardProps> = ({
       style={{ animationDelay: `${delay}ms` }}
     >
       <div className="pseudo-3d-project-inner">
-        <div className="h-48 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 relative overflow-hidden">
+        <div className="h-48 relative overflow-hidden">
+          <img 
+            src={image} 
+            alt={title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center transform group-hover:scale-110 transition-transform duration-500">
-              <div className="text-3xl font-bold text-blue-600 mb-2">{title.split(' ')[0]}</div>
-              <div className="text-sm text-gray-600">{year.split(' - ')[0]}</div>
+            <div className="text-center transform group-hover:scale-110 transition-transform duration-500 z-10">
+              <div className="text-2xl font-bold text-white mb-2 drop-shadow-lg">{title.split(' ')[0]}</div>
+              <div className="text-sm text-gray-200 drop-shadow-md">{year.split(' - ')[0]}</div>
             </div>
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         </div>
         
         <div className="p-6">
