@@ -18,7 +18,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
       </div>
 
       {/* Floating Tech Icons */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset0 pointer-events-none">
         <Code className="absolute top-1/4 left-1/6 w-8 h-8 text-blue-400/30 animate-float" style={{ animationDelay: '0.5s' }} />
         <Sparkles className="absolute top-1/3 right-1/5 w-6 h-6 text-purple-400/30 animate-float" style={{ animationDelay: '1.5s' }} />
         <Zap className="absolute bottom-1/3 left-1/5 w-7 h-7 text-pink-400/30 animate-float" style={{ animationDelay: '2.5s' }} />
@@ -58,7 +58,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
               <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
                 <div className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg animate-bounce flex items-center gap-2">
                   <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                  Available for opportunities
+                  Available for internship & collaboration
                 </div>
               </div>
             </div>
@@ -69,7 +69,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
             <div className="animate-fade-in">
               <div className="inline-block mb-4">
                 <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-                  👋 Hello, I'm
+                  👋 Hi, I'm
                 </span>
               </div>
               
@@ -79,11 +79,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
               
               <div className="space-y-4 mb-8">
                 <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-                  A passionate <span className="font-semibold text-blue-600">developer</span> and future 
-                  <span className="font-semibold text-purple-600"> tech leader</span>
+                  An aspiring <span className="font-semibold text-blue-600">AI/ML developer</span>, 
+                  <span className="font-semibold text-purple-600"> web creator</span>, and passionate learner
                 </p>
                 <p className="text-lg text-gray-500">
-                  Building tomorrow's technology from Telangana 🇮🇳
+                  from Telangana, India 🇮🇳
                 </p>
               </div>
 
@@ -93,7 +93,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                   onClick={() => scrollToSection('projects')}
                   className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
-                  View My Work
+                  View Projects
                 </Button>
                 <Button 
                   variant="outline" 
@@ -101,7 +101,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                   onClick={() => scrollToSection('contact')}
                   className="border-2 border-gray-300 hover:border-blue-400 text-gray-700 hover:text-blue-600 px-8 py-3 rounded-full transform hover:scale-105 transition-all duration-300"
                 >
-                  Get In Touch
+                  Contact Me
                 </Button>
               </div>
 

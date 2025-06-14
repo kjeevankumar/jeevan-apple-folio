@@ -27,10 +27,13 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
           <div className="space-y-6">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">About Me</h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              I'm from Telangana and currently pursuing B.Tech 3rd year in Artificial Intelligence and Machine Learning at Malla Reddy Institute of Engineering and Technology. My passion lies in development, design, and coding.
+              Currently a 3rd year B.Tech student at Malla Reddy Institute of Engineering and Technology, specializing in Artificial Intelligence and Machine Learning. I have hands-on experience in web development, teaching, and machine learning research.
             </p>
             <p className="text-lg text-gray-600 leading-relaxed">
-              I believe in continuous learning and growth, always staying curious about new technologies and innovative solutions. My goal is to become a skilled full-stack developer and contribute to meaningful projects that make a positive impact.
+              My strengths include coding, creativity, and continuous learning. I have experience as a programming instructor, spoken English trainee, and hackathon participant. I believe in building technology that makes a positive impact on society.
+            </p>
+            <p className="text-lg text-gray-600 leading-relaxed">
+              I'm passionate about AI/ML applications, cybersecurity in automotive systems, and creating intelligent solutions that solve real-world problems. Always eager to collaborate on innovative projects and learn from fellow developers.
             </p>
             <Button variant="outline" className="hover:bg-blue-50 border-blue-200 text-blue-600 hover:border-blue-300 transition-all duration-300">
               Download Resume
