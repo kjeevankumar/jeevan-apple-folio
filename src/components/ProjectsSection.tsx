@@ -9,7 +9,7 @@ interface ProjectsSectionProps {
 const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
   const projects = [
     {
-      title: 'My Portfolio Website',
+      title: 'Portfolio Website',
       description: 'Built a personal portfolio website to showcase my skills, education, and projects in a clean and responsive format.',
       tech: ['HTML', 'CSS', 'JavaScript'],
       year: 'Feb 2023 - May 2023',
@@ -19,7 +19,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
       image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop'
     },
     {
-      title: 'An Intelligent Data-Driven Model for Securing In-Car Communications',
+      title: 'Intelligent Data-Driven Security Model',
       description: 'Built a model to detect and stop cyber-attacks in electric vehicles using CAN bus data. Used SVM with Social Spider Optimization for high accuracy in finding DoS attacks.',
       tech: ['Python', 'Scikit-learn', 'Pandas', 'NumPy'],
       year: 'Feb 2025 - Apr 2025',
