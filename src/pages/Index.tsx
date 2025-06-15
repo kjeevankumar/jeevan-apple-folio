@@ -53,6 +53,9 @@ const Index = () => {
               ...prev,
               [entry.target.id]: true
             }));
+            
+            // Add scroll-triggered animation class
+            entry.target.classList.add('animate-in');
           }
         });
       },
@@ -63,6 +66,7 @@ const Index = () => {
     console.log('Observing sections:', sections.length);
     sections.forEach((section) => {
       console.log('Observing section:', section.id);
+      section.classList.add('scroll-triggered');
       observer.observe(section);
     });
 
@@ -88,20 +92,34 @@ const Index = () => {
     <>
       <PageLoader isLoading={isPageLoading} onLoadingComplete={handleLoadingComplete} />
       
-      <div className={`min-h-screen bg-white transition-opacity duration-1000 ${
+      <div className={`min-h-screen bg-white transition-opacity duration-1000 gpu-accelerated ${
         isContentReady ? 'opacity-100' : 'opacity-0'
       }`}>
         <FloatingNav scrollToSection={scrollToSection} />
-        <section id="hero">
+        <section id="hero" className="section-reveal">
           <HeroSection scrollToSection={scrollToSection} />
         </section>
-        <AboutSection isVisible={isVisible.about} />
-        <EducationSection isVisible={isVisible.education} />
-        <ExperienceSection isVisible={isVisible.experience} />
-        <SkillsSection isVisible={isVisible.skills} />
-        <ProjectsSection isVisible={isVisible.projects} />
-        <CertificationsSection isVisible={isVisible.certifications} />
-        <ContactSection isVisible={isVisible.contact} />
+        <div className="scroll-triggered">
+          <AboutSection isVisible={isVisible.about} />
+        </div>
+        <div className="scroll-triggered">
+          <EducationSection isVisible={isVisible.education} />
+        </div>
+        <div className="scroll-triggered">
+          <ExperienceSection isVisible={isVisible.experience} />
+        </div>
+        <div className="scroll-triggered">
+          <SkillsSection isVisible={isVisible.skills} />
+        </div>
+        <div className="scroll-triggered">
+          <ProjectsSection isVisible={isVisible.projects} />
+        </div>
+        <div className="scroll-triggered">
+          <CertificationsSection isVisible={isVisible.certifications} />
+        </div>
+        <div className="scroll-triggered">
+          <ContactSection isVisible={isVisible.contact} />
+        </div>
         <Footer />
       </div>
     </>
