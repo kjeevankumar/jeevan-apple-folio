@@ -13,7 +13,7 @@ interface PseudoSkillCardProps {
 
 const PseudoSkillCard: React.FC<PseudoSkillCardProps> = ({ title, skills, color, delay, className = '' }) => {
   return (
-    <Card className={`hover:shadow-lg transition-all duration-300 hover:scale-105 ${className}`}>
+    <Card className={`hover:shadow-lg transition-all duration-300 hover:scale-105 hover-tilt skill-orb ${className}`}>
       <CardHeader>
         <CardTitle className={`${color} text-lg`}>
           {title}
@@ -25,7 +25,7 @@ const PseudoSkillCard: React.FC<PseudoSkillCardProps> = ({ title, skills, color,
             <Badge 
               key={index} 
               variant="secondary" 
-              className="text-xs px-3 py-1 h-auto transition-all duration-300 hover:scale-110"
+              className="text-xs px-3 py-1 h-auto transition-all duration-300 hover:scale-110 hover:shadow-md"
             >
               {skill}
             </Badge>

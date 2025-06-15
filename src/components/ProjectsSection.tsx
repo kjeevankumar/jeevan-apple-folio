@@ -61,21 +61,22 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
           Innovative solutions built with cutting-edge technologies
         </p>
         
-        <div className={`pseudo-3d-container grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-100 translate-y-0'}`}>
+        <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-100 translate-y-0'}`}>
           {projects.map((project, index) => (
-            <PseudoProjectCard
-              key={index}
-              title={project.title}
-              description={project.description}
-              tech={project.tech}
-              year={project.year}
-              achievement={project.achievement}
-              demo={project.demo}
-              github={project.github}
-              image={project.image}
-              hasDemo={project.hasDemo}
-              delay={index * 200}
-            />
+            <div key={index} className="hover-tilt">
+              <PseudoProjectCard
+                title={project.title}
+                description={project.description}
+                tech={project.tech}
+                year={project.year}
+                achievement={project.achievement}
+                demo={project.demo}
+                github={project.github}
+                image={project.image}
+                hasDemo={project.hasDemo}
+                delay={index * 200}
+              />
+            </div>
           ))}
         </div>
       </div>
