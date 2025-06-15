@@ -44,16 +44,8 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
   ];
 
   return (
-    <section id="projects" data-animate className="py-20 px-4 relative overflow-hidden bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
-      {/* Enhanced animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-16 left-20 w-40 h-40 bg-gradient-to-r from-indigo-400/20 to-purple-400/20 rounded-full animate-floatingOrb"></div>
-        <div className="absolute top-32 right-16 w-32 h-32 bg-gradient-to-r from-pink-400/20 to-rose-400/20 rounded-full animate-floatingOrb" style={{ animationDelay: '1.5s' }}></div>
-        <div className="absolute bottom-20 left-1/3 w-28 h-28 bg-gradient-to-r from-cyan-400/20 to-blue-400/20 rounded-full animate-floatingOrb" style={{ animationDelay: '2.5s' }}></div>
-        <div className="absolute bottom-40 right-1/4 w-24 h-24 bg-gradient-to-r from-emerald-400/20 to-green-400/20 rounded-full animate-floatingOrb" style={{ animationDelay: '3s' }}></div>
-      </div>
-
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section id="projects" data-animate className="py-20 px-4 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+      <div className="max-w-6xl mx-auto">
         <h2 className={`text-4xl font-bold text-center mb-4 transition-all duration-1000 animated-gradient-text-contact ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-100 translate-y-0'}`}>
           Featured Projects
         </h2>
@@ -63,7 +55,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
         
         <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-100 translate-y-0'}`}>
           {projects.map((project, index) => (
-            <div key={index} className="hover-tilt">
+            <div key={index}>
               <PseudoProjectCard
                 title={project.title}
                 description={project.description}
