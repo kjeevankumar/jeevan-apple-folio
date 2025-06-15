@@ -53,9 +53,6 @@ const Index = () => {
               ...prev,
               [entry.target.id]: true
             }));
-            
-            // Add scroll-triggered animation class
-            entry.target.classList.add('animate-in');
           }
         });
       },
@@ -66,7 +63,6 @@ const Index = () => {
     console.log('Observing sections:', sections.length);
     sections.forEach((section) => {
       console.log('Observing section:', section.id);
-      section.classList.add('scroll-triggered');
       observer.observe(section);
     });
 
@@ -92,32 +88,32 @@ const Index = () => {
     <>
       <PageLoader isLoading={isPageLoading} onLoadingComplete={handleLoadingComplete} />
       
-      <div className={`min-h-screen bg-white transition-opacity duration-1000 gpu-accelerated ${
+      <div className={`min-h-screen bg-white transition-opacity duration-1000 ${
         isContentReady ? 'opacity-100' : 'opacity-0'
       }`}>
         <FloatingNav scrollToSection={scrollToSection} />
-        <section id="hero" className="section-reveal">
+        <section id="hero">
           <HeroSection scrollToSection={scrollToSection} />
         </section>
-        <div className="scroll-triggered">
+        <div id="about" data-animate>
           <AboutSection isVisible={isVisible.about} />
         </div>
-        <div className="scroll-triggered">
+        <div id="education" data-animate>
           <EducationSection isVisible={isVisible.education} />
         </div>
-        <div className="scroll-triggered">
+        <div id="experience" data-animate>
           <ExperienceSection isVisible={isVisible.experience} />
         </div>
-        <div className="scroll-triggered">
+        <div id="skills" data-animate>
           <SkillsSection isVisible={isVisible.skills} />
         </div>
-        <div className="scroll-triggered">
+        <div id="projects" data-animate>
           <ProjectsSection isVisible={isVisible.projects} />
         </div>
-        <div className="scroll-triggered">
+        <div id="certifications" data-animate>
           <CertificationsSection isVisible={isVisible.certifications} />
         </div>
-        <div className="scroll-triggered">
+        <div id="contact" data-animate>
           <ContactSection isVisible={isVisible.contact} />
         </div>
         <Footer />

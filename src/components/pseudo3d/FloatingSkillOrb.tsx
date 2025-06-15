@@ -20,7 +20,7 @@ const FloatingSkillOrb: React.FC<FloatingSkillOrbProps> = ({
 
   return (
     <div 
-      className={`floating-skill-orb ${sizeClasses[size]} absolute rounded-full flex items-center justify-center text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-500 cursor-pointer animate-dynamic-float interactive-hover gpu-accelerated skill-orb-enhanced`}
+      className={`${sizeClasses[size]} absolute rounded-full flex items-center justify-center text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-500 cursor-pointer hover:scale-110`}
       style={{ 
         backgroundColor: color,
         top: position.top,
@@ -29,12 +29,6 @@ const FloatingSkillOrb: React.FC<FloatingSkillOrbProps> = ({
       }}
     >
       <span className="text-center leading-tight relative z-10">{skill}</span>
-      
-      {/* Enhanced ripple effect */}
-      <div className="absolute inset-0 rounded-full bg-white/20 opacity-0 hover:opacity-100 transition-opacity duration-300 animate-ripple"></div>
-      
-      {/* Glow effect */}
-      <div className="absolute inset-0 rounded-full animate-pulse-glow" style={{ boxShadow: `0 0 20px ${color}40` }}></div>
     </div>
   );
 };
