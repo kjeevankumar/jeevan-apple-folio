@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Phone, MapPin, Linkedin, Github, Twitter, Instagram, Facebook, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Github, Send, CheckCircle, AlertCircle, User, Building, DollarSign, FileText, Clock, Shield } from 'lucide-react';
 
 interface ContactSectionProps {
   isVisible: boolean;
@@ -14,15 +16,26 @@ interface ContactSectionProps {
 interface FormData {
   name: string;
   email: string;
+  phone: string;
+  company: string;
   subject: string;
+  inquiryType: string;
+  budget: string;
   message: string;
 }
 
 interface FormErrors {
   name?: string;
   email?: string;
+  phone?: string;
   subject?: string;
   message?: string;
+}
+
+interface FieldState {
+  isFocused: boolean;
+  isValid: boolean;
+  isDirty: boolean;
 }
 
 const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
@@ -30,68 +43,143 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
+    phone: '',
+    company: '',
     subject: '',
+    inquiryType: '',
+    budget: '',
     message: ''
   });
+  
   const [errors, setErrors] = useState<FormErrors>({});
+  const [fieldStates, setFieldStates] = useState<Record<string, FieldState>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [googleSheetsUrl, setGoogleSheetsUrl] = useState('');
+  const [submitProgress, setSubmitProgress] = useState(0);
 
-  // Load Google Sheets URL from localStorage
+  // Load Google Sheets URL and form draft from localStorage
   useEffect(() => {
     const savedUrl = localStorage.getItem('googleSheetsWebAppUrl');
     if (savedUrl) {
       setGoogleSheetsUrl(savedUrl);
     }
+    
+    // Load form draft
+    const savedDraft = localStorage.getItem('contactFormDraft');
+    if (savedDraft) {
+      try {
+        const draftData = JSON.parse(savedDraft);
+        setFormData(draftData);
+      } catch (error) {
+        console.log('Could not load form draft:', error);
+      }
+    }
   }, []);
+
+  // Auto-save form draft
+  const saveFormDraft = useCallback(() => {
+    const hasData = Object.values(formData).some(value => value.trim() !== '');
+    if (hasData) {
+      localStorage.setItem('contactFormDraft', JSON.stringify(formData));
+    }
+  }, [formData]);
+
+  useEffect(() => {
+    const timer = setTimeout(saveFormDraft, 1000);
+    return () => clearTimeout(timer);
+  }, [saveFormDraft]);
+
+  const validateField = (name: string, value: string): string | undefined => {
+    switch (name) {
+      case 'name':
+        if (!value.trim()) return 'Name is required';
+        if (value.length < 2) return 'Name must be at least 2 characters';
+        if (!/^[a-zA-Z\s]+$/.test(value)) return 'Name can only contain letters and spaces';
+        break;
+      case 'email':
+        if (!value.trim()) return 'Email is required';
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Please enter a valid email address';
+        break;
+      case 'phone':
+        if (value && !/^[\+]?[1-9][\d]{0,15}$/.test(value.replace(/[\s\-\(\)]/g, ''))) {
+          return 'Please enter a valid phone number';
+        }
+        break;
+      case 'subject':
+        if (!value.trim()) return 'Subject is required';
+        if (value.length < 5) return 'Subject must be at least 5 characters';
+        break;
+      case 'message':
+        if (!value.trim()) return 'Message is required';
+        if (value.length < 10) return 'Message must be at least 10 characters';
+        break;
+    }
+    return undefined;
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Real-time validation
+    const error = validateField(name, value);
+    setErrors(prev => ({ ...prev, [name]: error }));
+    
+    // Update field state
+    setFieldStates(prev => ({
+      ...prev,
+      [name]: {
+        ...prev[name],
+        isValid: !error,
+        isDirty: true
+      }
+    }));
+  };
+
+  const handleSelectChange = (name: string, value: string) => {
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFocus = (fieldName: string) => {
+    setFieldStates(prev => ({
+      ...prev,
+      [fieldName]: { ...prev[fieldName], isFocused: true }
+    }));
+  };
+
+  const handleBlur = (fieldName: string) => {
+    setFieldStates(prev => ({
+      ...prev,
+      [fieldName]: { ...prev[fieldName], isFocused: false }
+    }));
+  };
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    } else if (formData.name.length < 2) {
-      newErrors.name = 'Name must be at least 2 characters';
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
-    }
-
-    if (!formData.subject.trim()) {
-      newErrors.subject = 'Subject is required';
-    } else if (formData.subject.length < 5) {
-      newErrors.subject = 'Subject must be at least 5 characters';
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    } else if (formData.message.length < 10) {
-      newErrors.message = 'Message must be at least 10 characters';
-    }
+    const requiredFields = ['name', 'email', 'subject', 'message'];
+    
+    requiredFields.forEach(field => {
+      const error = validateField(field, formData[field as keyof FormData]);
+      if (error) newErrors[field as keyof FormErrors] = error;
+    });
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-    
-    if (errors[name as keyof FormErrors]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: undefined
-      }));
-    }
+  const simulateProgress = () => {
+    setSubmitProgress(0);
+    const interval = setInterval(() => {
+      setSubmitProgress(prev => {
+        if (prev >= 90) {
+          clearInterval(interval);
+          return 90;
+        }
+        return prev + Math.random() * 15;
+      });
+    }, 200);
+    return interval;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -106,61 +194,81 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
       return;
     }
 
-    if (!googleSheetsUrl.trim()) {
-      toast({
-        title: "Configuration Error",
-        description: "Contact form is not properly configured. Please try again later or contact me directly via email.",
-        variant: "destructive",
-      });
-      return;
-    }
-
     setIsSubmitting(true);
-    console.log("Submitting form to Google Sheets:", googleSheetsUrl);
+    const progressInterval = simulateProgress();
 
     try {
+      if (!googleSheetsUrl.trim()) {
+        throw new Error('Contact form is not properly configured');
+      }
+
       const submissionData = {
         timestamp: new Date().toISOString(),
         name: formData.name.trim(),
         email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        company: formData.company.trim(),
         subject: formData.subject.trim(),
+        inquiryType: formData.inquiryType,
+        budget: formData.budget,
         message: formData.message.trim(),
-        source: 'Portfolio Website'
+        source: 'Enhanced Portfolio Contact Form'
       };
 
-      console.log("Submission data:", submissionData);
-
-      const response = await fetch(googleSheetsUrl, {
+      await fetch(googleSheetsUrl, {
         method: 'POST',
         mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(submissionData)
       });
 
-      // Since we're using no-cors mode, we can't check response status
-      // We'll assume success if no error was thrown
-      setIsSubmitted(true);
-      toast({
-        title: "Message Sent Successfully! 🎉",
-        description: "Thank you for reaching out. Your message has been saved to Google Sheets and I'll get back to you soon!",
-      });
+      clearInterval(progressInterval);
+      setSubmitProgress(100);
       
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setIsSubmitted(false), 3000);
+      setTimeout(() => {
+        setIsSubmitted(true);
+        toast({
+          title: "Message Sent Successfully! 🎉",
+          description: "Thank you for reaching out. I'll get back to you within 24 hours!",
+        });
+        
+        // Clear form and draft
+        setFormData({ name: '', email: '', phone: '', company: '', subject: '', inquiryType: '', budget: '', message: '' });
+        localStorage.removeItem('contactFormDraft');
+        setFieldStates({});
+        
+        setTimeout(() => setIsSubmitted(false), 5000);
+      }, 500);
       
     } catch (error) {
-      console.error("Error submitting to Google Sheets:", error);
+      clearInterval(progressInterval);
+      console.error("Error submitting form:", error);
       toast({
         title: "Failed to Send Message",
-        description: "There was an error submitting your message. Please try again or contact me directly via email.",
+        description: "Please try again or contact me directly via email.",
         variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
+      setTimeout(() => setSubmitProgress(0), 2000);
     }
   };
+
+  const inquiryTypes = [
+    { value: 'project', label: 'Project Collaboration' },
+    { value: 'job', label: 'Job Opportunity' },
+    { value: 'consultation', label: 'Consultation' },
+    { value: 'partnership', label: 'Partnership' },
+    { value: 'other', label: 'Other' }
+  ];
+
+  const budgetRanges = [
+    { value: 'under-5k', label: 'Under $5,000' },
+    { value: '5k-15k', label: '$5,000 - $15,000' },
+    { value: '15k-50k', label: '$15,000 - $50,000' },
+    { value: '50k-plus', label: '$50,000+' },
+    { value: 'discuss', label: 'Let\'s Discuss' }
+  ];
 
   const socialLinks = [
     {
@@ -195,6 +303,11 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
             50% { transform: scale(1.05); }
           }
           
+          @keyframes progressFill {
+            0% { width: 0%; }
+            100% { width: var(--progress-width); }
+          }
+          
           .social-icon {
             animation: socialPulse 3s ease-in-out infinite;
             animation-delay: var(--delay, 0s);
@@ -203,6 +316,28 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
           .social-icon:hover {
             animation: none;
             transform: scale(1.1);
+          }
+          
+          .floating-label {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          
+          .field-focused .floating-label,
+          .field-has-value .floating-label {
+            transform: translateY(-24px) scale(0.85);
+            color: #3b82f6;
+          }
+          
+          .progress-bar {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            border-radius: 2px;
+            height: 3px;
+            animation: progressFill 0.3s ease-out;
+          }
+          
+          .auto-resize {
+            resize: none;
+            overflow: hidden;
           }
         `}
       </style>
@@ -222,6 +357,10 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Ready to collaborate or discuss opportunities? I'd love to hear from you!
             </p>
+            <div className="flex items-center justify-center gap-2 mt-4 text-sm text-gray-500">
+              <Clock className="w-4 h-4" />
+              <span>Typical response time: 24 hours</span>
+            </div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
@@ -230,45 +369,86 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
                 <div className="mb-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-4">Send Me a Message</h3>
                   <p className="text-gray-600">Fill out the form below and I'll get back to you as soon as possible.</p>
+                  {Object.values(formData).some(value => value.trim()) && (
+                    <div className="flex items-center gap-2 mt-3 text-sm text-blue-600">
+                      <Shield className="w-4 h-4" />
+                      <span>Draft saved automatically</span>
+                    </div>
+                  )}
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="text-gray-700 font-medium">Full Name *</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        type="text"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        className={`h-12 ${errors.name ? 'border-red-500 focus:border-red-500' : 'focus:border-blue-500'}`}
-                        placeholder="Your full name"
-                        disabled={isSubmitting}
+                {isSubmitting && (
+                  <div className="mb-6">
+                    <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
+                      <span>Sending your message...</span>
+                      <span>{Math.round(submitProgress)}%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-1">
+                      <div 
+                        className="progress-bar"
+                        style={{ '--progress-width': `${submitProgress}%` } as React.CSSProperties}
                       />
+                    </div>
+                  </div>
+                )}
+
+                <form onSubmit={handleSubmit} className="space-y-8">
+                  {/* Basic Information */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className={`relative ${fieldStates.name?.isFocused ? 'field-focused' : ''} ${formData.name ? 'field-has-value' : ''}`}>
+                      <Label htmlFor="name" className="floating-label absolute left-3 top-3 text-gray-500 pointer-events-none">
+                        Full Name *
+                      </Label>
+                      <div className="relative">
+                        <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
+                        <Input
+                          id="name"
+                          name="name"
+                          type="text"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          onFocus={() => handleFocus('name')}
+                          onBlur={() => handleBlur('name')}
+                          className={`h-12 pl-10 ${errors.name ? 'border-red-500' : fieldStates.name?.isValid ? 'border-green-500' : 'focus:border-blue-500'} transition-all duration-300`}
+                          placeholder=""
+                          disabled={isSubmitting}
+                        />
+                        {fieldStates.name?.isValid && !errors.name && (
+                          <CheckCircle className="absolute right-3 top-3.5 w-5 h-5 text-green-500" />
+                        )}
+                      </div>
                       {errors.name && (
-                        <p className="text-red-500 text-sm flex items-center gap-1">
+                        <p className="text-red-500 text-sm flex items-center gap-1 mt-1 animate-fade-in">
                           <AlertCircle className="w-4 h-4" />
                           {errors.name}
                         </p>
                       )}
                     </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-gray-700 font-medium">Email Address *</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className={`h-12 ${errors.email ? 'border-red-500 focus:border-red-500' : 'focus:border-blue-500'}`}
-                        placeholder="your.email@example.com"
-                        disabled={isSubmitting}
-                      />
+                    <div className={`relative ${fieldStates.email?.isFocused ? 'field-focused' : ''} ${formData.email ? 'field-has-value' : ''}`}>
+                      <Label htmlFor="email" className="floating-label absolute left-3 top-3 text-gray-500 pointer-events-none">
+                        Email Address *
+                      </Label>
+                      <div className="relative">
+                        <Mail className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          onFocus={() => handleFocus('email')}
+                          onBlur={() => handleBlur('email')}
+                          className={`h-12 pl-10 ${errors.email ? 'border-red-500' : fieldStates.email?.isValid ? 'border-green-500' : 'focus:border-blue-500'} transition-all duration-300`}
+                          placeholder=""
+                          disabled={isSubmitting}
+                        />
+                        {fieldStates.email?.isValid && !errors.email && (
+                          <CheckCircle className="absolute right-3 top-3.5 w-5 h-5 text-green-500" />
+                        )}
+                      </div>
                       {errors.email && (
-                        <p className="text-red-500 text-sm flex items-center gap-1">
+                        <p className="text-red-500 text-sm flex items-center gap-1 mt-1 animate-fade-in">
                           <AlertCircle className="w-4 h-4" />
                           {errors.email}
                         </p>
@@ -276,52 +456,158 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
                     </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="subject" className="text-gray-700 font-medium">Subject *</Label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      type="text"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      className={`h-12 ${errors.subject ? 'border-red-500 focus:border-red-500' : 'focus:border-blue-500'}`}
-                      placeholder="What's this about?"
-                      disabled={isSubmitting}
-                    />
+                  {/* Optional Contact Info */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className={`relative ${fieldStates.phone?.isFocused ? 'field-focused' : ''} ${formData.phone ? 'field-has-value' : ''}`}>
+                      <Label htmlFor="phone" className="floating-label absolute left-3 top-3 text-gray-500 pointer-events-none">
+                        Phone Number (Optional)
+                      </Label>
+                      <div className="relative">
+                        <Phone className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
+                        <Input
+                          id="phone"
+                          name="phone"
+                          type="tel"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          onFocus={() => handleFocus('phone')}
+                          onBlur={() => handleBlur('phone')}
+                          className="h-12 pl-10 focus:border-blue-500 transition-all duration-300"
+                          placeholder=""
+                          disabled={isSubmitting}
+                        />
+                      </div>
+                      {errors.phone && (
+                        <p className="text-red-500 text-sm flex items-center gap-1 mt-1 animate-fade-in">
+                          <AlertCircle className="w-4 h-4" />
+                          {errors.phone}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className={`relative ${fieldStates.company?.isFocused ? 'field-focused' : ''} ${formData.company ? 'field-has-value' : ''}`}>
+                      <Label htmlFor="company" className="floating-label absolute left-3 top-3 text-gray-500 pointer-events-none">
+                        Company (Optional)
+                      </Label>
+                      <div className="relative">
+                        <Building className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
+                        <Input
+                          id="company"
+                          name="company"
+                          type="text"
+                          value={formData.company}
+                          onChange={handleInputChange}
+                          onFocus={() => handleFocus('company')}
+                          onBlur={() => handleBlur('company')}
+                          className="h-12 pl-10 focus:border-blue-500 transition-all duration-300"
+                          placeholder=""
+                          disabled={isSubmitting}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Project Details */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label className="text-gray-700 font-medium">Inquiry Type</Label>
+                      <Select value={formData.inquiryType} onValueChange={(value) => handleSelectChange('inquiryType', value)}>
+                        <SelectTrigger className="h-12">
+                          <SelectValue placeholder="Select inquiry type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {inquiryTypes.map((type) => (
+                            <SelectItem key={type.value} value={type.value}>
+                              {type.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label className="text-gray-700 font-medium">Project Budget (Optional)</Label>
+                      <Select value={formData.budget} onValueChange={(value) => handleSelectChange('budget', value)}>
+                        <SelectTrigger className="h-12">
+                          <SelectValue placeholder="Select budget range" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {budgetRanges.map((range) => (
+                            <SelectItem key={range.value} value={range.value}>
+                              {range.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
+                  {/* Subject */}
+                  <div className={`relative ${fieldStates.subject?.isFocused ? 'field-focused' : ''} ${formData.subject ? 'field-has-value' : ''}`}>
+                    <Label htmlFor="subject" className="floating-label absolute left-3 top-3 text-gray-500 pointer-events-none">
+                      Subject *
+                    </Label>
+                    <div className="relative">
+                      <FileText className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
+                      <Input
+                        id="subject"
+                        name="subject"
+                        type="text"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        onFocus={() => handleFocus('subject')}
+                        onBlur={() => handleBlur('subject')}
+                        className={`h-12 pl-10 ${errors.subject ? 'border-red-500' : fieldStates.subject?.isValid ? 'border-green-500' : 'focus:border-blue-500'} transition-all duration-300`}
+                        placeholder=""
+                        disabled={isSubmitting}
+                      />
+                      {fieldStates.subject?.isValid && !errors.subject && (
+                        <CheckCircle className="absolute right-3 top-3.5 w-5 h-5 text-green-500" />
+                      )}
+                    </div>
                     {errors.subject && (
-                      <p className="text-red-500 text-sm flex items-center gap-1">
+                      <p className="text-red-500 text-sm flex items-center gap-1 mt-1 animate-fade-in">
                         <AlertCircle className="w-4 h-4" />
                         {errors.subject}
                       </p>
                     )}
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="message" className="text-gray-700 font-medium">Message *</Label>
+                  {/* Message */}
+                  <div className={`relative ${fieldStates.message?.isFocused ? 'field-focused' : ''} ${formData.message ? 'field-has-value' : ''}`}>
+                    <Label htmlFor="message" className="floating-label absolute left-3 top-3 text-gray-500 pointer-events-none z-10">
+                      Your Message *
+                    </Label>
                     <Textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
-                      className={`min-h-[150px] resize-none ${errors.message ? 'border-red-500 focus:border-red-500' : 'focus:border-blue-500'}`}
-                      placeholder="Tell me about your project, ideas, or just say hello!"
+                      onFocus={() => handleFocus('message')}
+                      onBlur={() => handleBlur('message')}
+                      className={`auto-resize min-h-[120px] pt-8 ${errors.message ? 'border-red-500' : fieldStates.message?.isValid ? 'border-green-500' : 'focus:border-blue-500'} transition-all duration-300`}
+                      placeholder=""
                       disabled={isSubmitting}
+                      rows={4}
                     />
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center mt-2">
                       {errors.message ? (
-                        <p className="text-red-500 text-sm flex items-center gap-1">
+                        <p className="text-red-500 text-sm flex items-center gap-1 animate-fade-in">
                           <AlertCircle className="w-4 h-4" />
                           {errors.message}
                         </p>
                       ) : (
-                        <div></div>
+                        <div className="text-xs text-gray-500">
+                          {formData.message.length >= 10 && '✓ Good length'}
+                        </div>
                       )}
-                      <span className={`text-sm ${formData.message.length > 500 ? 'text-red-500' : 'text-gray-500'}`}>
-                        {formData.message.length} / 1000
+                      <span className={`text-sm ${formData.message.length > 1000 ? 'text-red-500' : 'text-gray-500'}`}>
+                        {formData.message.length} / 1500
                       </span>
                     </div>
                   </div>
 
+                  {/* Submit Button */}
                   <Button
                     type="submit"
                     size="lg"
@@ -331,12 +617,12 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
                     {isSubmitting ? (
                       <>
                         <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent mr-2"></div>
-                        Sending to Google Sheets...
+                        Sending Message...
                       </>
                     ) : isSubmitted ? (
                       <>
                         <CheckCircle className="w-5 h-5 mr-2" />
-                        Message Sent!
+                        Message Sent Successfully!
                       </>
                     ) : (
                       <>
@@ -345,6 +631,10 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
                       </>
                     )}
                   </Button>
+
+                  <p className="text-xs text-gray-500 text-center">
+                    Your information is secure and will only be used to respond to your inquiry.
+                  </p>
                 </form>
               </CardContent>
             </Card>
