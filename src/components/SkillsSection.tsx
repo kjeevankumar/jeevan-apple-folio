@@ -9,27 +9,28 @@ interface SkillsSectionProps {
 
 const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
   const skills = {
-    languages: ['C', 'Python (familiar)'],
-    web: ['HTML', 'CSS', 'JavaScript'],
-    databases: ['MySQL', 'MongoDB (familiar)'],
-    cs_subjects: ['Data Structures', 'Algorithms', 'OOPs concepts', 'Operating Systems'],
-    tools: ['Git', 'VS Code', 'Dev Tools'],
-    soft: ['Communication', 'Teaching', 'Problem Solving', 'Teamwork', 'Adaptability', 'Time management']
+    frontend: ['React', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Redux'],
+    backend: ['Python', 'Node.js', 'Express.js', 'RESTful APIs', 'C/C++'],
+    databases: ['MySQL', 'MongoDB', 'PostgreSQL', 'Firebase'],
+    tools: ['Git', 'VS Code', 'Docker', 'Postman', 'Chrome DevTools', 'npm/yarn'],
+    cloud: ['AWS', 'Vercel', 'Netlify', 'Heroku'],
+    cs_concepts: ['Data Structures', 'Algorithms', 'OOP', 'System Design', 'Database Design'],
+    soft_skills: ['Problem Solving', 'Team Collaboration', 'Communication', 'Project Management', 'Adaptability', 'Critical Thinking']
   };
 
   const floatingSkills = [
-    { name: 'React', color: '#61dafb', size: 'large' as const, position: { top: '10%', left: '85%' }, delay: 0 },
-    { name: 'Python', color: '#3776ab', size: 'medium' as const, position: { top: '60%', left: '90%' }, delay: 500 },
-    { name: 'JS', color: '#f7df1e', size: 'small' as const, position: { top: '30%', left: '5%' }, delay: 1000 },
-    { name: 'CSS', color: '#1572b6', size: 'medium' as const, position: { top: '70%', left: '8%' }, delay: 1500 },
-    { name: 'Git', color: '#f05032', size: 'small' as const, position: { top: '15%', left: '15%' }, delay: 2000 },
-    { name: 'SQL', color: '#336791', size: 'small' as const, position: { top: '50%', left: '12%' }, delay: 2500 }
+    { name: 'React', color: '#61dafb', size: 'large' as const, position: { top: '8%', left: '88%' }, delay: 0 },
+    { name: 'TS', color: '#3178c6', size: 'medium' as const, position: { top: '45%', left: '92%' }, delay: 500 },
+    { name: 'JS', color: '#f7df1e', size: 'small' as const, position: { top: '25%', left: '3%' }, delay: 1000 },
+    { name: 'Python', color: '#3776ab', size: 'medium' as const, position: { top: '60%', left: '5%' }, delay: 1500 },
+    { name: 'Git', color: '#f05032', size: 'small' as const, position: { top: '12%', left: '12%' }, delay: 2000 },
+    { name: 'AWS', color: '#ff9900', size: 'small' as const, position: { top: '70%', left: '15%' }, delay: 2500 }
   ];
 
   return (
-    <section id="skills" data-animate className="py-20 px-4 bg-gray-50 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto relative">
-        <h2 className={`text-4xl font-bold text-center text-gray-900 mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+    <section id="skills" data-animate className="py-12 px-4 bg-gray-50 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto relative">
+        <h2 className={`text-4xl font-bold text-center text-gray-900 mb-10 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           Skills & Expertise
         </h2>
         
@@ -47,17 +48,17 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
           ))}
         </div>
 
-        <div className={`pseudo-3d-container grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className={`pseudo-3d-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <PseudoSkillCard
-            title="Programming Languages"
-            skills={skills.languages}
+            title="Frontend Development"
+            skills={skills.frontend}
             color="text-blue-600"
             delay={0}
           />
           
           <PseudoSkillCard
-            title="Web Technologies"
-            skills={skills.web}
+            title="Backend Development"
+            skills={skills.backend}
             color="text-green-600"
             delay={200}
           />
@@ -70,24 +71,32 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
           />
           
           <PseudoSkillCard
-            title="CS Subjects"
-            skills={skills.cs_subjects}
+            title="Tools & Platforms"
+            skills={skills.tools}
             color="text-orange-600"
             delay={600}
           />
 
           <PseudoSkillCard
-            title="Tools & Platforms"
-            skills={skills.tools}
+            title="Cloud & Deployment"
+            skills={skills.cloud}
             color="text-red-600"
             delay={800}
           />
 
           <PseudoSkillCard
-            title="Soft Skills"
-            skills={skills.soft}
-            color="text-pink-600"
+            title="CS Fundamentals"
+            skills={skills.cs_concepts}
+            color="text-indigo-600"
             delay={1000}
+          />
+
+          <PseudoSkillCard
+            title="Soft Skills"
+            skills={skills.soft_skills}
+            color="text-pink-600"
+            delay={1200}
+            className="md:col-span-2 lg:col-span-1 xl:col-span-1"
           />
         </div>
       </div>
