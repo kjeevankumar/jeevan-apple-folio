@@ -47,6 +47,7 @@ const Index = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          console.log(`Section ${entry.target.id} visibility: ${entry.isIntersecting}`);
           if (entry.isIntersecting) {
             setIsVisible(prev => ({
               ...prev,
@@ -55,11 +56,15 @@ const Index = () => {
           }
         });
       },
-      { threshold: 0.1, rootMargin: '50px' }
+      { threshold: 0.1, rootMargin: '100px' }
     );
 
     const sections = document.querySelectorAll('[data-animate]');
-    sections.forEach((section) => observer.observe(section));
+    console.log('Observing sections:', sections.length);
+    sections.forEach((section) => {
+      console.log('Observing section:', section.id);
+      observer.observe(section);
+    });
 
     return () => observer.disconnect();
   }, [isContentReady]);

@@ -44,9 +44,9 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
   ];
 
   return (
-    <section id="projects" data-animate className="py-20 px-4 relative overflow-hidden bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 animate-smooth-fade-in">
+    <section id="projects" data-animate className="py-20 px-4 relative overflow-hidden bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
       {/* Enhanced animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-16 left-20 w-40 h-40 bg-gradient-to-r from-indigo-400/20 to-purple-400/20 rounded-full animate-floatingOrb"></div>
         <div className="absolute top-32 right-16 w-32 h-32 bg-gradient-to-r from-pink-400/20 to-rose-400/20 rounded-full animate-floatingOrb" style={{ animationDelay: '1.5s' }}></div>
         <div className="absolute bottom-20 left-1/3 w-28 h-28 bg-gradient-to-r from-cyan-400/20 to-blue-400/20 rounded-full animate-floatingOrb" style={{ animationDelay: '2.5s' }}></div>
@@ -54,14 +54,14 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <h2 className={`text-4xl font-bold text-center mb-4 transition-all duration-1000 animated-gradient-text-contact ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <h2 className={`text-4xl font-bold text-center mb-4 transition-all duration-1000 animated-gradient-text-contact ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-100 translate-y-0'}`}>
           Featured Projects
         </h2>
-        <p className={`text-center text-gray-600 mb-16 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <p className={`text-center text-gray-600 mb-16 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-100 translate-y-0'}`}>
           Innovative solutions built with cutting-edge technologies
         </p>
         
-        <div className={`pseudo-3d-container grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className={`pseudo-3d-container grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-100 translate-y-0'}`}>
           {projects.map((project, index) => (
             <PseudoProjectCard
               key={index}
