@@ -142,12 +142,6 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 700;
-  animation: gradientShift 3s ease-in-out infinite;
-}
-
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
 }
 
 /* Smooth scroll enhancement */
