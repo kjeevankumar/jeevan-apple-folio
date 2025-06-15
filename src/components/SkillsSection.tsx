@@ -9,12 +9,12 @@ interface SkillsSectionProps {
 
 const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
   const skills = {
-    frontend: ['React', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Redux', 'Next.js', 'Vue.js', 'Sass/SCSS'],
-    backend: ['Python', 'Node.js', 'Express.js', 'RESTful APIs', 'C/C++', 'Java', 'Django', 'Flask'],
-    databases: ['MySQL', 'MongoDB', 'PostgreSQL', 'Firebase', 'Redis', 'SQLite'],
-    tools: ['Git', 'VS Code', 'Docker', 'Postman', 'Chrome DevTools', 'npm/yarn', 'Webpack', 'ESLint', 'Prettier'],
-    cs_concepts: ['Data Structures', 'Algorithms', 'OOP', 'System Design', 'Database Design', 'Software Architecture', 'Design Patterns'],
-    soft_skills: ['Problem Solving', 'Team Collaboration', 'Communication', 'Project Management', 'Adaptability', 'Critical Thinking', 'Leadership', 'Time Management']
+    frontend: ['React', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS'],
+    backend: ['Python', 'Node.js', 'Express.js', 'C/C++', 'RESTful APIs'],
+    databases: ['MySQL', 'MongoDB', 'PostgreSQL', 'Firebase'],
+    tools: ['Git', 'VS Code', 'Docker', 'Postman', 'Chrome DevTools'],
+    cs_concepts: ['Data Structures', 'Algorithms', 'OOP', 'System Design'],
+    soft_skills: ['Problem Solving', 'Team Collaboration', 'Communication', 'Project Management']
   };
 
   const floatingSkills = [
