@@ -151,7 +151,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                   <Github className="w-6 h-6 text-gray-800" />
                 </a>
                 <button 
-                  onClick={() => window.open('mailto:kjeevankumar@gmail.com?subject=Hi Jeevan - Portfolio Contact', '_blank')}
+                  onClick={() => window.open('mailto:kjeevankumar944@gmail.com?subject=Hi Jeevan - Portfolio Contact', '_blank')}
                   className="p-3 bg-red-100 rounded-full hover:bg-red-200 transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg"
                 >
                   <Mail className="w-6 h-6 text-red-600" />

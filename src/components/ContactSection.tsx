@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -181,7 +180,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
     {
       icon: Mail,
       label: 'Email',
-      href: 'mailto:kjeevankumar@gmail.com?subject=Hi Jeevan - Portfolio Contact',
+      href: 'mailto:kjeevankumar944@gmail.com?subject=Hi Jeevan - Portfolio Contact',
       color: 'text-red-600 hover:text-red-700',
       bgColor: 'bg-red-50 hover:bg-red-100'
     }
@@ -363,8 +362,8 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
                       </div>
                       <div>
                         <h4 className="font-semibold text-gray-900">Email</h4>
-                        <a href="mailto:kjeevankumar@gmail.com" className="text-blue-600 hover:text-blue-700 transition-colors">
-                          kjeevankumar@gmail.com
+                        <a href="mailto:kjeevankumar944@gmail.com" className="text-blue-600 hover:text-blue-700 transition-colors">
+                          kjeevankumar944@gmail.com
                         </a>
                       </div>
                     </div>
