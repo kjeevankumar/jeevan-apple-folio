@@ -70,8 +70,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                 </div>
               </div>
 
-              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 animate-advanced-float" style={{ animationDelay: '3s' }}>
-                <div className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg animate-bounce flex items-center gap-2">
+              {/* Fixed availability badge with minimal animation */}
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+                <div className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg flex items-center gap-2 hover:shadow-xl hover:scale-105 transition-all duration-300">
                   <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
                   Available for internship & collaboration
                 </div>
