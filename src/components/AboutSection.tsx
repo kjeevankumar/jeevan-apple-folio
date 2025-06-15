@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Download } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
@@ -81,7 +82,6 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
             <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-pulse">
               About Me ✨
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full"></div>
           </div>
         </TransitionWrapper>
 
