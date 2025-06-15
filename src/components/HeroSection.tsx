@@ -49,20 +49,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
       <div className="container mx-auto px-4 relative z-10 flex-grow flex items-center">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto w-full">
           <div className="relative order-2 lg:order-1">
-            <div className="relative w-full max-w-lg mx-auto">
+            <div className="relative w-full max-w-lg mx-auto floating-image-container">
               <div className="absolute -inset-8 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-2xl animate-pulse-glow"></div>
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-20 animate-float"></div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-15 animate-float" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-20 animate-advanced-float"></div>
+              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-15 animate-orbital-float" style={{ animationDelay: '1s' }}></div>
               
-              <div className="relative">
-                <div className="w-80 h-80 lg:w-96 lg:h-96 mx-auto relative">
+              <div className="relative animate-hero-image-float">
+                <div className="w-80 h-80 lg:w-96 lg:h-96 mx-auto relative animate-gentle-sway">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 via-purple-500/30 to-pink-500/30 rounded-full animate-spin" style={{ animationDuration: '20s' }}></div>
                   
                   <div className="absolute inset-3 bg-white rounded-full shadow-2xl overflow-hidden border-4 border-white backdrop-blur-sm">
                     <img 
                       src="/lovable-uploads/12c910ed-b896-47a9-aa87-7d3591664f02.png" 
                       alt="K. Jeevan Kumar"
-                      className="w-full h-full object-cover rounded-full hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover rounded-full floating-image animate-image-breathing hover:animate-perspective-tilt transition-all duration-500"
                     />
                     
                     <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 via-transparent to-transparent rounded-full"></div>
@@ -70,7 +70,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
                 </div>
               </div>
 
-              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 animate-advanced-float" style={{ animationDelay: '3s' }}>
                 <div className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg animate-bounce flex items-center gap-2">
                   <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
                   Available for internship & collaboration

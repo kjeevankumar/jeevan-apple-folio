@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { Download } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
@@ -87,28 +88,28 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
 
         {/* Content section with side-by-side layout */}
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Enhanced Photo */}
+          {/* Left Column - Enhanced Photo with Advanced Floating Motion */}
           <TransitionWrapper isVisible={isVisible} delay={300} direction="left" className="order-2 lg:order-1">
-            <div className="relative">
+            <div className="relative floating-image-container">
               <div className="relative w-full max-w-md mx-auto">
-                {/* Enhanced gradient background */}
-                <div className="absolute -inset-6 bg-gradient-to-br from-blue-200/80 via-purple-200/80 to-pink-200/80 rounded-3xl transform rotate-3 animate-pulse blur-sm"></div>
+                {/* Enhanced gradient background with floating animation */}
+                <div className="absolute -inset-6 bg-gradient-to-br from-blue-200/80 via-purple-200/80 to-pink-200/80 rounded-3xl transform rotate-3 animate-pulse blur-sm animate-gentle-sway"></div>
                 
-                {/* Main photo container */}
-                <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden p-2 border-2 border-gradient-to-r from-blue-200 to-purple-200">
+                {/* Main photo container with advanced floating motion */}
+                <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden p-2 border-2 border-gradient-to-r from-blue-200 to-purple-200 animate-about-image-float">
                   <img 
                     src="/lovable-uploads/daf2f8cf-32b9-488b-bd40-dd9697cca109.png" 
                     alt="K. Jeevan Kumar - Professional"
-                    className="w-full h-auto object-cover rounded-2xl hover:scale-110 transition-transform duration-700"
+                    className="w-full h-auto object-cover rounded-2xl floating-image animate-image-breathing hover:animate-perspective-tilt transition-all duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 via-transparent to-purple-900/5 rounded-2xl"></div>
                 </div>
                 
-                {/* Enhanced floating decoration elements */}
-                <div className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-30 animate-bounce" style={{ animationDelay: '0.5s' }}></div>
-                <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-25 animate-bounce" style={{ animationDelay: '1.5s' }}></div>
-                <div className="absolute top-1/2 -right-4 w-12 h-12 bg-gradient-to-br from-teal-400 to-blue-500 rounded-full opacity-35 animate-float" style={{ animationDelay: '2s' }}></div>
-                <div className="absolute bottom-1/4 -left-6 w-16 h-16 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full opacity-20 animate-float" style={{ animationDelay: '2.5s' }}></div>
+                {/* Enhanced floating decoration elements with advanced motion */}
+                <div className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-30 animate-orbital-float" style={{ animationDelay: '0.5s' }}></div>
+                <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-25 animate-advanced-float" style={{ animationDelay: '1.5s' }}></div>
+                <div className="absolute top-1/2 -right-4 w-12 h-12 bg-gradient-to-br from-teal-400 to-blue-500 rounded-full opacity-35 animate-gentle-sway" style={{ animationDelay: '2s' }}></div>
+                <div className="absolute bottom-1/4 -left-6 w-16 h-16 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full opacity-20 animate-orbital-float" style={{ animationDelay: '2.5s' }}></div>
               </div>
             </div>
           </TransitionWrapper>

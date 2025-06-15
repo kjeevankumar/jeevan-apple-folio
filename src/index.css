@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -113,6 +114,115 @@
   }
   50% {
     transform: translateY(-10px);
+  }
+}
+
+/* Enhanced floating motion animations */
+@keyframes advancedFloat {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-15px) translateX(8px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-5px) translateX(-5px) rotate(-1deg);
+  }
+  75% {
+    transform: translateY(-12px) translateX(3px) rotate(1.5deg);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+}
+
+@keyframes orbitalFloat {
+  0% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+  25% {
+    transform: translateY(-8px) translateX(12px) scale(1.02);
+  }
+  50% {
+    transform: translateY(-15px) translateX(0px) scale(1.05);
+  }
+  75% {
+    transform: translateY(-8px) translateX(-12px) scale(1.02);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+}
+
+@keyframes imageBreathing {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes gentleSway {
+  0%, 100% {
+    transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+  }
+  25% {
+    transform: perspective(1000px) rotateY(3deg) rotateX(2deg);
+  }
+  75% {
+    transform: perspective(1000px) rotateY(-3deg) rotateX(-2deg);
+  }
+}
+
+@keyframes perspectiveTilt {
+  0%, 100% {
+    transform: perspective(1200px) rotateX(0deg) rotateY(0deg) translateZ(0px);
+  }
+  25% {
+    transform: perspective(1200px) rotateX(5deg) rotateY(-8deg) translateZ(20px);
+  }
+  50% {
+    transform: perspective(1200px) rotateX(-3deg) rotateY(5deg) translateZ(15px);
+  }
+  75% {
+    transform: perspective(1200px) rotateX(2deg) rotateY(-3deg) translateZ(10px);
+  }
+}
+
+@keyframes heroImageFloat {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+  }
+  20% {
+    transform: translateY(-12px) translateX(8px) rotate(1deg) scale(1.02);
+  }
+  40% {
+    transform: translateY(-8px) translateX(-6px) rotate(-0.5deg) scale(1.01);
+  }
+  60% {
+    transform: translateY(-15px) translateX(4px) rotate(1.5deg) scale(1.03);
+  }
+  80% {
+    transform: translateY(-5px) translateX(-3px) rotate(-1deg) scale(1.01);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes aboutImageFloat {
+  0% {
+    transform: translateY(0px) translateX(0px) rotateZ(0deg);
+  }
+  33% {
+    transform: translateY(-10px) translateX(6px) rotateZ(2deg);
+  }
+  66% {
+    transform: translateY(-6px) translateX(-4px) rotateZ(-1.5deg);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) rotateZ(0deg);
   }
 }
 
@@ -269,6 +379,42 @@
   animation: float 3s ease-in-out infinite;
 }
 
+/* New enhanced floating animations */
+.animate-advanced-float {
+  animation: advancedFloat 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-orbital-float {
+  animation: orbitalFloat 12s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-image-breathing {
+  animation: imageBreathing 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-gentle-sway {
+  animation: gentleSway 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-perspective-tilt {
+  animation: perspectiveTilt 10s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-hero-image-float {
+  animation: heroImageFloat 15s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-about-image-float {
+  animation: aboutImageFloat 12s ease-in-out infinite;
+  will-change: transform;
+}
+
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
 }
@@ -306,6 +452,17 @@
   background-clip: text;
   animation: gradient-shift 3s ease infinite;
   font-weight: 700;
+}
+
+/* Enhanced image containers with floating effects */
+.floating-image-container {
+  perspective: 1200px;
+  will-change: transform;
+}
+
+.floating-image {
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 /* Smooth hover transitions */
@@ -459,7 +616,11 @@ html {
   
   .pseudo-3d-card,
   .pseudo-3d-project-card,
-  .floating-skill-orb {
+  .floating-skill-orb,
+  .animate-advanced-float,
+  .animate-orbital-float,
+  .animate-hero-image-float,
+  .animate-about-image-float {
     animation: none;
     opacity: 1;
   }
