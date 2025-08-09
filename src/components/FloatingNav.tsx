@@ -16,6 +16,7 @@ const FloatingNav: React.FC<FloatingNavProps> = ({ scrollToSection }) => {
     { id: 'education', label: 'Education' },
     { id: 'experience', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
+    { id: 'certifications', label: 'Certifications' },
     { id: 'contact', label: 'Contact' }
   ];
 
