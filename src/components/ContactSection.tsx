@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -12,30 +11,19 @@ interface ContactSectionProps {
   isVisible: boolean;
 }
 
-interface FormData {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
-
 const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
     message: ''
   });
-  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [googleSheetsUrl, setGoogleSheetsUrl] = useState('');
 
   useEffect(() => {
     const savedUrl = localStorage.getItem('googleSheetsWebAppUrl');
-    if (savedUrl) {
-      setGoogleSheetsUrl(savedUrl);
-    }
+    if (savedUrl) setGoogleSheetsUrl(savedUrl);
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -46,10 +34,10 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.name.trim() || !formData.email.trim() || !formData.subject.trim() || !formData.message.trim()) {
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       toast({
-        title: "Validation Error",
-        description: "Please fill in all required fields.",
+        title: "Please fill all fields",
+        description: "All fields are required to send a message.",
         variant: "destructive",
       });
       return;
@@ -57,7 +45,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       toast({
-        title: "Validation Error",
+        title: "Invalid email",
         description: "Please enter a valid email address.",
         variant: "destructive",
       });
@@ -67,37 +55,29 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
     setIsSubmitting(true);
 
     try {
-      if (!googleSheetsUrl.trim()) {
-        throw new Error('Contact form is not properly configured');
+      if (googleSheetsUrl.trim()) {
+        await fetch(googleSheetsUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            timestamp: new Date().toISOString(),
+            ...formData,
+            source: 'Portfolio Contact Form'
+          })
+        });
       }
 
-      const submissionData = {
-        timestamp: new Date().toISOString(),
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        subject: formData.subject.trim(),
-        message: formData.message.trim(),
-        source: 'Portfolio Contact Form'
-      };
-
-      await fetch(googleSheetsUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(submissionData)
-      });
-
       toast({
-        title: "Message Sent Successfully!",
+        title: "Message sent!",
         description: "Thank you for reaching out. I'll get back to you soon!",
       });
       
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      
+      setFormData({ name: '', email: '', message: '' });
     } catch (error) {
       console.error("Error submitting form:", error);
       toast({
-        title: "Failed to Send Message",
+        title: "Failed to send",
         description: "Please try again or contact me directly via email.",
         variant: "destructive",
       });
@@ -106,199 +86,143 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
     }
   };
 
+  const contactInfo = [
+    { icon: Mail, label: 'Email', value: 'kjeevankumar944@gmail.com', href: 'mailto:kjeevankumar944@gmail.com' },
+    { icon: Phone, label: 'Phone', value: 'Available upon request', href: null },
+    { icon: MapPin, label: 'Location', value: 'Telangana, India', href: null },
+  ];
+
   const socialLinks = [
-    {
-      icon: Linkedin,
-      label: 'LinkedIn',
-      href: 'http://www.linkedin.com/in/k-jeevan-kumar-5333b32b8',
-      color: 'text-blue-600'
-    },
-    {
-      icon: Github,
-      label: 'GitHub',
-      href: 'https://github.com/kjeevankumar?tab=repositories',
-      color: 'text-gray-800'
-    },
-    {
-      icon: Mail,
-      label: 'Email',
-      href: 'mailto:kjeevankumar944@gmail.com?subject=Hi Jeevan - Portfolio Contact',
-      color: 'text-red-600'
-    }
+    { icon: Linkedin, label: 'LinkedIn', href: 'http://www.linkedin.com/in/k-jeevan-kumar-5333b32b8' },
+    { icon: Github, label: 'GitHub', href: 'https://github.com/kjeevankumar?tab=repositories' },
+    { icon: Mail, label: 'Email', href: 'mailto:kjeevankumar944@gmail.com' },
   ];
 
   return (
-    <section 
-      id="contact" 
-      data-animate
-      className={`py-20 bg-gray-50 transition-all duration-1000 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Let's <span className="text-blue-600">Connect</span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Ready to collaborate or discuss opportunities? I'd love to hear from you!
+    <section id="contact" data-animate className="section-container bg-background">
+      <div className="container mx-auto">
+        <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <h2 className="section-title">Get In Touch</h2>
+          <p className="section-subtitle">
+            Ready to collaborate? I'd love to hear from you!
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          <Card className="p-8 shadow-lg">
-            <CardContent className="p-0">
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Send Me a Message</h3>
-                <p className="text-gray-600">Fill out the form below and I'll get back to you as soon as possible.</p>
-              </div>
+        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          {/* Contact Form */}
+          <Card className={`card-premium border-0 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
+            <CardContent className="p-8">
+              <h3 className="text-xl font-semibold text-foreground mb-6">Send a Message</h3>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="name" className="text-gray-700 font-medium">
-                      Full Name *
-                    </Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      type="text"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className="h-12"
-                      disabled={isSubmitting}
-                      required
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-gray-700 font-medium">
-                      Email Address *
-                    </Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="h-12"
-                      disabled={isSubmitting}
-                      required
-                    />
-                  </div>
-                </div>
-
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-2">
-                  <Label htmlFor="subject" className="text-gray-700 font-medium">
-                    Subject *
-                  </Label>
+                  <Label htmlFor="name" className="text-sm font-medium text-foreground">Name</Label>
                   <Input
-                    id="subject"
-                    name="subject"
+                    id="name"
+                    name="name"
                     type="text"
-                    value={formData.subject}
+                    placeholder="Your name"
+                    value={formData.name}
                     onChange={handleInputChange}
-                    className="h-12"
+                    className="h-12 rounded-xl border-border focus:border-primary"
                     disabled={isSubmitting}
-                    required
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="message" className="text-gray-700 font-medium">
-                    Your Message *
-                  </Label>
+                  <Label htmlFor="email" className="text-sm font-medium text-foreground">Email</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="your@email.com"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="h-12 rounded-xl border-border focus:border-primary"
+                    disabled={isSubmitting}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="message" className="text-sm font-medium text-foreground">Message</Label>
                   <Textarea
                     id="message"
                     name="message"
+                    placeholder="Your message..."
                     value={formData.message}
                     onChange={handleInputChange}
-                    className="min-h-[120px]"
+                    className="min-h-[120px] rounded-xl border-border focus:border-primary resize-none"
                     disabled={isSubmitting}
-                    required
-                    rows={4}
                   />
                 </div>
 
                 <Button
                   type="submit"
-                  size="lg"
                   disabled={isSubmitting}
-                  className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium"
+                  className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-medium"
                 >
                   {isSubmitting ? (
-                    <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent mr-2"></div>
-                      Sending Message...
-                    </>
+                    <span className="flex items-center gap-2">
+                      <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Sending...
+                    </span>
                   ) : (
-                    <>
-                      <Send className="w-5 h-5 mr-2" />
+                    <span className="flex items-center gap-2">
+                      <Send className="w-4 h-4" />
                       Send Message
-                    </>
+                    </span>
                   )}
                 </Button>
               </form>
             </CardContent>
           </Card>
 
-          <div className="space-y-8">
-            <Card className="p-8 shadow-lg">
-              <CardContent className="p-0">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+          {/* Contact Info */}
+          <div className={`space-y-6 transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+            <Card className="card-premium border-0">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-semibold text-foreground mb-6">Contact Information</h3>
                 
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                      <Mail className="w-6 h-6 text-blue-600" />
+                <div className="space-y-5">
+                  {contactInfo.map((item, index) => (
+                    <div key={index} className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <item.icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">{item.label}</p>
+                        {item.href ? (
+                          <a href={item.href} className="font-medium text-foreground hover:text-primary transition-colors">
+                            {item.value}
+                          </a>
+                        ) : (
+                          <p className="font-medium text-foreground">{item.value}</p>
+                        )}
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">Email</h4>
-                      <a href="mailto:kjeevankumar944@gmail.com" className="text-blue-600 hover:underline">
-                        kjeevankumar944@gmail.com
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                      <Phone className="w-6 h-6 text-green-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">Phone</h4>
-                      <p className="text-gray-600">Available upon request</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                      <MapPin className="w-6 h-6 text-purple-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">Location</h4>
-                      <p className="text-gray-600">Telangana, India</p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="p-8 shadow-lg bg-blue-600 text-white">
-              <CardContent className="p-0">
-                <h3 className="text-2xl font-bold mb-6">Follow Me</h3>
-                <p className="mb-6 text-blue-100">Connect with me on social media for updates and insights!</p>
+            <Card className="card-premium border-0 bg-primary text-primary-foreground">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-semibold mb-4">Let's Connect</h3>
+                <p className="text-primary-foreground/80 mb-6">
+                  Follow me on social media for updates on my latest projects and insights.
+                </p>
                 
-                <div className="flex flex-wrap gap-4">
+                <div className="flex gap-3">
                   {socialLinks.map((social, index) => (
                     <a
-                      key={social.label}
+                      key={index}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 bg-white/10 hover:bg-white/20 px-4 py-3 rounded-lg transition-colors duration-300"
+                      className="flex items-center justify-center w-12 h-12 rounded-xl bg-white/10 hover:bg-white/20 transition-colors"
+                      aria-label={social.label}
                     >
                       <social.icon className="w-5 h-5" />
-                      <span className="font-medium">{social.label}</span>
                     </a>
                   ))}
                 </div>

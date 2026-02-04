@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
@@ -22,20 +21,18 @@ const Index = () => {
   const [isContentReady, setIsContentReady] = useState(false);
 
   useEffect(() => {
-    // Simulate initial loading time
     const loadingTimer = setTimeout(() => {
       setIsPageLoading(false);
-    }, 2000);
+    }, 1500);
 
     return () => clearTimeout(loadingTimer);
   }, []);
 
   useEffect(() => {
     if (!isPageLoading) {
-      // Small delay before showing content for smooth transition
       const contentTimer = setTimeout(() => {
         setIsContentReady(true);
-      }, 300);
+      }, 200);
 
       return () => clearTimeout(contentTimer);
     }
@@ -47,7 +44,6 @@ const Index = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log(`Section ${entry.target.id} visibility: ${entry.isIntersecting}`);
           if (entry.isIntersecting) {
             setIsVisible(prev => ({
               ...prev,
@@ -56,15 +52,11 @@ const Index = () => {
           }
         });
       },
-      { threshold: 0.1, rootMargin: '100px' }
+      { threshold: 0.1, rootMargin: '50px' }
     );
 
     const sections = document.querySelectorAll('[data-animate]');
-    console.log('Observing sections:', sections.length);
-    sections.forEach((section) => {
-      console.log('Observing section:', section.id);
-      observer.observe(section);
-    });
+    sections.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
   }, [isContentReady]);
@@ -76,7 +68,10 @@ const Index = () => {
     }
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     }
   };
 
@@ -88,34 +83,41 @@ const Index = () => {
     <>
       <PageLoader isLoading={isPageLoading} onLoadingComplete={handleLoadingComplete} />
       
-      <div className={`min-h-screen bg-white transition-opacity duration-1000 ${
+      <div className={`min-h-screen bg-background transition-opacity duration-500 ${
         isContentReady ? 'opacity-100' : 'opacity-0'
       }`}>
         <FloatingNav scrollToSection={scrollToSection} />
-        <section id="hero">
-          <HeroSection scrollToSection={scrollToSection} />
-        </section>
+        
+        <HeroSection scrollToSection={scrollToSection} />
+        
         <div id="about" data-animate>
           <AboutSection isVisible={isVisible.about} />
         </div>
+        
         <div id="education" data-animate>
           <EducationSection isVisible={isVisible.education} />
         </div>
+        
         <div id="experience" data-animate>
           <ExperienceSection isVisible={isVisible.experience} />
         </div>
+        
         <div id="skills" data-animate>
           <SkillsSection isVisible={isVisible.skills} />
         </div>
+        
         <div id="projects" data-animate>
           <ProjectsSection isVisible={isVisible.projects} />
         </div>
+        
         <div id="certifications" data-animate>
           <CertificationsSection isVisible={isVisible.certifications} />
         </div>
+        
         <div id="contact" data-animate>
           <ContactSection isVisible={isVisible.contact} />
         </div>
+        
         <Footer />
       </div>
     </>
