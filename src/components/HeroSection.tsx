@@ -44,8 +44,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               </div>
 
               {/* Availability badge */}
-              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
-                
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-400 to-teal-500 text-white rounded-full text-sm font-medium shadow-lg">
+                  <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                  Available for internship & collaboration
+                </div>
               </div>
             </div>
           </div>
@@ -91,7 +94,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               </div>
 
               {/* Social Media Icons */}
-              <div className="flex justify-center lg:justify-start gap-4 mb-8">
+              <div className="flex justify-center lg:justify-start gap-4">
                 <a href="http://www.linkedin.com/in/k-jeevan-kumar-5333b32b8" target="_blank" rel="noopener noreferrer" className="p-3 bg-blue-100 rounded-full hover:bg-blue-200 transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg">
                   <Linkedin className="w-6 h-6 text-blue-600" />
                 </a>
@@ -102,6 +105,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                   <Mail className="w-6 h-6 text-red-600" />
                 </button>
               </div>
+
+              {/* Scroll Button - inline with content */}
+              {showScrollButton && (
+                <div className="flex justify-center lg:justify-start mt-6">
+                  <button onClick={handleScrollToAbout} className="group cursor-pointer transition-all duration-500">
+                    <div className="flex flex-col items-center gap-2 p-3 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl hover:bg-white transition-all duration-500 border border-gray-200">
+                      <span className="text-gray-600 text-xs font-medium group-hover:text-blue-600 transition-colors duration-500">
+                        Scroll to explore
+                      </span>
+                      <ArrowDown className="w-4 h-4 text-gray-500 group-hover:text-blue-600 animate-float transition-colors duration-500" />
+                    </div>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -132,19 +149,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
       </div>
 
-      {/* Scroll Button */}
-      {showScrollButton && <div className="absolute bottom-16 md:bottom-24 left-1/2 transform -translate-x-1/2 z-20">
-          <button onClick={handleScrollToAbout} className="group cursor-pointer transition-all duration-500">
-            <div className="flex flex-col items-center gap-2 md:gap-3 p-3 md:p-4 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl hover:bg-white transition-all duration-500 border border-gray-200">
-              <span className="text-gray-600 text-xs font-medium group-hover:text-blue-600 transition-colors duration-500">
-                Scroll to explore
-              </span>
-              <div className="relative">
-                <ArrowDown className="w-4 h-4 md:w-5 md:h-5 text-gray-500 group-hover:text-blue-600 animate-float transition-colors duration-500" />
-              </div>
-            </div>
-          </button>
-        </div>}
     </section>;
 };
 export default HeroSection;
