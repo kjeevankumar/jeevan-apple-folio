@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Download, Linkedin, Github, Mail, Code2, Sparkles, Zap } from 'lucide-react';
+import { ArrowDown, Download, Linkedin, Github, Mail } from 'lucide-react';
 interface HeroSectionProps {
   scrollToSection: (sectionId: string) => void;
 }
@@ -26,24 +26,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
     scrollToSection('about');
   };
   return <section className="min-h-screen flex flex-col justify-center relative bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 overflow-hidden">
-      {/* Floating decorative elements - Left side */}
-      <div className="absolute left-4 md:left-8 lg:left-16 top-1/4 flex flex-col gap-8 z-10">
-        <div className="p-3 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-gray-100 animate-float" style={{ animationDelay: '0s' }}>
-          <Code2 className="w-5 h-5 md:w-6 md:h-6 text-blue-500" />
-        </div>
-        <div className="p-3 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-gray-100 animate-float" style={{ animationDelay: '0.5s' }}>
-          <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-purple-500" />
-        </div>
-        <div className="p-3 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-gray-100 animate-float" style={{ animationDelay: '1s' }}>
-          <Zap className="w-5 h-5 md:w-6 md:h-6 text-yellow-500" />
-        </div>
-      </div>
-
-      {/* Floating gradient circles */}
-      <div className="absolute left-8 md:left-20 top-1/3 w-32 h-32 md:w-48 md:h-48 bg-gradient-to-br from-pink-200/40 to-purple-200/40 rounded-full blur-2xl"></div>
-      <div className="absolute right-8 md:right-20 top-20 w-24 h-24 md:w-36 md:h-36 bg-gradient-to-br from-blue-200/40 to-cyan-200/40 rounded-full blur-2xl"></div>
-      <div className="absolute left-1/4 bottom-1/4 w-20 h-20 md:w-32 md:h-32 bg-gradient-to-br from-purple-200/30 to-pink-200/30 rounded-full blur-xl"></div>
-
       {/* Main content */}
       <div className="container mx-auto px-4 relative z-10 flex-grow flex items-center">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto w-full">
