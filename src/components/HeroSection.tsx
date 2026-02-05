@@ -1,147 +1,210 @@
-import React from 'react';
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Download, Linkedin, Github, Mail, MapPin } from 'lucide-react';
-
-interface HeroSectionProps {
-  scrollToSection: (sectionId: string) => void;
-}
-
-const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
-  const handleResumeClick = () => {
-    window.open('https://drive.google.com/uc?export=download&id=10eh84qoXZZ2l1ipWY0zg8swLkNTGTAJu', '_blank');
-  };
-
-  return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative bg-gradient-to-b from-secondary/30 via-background to-background pt-20">
-      {/* Subtle background decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
-          {/* Text Content */}
-          <div className="text-center lg:text-left space-y-6 order-2 lg:order-1">
-            {/* Availability Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20">
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse-soft" />
-              Open to Internships & Full-Time Roles
-            </div>
-
-            {/* Name */}
-            <div className="space-y-2">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                K. Jeevan Kumar
-              </h1>
-              
-              {/* Professional Title */}
-              <p className="text-xl md:text-2xl font-medium text-primary">
-                AI/ML Developer • Full Stack Developer • Problem Solver
-              </p>
-            </div>
-
-            {/* Tagline */}
-            <p className="text-lg text-muted-foreground max-w-lg mx-auto lg:mx-0">
-              Building intelligent systems and scalable web applications that make a difference.
-            </p>
-
-            {/* Location */}
-            <div className="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground">
-              <MapPin className="w-4 h-4" />
-              <span className="text-sm">Telangana, India</span>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start pt-4">
-              <Button 
-                onClick={() => scrollToSection('projects')}
-                size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 font-medium shadow-md hover:shadow-lg transition-all duration-300 group"
-              >
-                View Projects
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              
-              <Button 
-                onClick={handleResumeClick}
-                variant="outline"
-                size="lg"
-                className="border-2 border-border hover:border-primary text-foreground hover:text-primary rounded-full px-8 font-medium transition-all duration-300"
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Download Resume
-              </Button>
-            </div>
-
-            {/* Social Links */}
-            <div className="flex items-center justify-center lg:justify-start gap-4 pt-6">
-              <a 
-                href="http://www.linkedin.com/in/k-jeevan-kumar-5333b32b8" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="p-3 rounded-full bg-secondary hover:bg-primary/10 hover:text-primary transition-all duration-200"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a 
-                href="https://github.com/kjeevankumar?tab=repositories" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="p-3 rounded-full bg-secondary hover:bg-primary/10 hover:text-primary transition-all duration-200"
-                aria-label="GitHub"
-              >
-                <Github className="w-5 h-5" />
-              </a>
-              <a 
-                href="mailto:kjeevankumar944@gmail.com" 
-                className="p-3 rounded-full bg-secondary hover:bg-primary/10 hover:text-primary transition-all duration-200"
-                aria-label="Email"
-              >
-                <Mail className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
-
-          {/* Profile Image */}
-          <div className="relative order-1 lg:order-2 flex justify-center">
-            <div className="relative">
-              {/* Gradient ring */}
-              <div className="absolute -inset-1 bg-gradient-to-br from-primary/30 via-accent/20 to-primary/30 rounded-full blur-sm" />
-              
-              {/* Image container */}
-              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-background shadow-premium">
-                <img 
-                  src="/lovable-uploads/12c910ed-b896-47a9-aa87-7d3591664f02.png" 
-                  alt="K. Jeevan Kumar" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Stats */}
-        <div className="max-w-4xl mx-auto mt-16 lg:mt-20">
-          <div className="grid grid-cols-3 gap-8 py-8 border-t border-border/50">
-            <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-foreground">4+</div>
-              <div className="text-sm text-muted-foreground mt-1">Years Learning</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-foreground">15+</div>
-              <div className="text-sm text-muted-foreground mt-1">Projects Built</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-foreground">6+</div>
-              <div className="text-sm text-muted-foreground mt-1">Certifications</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default HeroSection;
+ import React, { useState } from 'react';
+ import { Button } from "@/components/ui/button";
+ import { ArrowRight, Download, Linkedin, Github, Mail, MapPin, GraduationCap, Trophy, Code, Sparkles } from 'lucide-react';
+ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+ 
+ interface HeroSectionProps {
+   scrollToSection: (sectionId: string) => void;
+ }
+ 
+ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
+   const [showResumeModal, setShowResumeModal] = useState(false);
+ 
+   const handleResumeClick = () => {
+     setShowResumeModal(true);
+   };
+ 
+   const handleDownload = () => {
+     window.open('https://drive.google.com/uc?export=download&id=10eh84qoXZZ2l1ipWY0zg8swLkNTGTAJu', '_blank');
+     setShowResumeModal(false);
+   };
+ 
+   const handlePreview = () => {
+     window.open('https://drive.google.com/file/d/10eh84qoXZZ2l1ipWY0zg8swLkNTGTAJu/view', '_blank');
+   };
+ 
+   const miniAchievements = [
+     { icon: GraduationCap, label: 'Final Year B.Tech AI/ML' },
+     { icon: Trophy, label: 'CGPA 8.5' },
+     { icon: Sparkles, label: 'Hackathon Participant' },
+     { icon: Code, label: 'Python + Web Dev' },
+   ];
+ 
+   return (
+     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+       {/* Subtle background decoration */}
+       <div className="absolute inset-0 pointer-events-none">
+         {/* Premium gradient mesh */}
+         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+         <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] animate-pulse-soft" />
+         <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px] animate-pulse-soft" style={{ animationDelay: '1s' }} />
+         {/* Subtle grid pattern */}
+         <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border))_1px,transparent_1px)] bg-[size:80px_80px] opacity-30" />
+       </div>
+ 
+       <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-6xl">
+         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+           {/* Text Content */}
+           <div className="text-center lg:text-left space-y-8 order-2 lg:order-1">
+             {/* Availability Badge */}
+             <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary/10 text-primary rounded-full text-sm font-semibold border border-primary/20 shadow-sm">
+               <span className="relative flex h-2.5 w-2.5">
+                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+               </span>
+               Open to Internships & Full-Time Roles
+             </div>
+ 
+             {/* Name */}
+             <div className="space-y-2">
+               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-[1.1] tracking-tight">
+                 K. Jeevan Kumar
+               </h1>
+               
+               {/* Professional Title */}
+               <p className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+                 AI/ML Developer • Full Stack Developer • Problem Solver
+               </p>
+             </div>
+ 
+             {/* Tagline */}
+             <p className="text-lg md:text-xl text-muted-foreground max-w-lg mx-auto lg:mx-0 leading-relaxed">
+               Building intelligent systems and scalable web applications that make a difference.
+             </p>
+ 
+             {/* Mini Achievements Row */}
+             <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
+               {miniAchievements.map((item, index) => (
+                 <div 
+                   key={index}
+                   className="flex items-center gap-2 px-4 py-2 bg-secondary/80 rounded-xl text-sm font-medium text-foreground/80 border border-border/50"
+                 >
+                   <item.icon className="w-4 h-4 text-primary" />
+                   {item.label}
+                 </div>
+               ))}
+             </div>
+ 
+             {/* Location */}
+             <div className="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground text-sm">
+               <MapPin className="w-4 h-4" />
+               <span>Telangana, India</span>
+             </div>
+ 
+             {/* CTA Buttons */}
+             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
+               <Button 
+                 onClick={() => scrollToSection('projects')}
+                 size="lg"
+                 className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-2xl px-8 h-14 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group hover:scale-105"
+                 style={{ boxShadow: '0 4px 20px hsl(var(--primary) / 0.4)' }}
+               >
+                 View Projects
+                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+               </Button>
+               
+               <Button 
+                 onClick={handleResumeClick}
+                 variant="outline"
+                 size="lg"
+                 className="border-2 border-border hover:border-primary bg-card/50 text-foreground hover:text-primary rounded-2xl px-8 h-14 font-semibold transition-all duration-300 hover:scale-105"
+               >
+                 <Download className="w-4 h-4 mr-2" />
+                 Download Resume
+               </Button>
+               
+               <button 
+                 onClick={() => scrollToSection('contact')}
+                 className="text-primary font-semibold hover:underline underline-offset-4 transition-all hidden sm:block"
+               >
+                 Contact Me
+               </button>
+             </div>
+ 
+             {/* Social Links */}
+             <div className="flex items-center justify-center lg:justify-start gap-3 pt-4">
+               <a 
+                 href="http://www.linkedin.com/in/k-jeevan-kumar-5333b32b8" 
+                 target="_blank" 
+                 rel="noopener noreferrer" 
+                 className="group w-12 h-12 rounded-2xl bg-card border border-border/50 flex items-center justify-center hover:border-primary hover:bg-primary/5 transition-all duration-300 hover:scale-110"
+                 aria-label="LinkedIn"
+               >
+                 <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+               </a>
+               <a 
+                 href="https://github.com/kjeevankumar?tab=repositories" 
+                 target="_blank" 
+                 rel="noopener noreferrer" 
+                 className="group w-12 h-12 rounded-2xl bg-card border border-border/50 flex items-center justify-center hover:border-primary hover:bg-primary/5 transition-all duration-300 hover:scale-110"
+                 aria-label="GitHub"
+               >
+                 <Github className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+               </a>
+               <a 
+                 href="mailto:kjeevankumar944@gmail.com" 
+                 className="group w-12 h-12 rounded-2xl bg-card border border-border/50 flex items-center justify-center hover:border-primary hover:bg-primary/5 transition-all duration-300 hover:scale-110"
+                 aria-label="Email"
+               >
+                 <Mail className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+               </a>
+             </div>
+           </div>
+ 
+           {/* Profile Image */}
+           <div className="relative order-1 lg:order-2 flex justify-center">
+             <div className="relative">
+               {/* Gradient ring */}
+               <div className="absolute -inset-2 bg-gradient-to-br from-primary via-accent to-primary rounded-full blur-md opacity-60 animate-pulse-soft" />
+               <div className="absolute -inset-1 bg-gradient-to-br from-primary/40 via-accent/30 to-primary/40 rounded-full" />
+               
+               {/* Image container */}
+               <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px] rounded-full overflow-hidden border-4 border-background shadow-2xl">
+                 <img 
+                   src="/lovable-uploads/12c910ed-b896-47a9-aa87-7d3591664f02.png" 
+                   alt="K. Jeevan Kumar" 
+                   className="w-full h-full object-cover"
+                 />
+               </div>
+               
+               {/* Floating label */}
+               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-6 py-2 bg-card border border-border/50 rounded-full shadow-lg">
+                 <span className="text-sm font-semibold text-foreground">AI/ML + Full Stack</span>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+ 
+       {/* Resume Modal */}
+       <Dialog open={showResumeModal} onOpenChange={setShowResumeModal}>
+         <DialogContent className="sm:max-w-md rounded-3xl">
+           <DialogHeader>
+             <DialogTitle className="text-2xl font-bold">Resume</DialogTitle>
+             <DialogDescription>
+               Preview or download my resume
+             </DialogDescription>
+           </DialogHeader>
+           <div className="flex flex-col gap-4 mt-4">
+             <Button 
+               onClick={handlePreview}
+               variant="outline"
+               className="w-full h-12 rounded-xl font-semibold"
+             >
+               Preview Resume
+             </Button>
+             <Button 
+               onClick={handleDownload}
+               className="w-full h-12 rounded-xl font-semibold bg-primary hover:bg-primary/90"
+             >
+               <Download className="w-4 h-4 mr-2" />
+               Download PDF
+             </Button>
+           </div>
+         </DialogContent>
+       </Dialog>
+     </section>
+   );
+ };
+ 
+ export default HeroSection;
