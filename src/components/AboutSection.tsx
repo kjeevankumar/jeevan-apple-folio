@@ -52,9 +52,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
      { icon: Zap, label: 'Fast Learner', description: 'Quick technology adoption' },
   ];
 
-  const techStack = [
-     'Python', 'JavaScript', 'TypeScript', 'React', 'Node.js', 'Express', 'MongoDB', 'MySQL', 'TailwindCSS'
-  ];
+  const coreStack = ['Python', 'React', 'Node.js', 'Machine Learning'];
  
    const currentWork = [
      'Placement preparation (DSA + System Design)',
@@ -108,7 +106,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
                  </span>
                  <span className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 text-accent rounded-xl text-sm font-semibold">
                    <Trophy className="w-4 h-4" />
-                   CGPA: 8.5/10
+                   CGPA: 8.26/10
                  </span>
               </div>
 
@@ -165,11 +163,11 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
               ))}
             </div>
 
-            {/* Tech Stack */}
+            {/* Core Stack */}
              <div className="space-y-4">
-               <h4 className="text-sm font-bold text-foreground">Tech Stack I Use</h4>
+               <h4 className="text-sm font-bold text-foreground">Core Stack</h4>
               <div className="flex flex-wrap gap-2">
-                {techStack.map((tech, index) => (
+                {coreStack.map((tech, index) => (
                    <span key={index} className="px-4 py-2 bg-secondary rounded-xl text-sm font-medium text-foreground hover:bg-primary/10 hover:text-primary transition-colors cursor-default">
                      {tech}
                    </span>

@@ -10,27 +10,27 @@ const EducationSection: React.FC<EducationSectionProps> = ({ isVisible }) => {
   const education = [
     {
       degree: 'B.Tech - AI & Machine Learning',
-      institution: 'Malla Reddy Institute of Engineering and Technology',
-      location: 'Hyderabad, Telangana',
-      duration: '2022 - 2026',
-      score: 'CGPA: 8.5/10',
+      institution: 'Malla Reddy Institute of Engineering and Technology (MRIET)',
+      location: 'Hyderabad, Telangana, India',
+      duration: '2022 – 2026',
+      score: 'CGPA: 8.26/10',
       status: 'Final Year',
       highlights: ['AI/ML Specialization', 'Active in coding competitions', 'Technical society member']
     },
     {
       degree: 'Intermediate (12th) - MPC',
       institution: 'Viswasanthi Junior College',
-      location: 'Alampur \'X\' Road, Telangana',
-      duration: '2020 - 2022',
-      score: '69.0%',
+      location: 'Alampur X Road, Telangana, India',
+      duration: '2020 – 2022',
+      score: '69%',
       status: 'Completed',
       highlights: ['Mathematics, Physics, Chemistry', 'Strong analytical foundation']
     },
     {
       degree: 'Secondary School (10th)',
-      institution: 'Z.H High School',
-      location: 'Bhairapuram, Telangana',
-      duration: '2019 - 2020',
+      institution: 'ZPHS Bhairapuram',
+      location: 'Bhairapuram, Telangana, India',
+      duration: '2019 – 2020',
       score: '95%',
       status: 'Completed',
       highlights: ['State board examination', 'Excellent academic performance']
