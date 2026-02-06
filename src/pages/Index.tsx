@@ -86,64 +86,71 @@
   };
 
   return (
-     <ThemeProvider>
+    <ThemeProvider>
       <PageLoader isLoading={isPageLoading} onLoadingComplete={handleLoadingComplete} />
       
-      <div className={`min-h-screen bg-background transition-opacity duration-500 ${
-        isContentReady ? 'opacity-100' : 'opacity-0'
-      }`}>
+      <div 
+        className={`flex flex-col min-h-screen bg-background transition-opacity duration-500 ${
+          isContentReady ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ overflow: 'visible' }}
+      >
         <FloatingNav scrollToSection={scrollToSection} />
         
-        <HeroSection scrollToSection={scrollToSection} />
-        
-         <div id="trust" data-animate>
-           <TrustSection isVisible={isVisible.trust} />
-         </div>
- 
-        <div id="about" data-animate>
-          <AboutSection isVisible={isVisible.about} />
-        </div>
-        
-         <div id="services" data-animate>
-           <ServicesSection isVisible={isVisible.services} />
-         </div>
- 
-        <div id="education" data-animate>
-          <EducationSection isVisible={isVisible.education} />
-        </div>
-        
-        <div id="experience" data-animate>
-          <ExperienceSection isVisible={isVisible.experience} />
-        </div>
-        
-        <div id="skills" data-animate>
-          <SkillsSection isVisible={isVisible.skills} />
-        </div>
-        
-        <div id="projects" data-animate>
-          <ProjectsSection isVisible={isVisible.projects} />
-        </div>
-        
-         <div id="achievements" data-animate>
-           <AchievementsSection isVisible={isVisible.achievements} />
-         </div>
- 
-        <div id="certifications" data-animate>
-          <CertificationsSection isVisible={isVisible.certifications} />
-        </div>
-        
-         <div id="testimonials" data-animate>
-           <TestimonialsSection isVisible={isVisible.testimonials} />
-         </div>
- 
-        <div id="contact" data-animate>
-          <ContactSection isVisible={isVisible.contact} />
-        </div>
+        <main className="flex-1 flex flex-col">
+          <section id="hero">
+            <HeroSection scrollToSection={scrollToSection} />
+          </section>
+          
+          <section id="trust" data-animate className={isVisible.trust ? 'visible' : ''}>
+            <TrustSection isVisible={isVisible.trust} />
+          </section>
+
+          <section id="about" data-animate className={isVisible.about ? 'visible' : ''}>
+            <AboutSection isVisible={isVisible.about} />
+          </section>
+          
+          <section id="services" data-animate className={isVisible.services ? 'visible' : ''}>
+            <ServicesSection isVisible={isVisible.services} />
+          </section>
+
+          <section id="education" data-animate className={isVisible.education ? 'visible' : ''}>
+            <EducationSection isVisible={isVisible.education} />
+          </section>
+          
+          <section id="experience" data-animate className={isVisible.experience ? 'visible' : ''}>
+            <ExperienceSection isVisible={isVisible.experience} />
+          </section>
+          
+          <section id="skills" data-animate className={isVisible.skills ? 'visible' : ''}>
+            <SkillsSection isVisible={isVisible.skills} />
+          </section>
+          
+          <section id="projects" data-animate className={isVisible.projects ? 'visible' : ''}>
+            <ProjectsSection isVisible={isVisible.projects} />
+          </section>
+          
+          <section id="achievements" data-animate className={isVisible.achievements ? 'visible' : ''}>
+            <AchievementsSection isVisible={isVisible.achievements} />
+          </section>
+
+          <section id="certifications" data-animate className={isVisible.certifications ? 'visible' : ''}>
+            <CertificationsSection isVisible={isVisible.certifications} />
+          </section>
+          
+          <section id="testimonials" data-animate className={isVisible.testimonials ? 'visible' : ''}>
+            <TestimonialsSection isVisible={isVisible.testimonials} />
+          </section>
+
+          <section id="contact" data-animate className={isVisible.contact ? 'visible' : ''}>
+            <ContactSection isVisible={isVisible.contact} />
+          </section>
+        </main>
         
         <Footer />
-         <BackToTop />
+        <BackToTop />
       </div>
-     </ThemeProvider>
+    </ThemeProvider>
   );
 };
 
