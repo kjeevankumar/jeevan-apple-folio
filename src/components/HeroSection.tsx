@@ -30,17 +30,17 @@
      { icon: Code, label: 'Python + Web Dev' },
    ];
  
-   return (
-     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-       {/* Subtle background decoration */}
-       <div className="absolute inset-0 pointer-events-none">
-         {/* Premium gradient mesh */}
-         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
-         <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] animate-pulse-soft" />
-         <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px] animate-pulse-soft" style={{ animationDelay: '1s' }} />
-         {/* Subtle grid pattern */}
-         <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border))_1px,transparent_1px)] bg-[size:80px_80px] opacity-30" />
-       </div>
+  return (
+    <div className="min-h-screen flex items-center justify-center relative pt-20" style={{ overflow: 'visible' }}>
+      {/* Subtle background decoration - z-index ensures it stays behind content */}
+      <div className="absolute inset-0 pointer-events-none -z-10" style={{ zIndex: -1 }}>
+        {/* Premium gradient mesh */}
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] animate-pulse-soft" />
+        <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px] animate-pulse-soft" style={{ animationDelay: '1s' }} />
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border))_1px,transparent_1px)] bg-[size:80px_80px] opacity-30" />
+      </div>
  
        <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-6xl">
          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -201,10 +201,10 @@
                Download PDF
              </Button>
            </div>
-         </DialogContent>
-       </Dialog>
-     </section>
-   );
- };
+          </DialogContent>
+        </Dialog>
+      </div>
+    );
+  };
  
  export default HeroSection;
