@@ -14,9 +14,9 @@
      { icon: Trophy, value: 3, suffix: '+', label: 'Hackathons' },
    ];
  
-   const platforms = [
-     'Google', 'Microsoft', 'Infosys', 'Accenture', 'Cambridge', 'Cisco'
-   ];
+  const platforms = [
+    'IBM', 'Microsoft', 'Infosys', 'Accenture', 'Cisco', 'GeeksforGeeks'
+  ];
  
    return (
      <section className="py-16 md:py-20 bg-secondary/30 border-y border-border/50">

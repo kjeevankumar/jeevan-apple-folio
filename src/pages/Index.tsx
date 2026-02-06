@@ -2,6 +2,7 @@
  import HeroSection from '@/components/HeroSection';
  import TrustSection from '@/components/TrustSection';
  import AboutSection from '@/components/AboutSection';
+ import InternshipsSection from '@/components/InternshipsSection';
  import ServicesSection from '@/components/ServicesSection';
  import EducationSection from '@/components/EducationSection';
  import ExperienceSection from '@/components/ExperienceSection';
@@ -110,6 +111,10 @@
 
             <section id="about" data-animate className={isVisible.about ? 'visible' : ''}>
               <AboutSection isVisible={isVisible.about} />
+            </section>
+
+            <section id="internships" data-animate className={isVisible.internships ? 'visible' : ''}>
+              <InternshipsSection isVisible={isVisible.internships} />
             </section>
             
             <section id="services" data-animate className={isVisible.services ? 'visible' : ''}>

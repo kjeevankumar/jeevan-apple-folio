@@ -13,8 +13,8 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
       icon: Layout,
       skills: [
         { name: 'React', level: 'Advanced' },
-        { name: 'TypeScript', level: 'Intermediate' },
         { name: 'JavaScript', level: 'Advanced' },
+        { name: 'TypeScript', level: 'Intermediate' },
         { name: 'HTML/CSS', level: 'Advanced' },
         { name: 'Tailwind CSS', level: 'Advanced' },
       ]
@@ -26,7 +26,6 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
         { name: 'Python', level: 'Advanced' },
         { name: 'Node.js', level: 'Intermediate' },
         { name: 'Express.js', level: 'Intermediate' },
-        { name: 'C/C++', level: 'Advanced' },
         { name: 'REST APIs', level: 'Intermediate' },
       ]
     },
@@ -34,11 +33,11 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
       title: 'AI/ML',
       icon: Brain,
       skills: [
-        { name: 'Machine Learning', level: 'Intermediate' },
+        { name: 'Regression', level: 'Intermediate' },
+        { name: 'Classification', level: 'Intermediate' },
         { name: 'Scikit-learn', level: 'Intermediate' },
-        { name: 'TensorFlow', level: 'Beginner' },
-        { name: 'Data Analysis', level: 'Intermediate' },
-        { name: 'NLP Basics', level: 'Beginner' },
+        { name: 'Pandas', level: 'Advanced' },
+        { name: 'NumPy', level: 'Advanced' },
       ]
     },
     {
@@ -47,28 +46,25 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
       skills: [
         { name: 'MySQL', level: 'Advanced' },
         { name: 'MongoDB', level: 'Intermediate' },
-        { name: 'PostgreSQL', level: 'Intermediate' },
-        { name: 'Firebase', level: 'Beginner' },
+      ]
+    },
+    {
+      title: 'CS Fundamentals',
+      icon: Wrench,
+      skills: [
+        { name: 'DSA', level: 'Intermediate' },
+        { name: 'OOP', level: 'Advanced' },
+        { name: 'Operating System', level: 'Intermediate' },
       ]
     },
     {
       title: 'Tools',
-      icon: Wrench,
+      icon: Users,
       skills: [
         { name: 'Git', level: 'Advanced' },
         { name: 'VS Code', level: 'Advanced' },
-        { name: 'Docker', level: 'Beginner' },
         { name: 'Postman', level: 'Intermediate' },
-      ]
-    },
-    {
-      title: 'Soft Skills',
-      icon: Users,
-      skills: [
-        { name: 'Problem Solving', level: 'Advanced' },
-        { name: 'Communication', level: 'Advanced' },
-        { name: 'Team Collaboration', level: 'Advanced' },
-        { name: 'Teaching', level: 'Advanced' },
+        { name: 'Docker', level: 'Beginner' },
       ]
     },
   ];

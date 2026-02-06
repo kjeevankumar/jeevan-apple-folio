@@ -9,22 +9,16 @@ interface CertificationsSectionProps {
 const CertificationsSection: React.FC<CertificationsSectionProps> = ({ isVisible }) => {
   const certifications = [
     { 
-      title: 'Project Management', 
-      platform: 'Accenture Forage',
-      date: 'April 2025',
+      title: 'Python Full Course', 
+      platform: 'GeeksforGeeks',
+      date: 'July 2025',
       status: 'Latest'
     },
     { 
-      title: 'Generative AI', 
-      platform: 'Infosys Springboard',
-      date: 'March 2025',
+      title: 'Introduction to Artificial Intelligence', 
+      platform: 'IBM / Coursera',
+      date: 'June 2025',
       status: 'Latest'
-    },
-    { 
-      title: 'Mastering Python Programming', 
-      platform: 'Infosys Springboard',
-      date: 'February 2025',
-      status: 'Recent'
     },
     { 
       title: 'Fundamental AI Concepts', 
@@ -33,15 +27,21 @@ const CertificationsSection: React.FC<CertificationsSectionProps> = ({ isVisible
       status: 'Recent'
     },
     { 
-      title: 'Cambridge B2 English', 
-      platform: 'Cambridge University',
-      date: 'February 2024',
-      status: 'Certified'
+      title: 'Project Management', 
+      platform: 'Accenture Forage',
+      date: 'February 2025',
+      status: 'Recent'
     },
     { 
-      title: 'Python Certificate', 
+      title: 'Mastering Python Programming', 
+      platform: 'Infosys Springboard',
+      date: 'February 2025',
+      status: 'Recent'
+    },
+    { 
+      title: 'Introduction to Data Science', 
       platform: 'Cisco Networking Academy',
-      date: '2024',
+      date: 'February 2024',
       status: 'Certified'
     }
   ];
