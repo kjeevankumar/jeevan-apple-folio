@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
- import { Mail, Phone, MapPin, Linkedin, Github, Send, Sparkles } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Github, Send, Sparkles, ArrowRight } from 'lucide-react';
 
 interface ContactSectionProps {
   isVisible: boolean;
@@ -99,51 +99,50 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
   ];
 
   return (
-    <section id="contact" data-animate className="section-container bg-background">
-       <div className="container mx-auto max-w-6xl">
-         <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-           <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
-             Contact
-           </span>
+    <section id="contact" data-animate className="section-container bg-secondary/30">
+      <div className="container mx-auto max-w-6xl">
+        <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <span className="section-badge">Contact</span>
           <h2 className="section-title">Get In Touch</h2>
           <p className="section-subtitle">
-             Let's build something great together. I'd love to hear from you!
+            Let's build something impactful together
           </p>
         </div>
 
-         {/* Premium CTA Banner */}
-         <div className={`mb-12 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-           <div className="relative overflow-hidden bg-gradient-to-r from-primary to-accent rounded-3xl p-8 md:p-12 text-primary-foreground">
-             <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px]" />
-             <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
-               <div className="text-center md:text-left">
-                 <div className="flex items-center gap-2 justify-center md:justify-start mb-3">
-                   <Sparkles className="w-5 h-5" />
-                   <span className="text-sm font-semibold uppercase tracking-wider opacity-90">Available for opportunities</span>
-                 </div>
-                 <h3 className="text-2xl md:text-3xl font-bold mb-2">Let's Build Something Great Together</h3>
-                 <p className="opacity-80">Open to internships, full-time roles, and exciting collaborations</p>
-               </div>
-               <a href="mailto:kjeevankumar944@gmail.com">
-                 <Button size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 rounded-2xl px-8 h-14 font-semibold shadow-lg">
-                   <Mail className="w-5 h-5 mr-2" />
-                   Email Me
-                 </Button>
-               </a>
-             </div>
-           </div>
-         </div>
- 
-         <div className="grid lg:grid-cols-2 gap-12">
+        {/* Premium CTA Banner */}
+        <div className={`mb-12 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="relative overflow-hidden bg-gradient-to-r from-primary to-accent rounded-3xl p-8 md:p-12 text-primary-foreground">
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px]" />
+            <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="text-center md:text-left">
+                <div className="flex items-center gap-2 justify-center md:justify-start mb-3">
+                  <Sparkles className="w-5 h-5" />
+                  <span className="text-sm font-semibold uppercase tracking-wider opacity-90">Available for opportunities</span>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">Let's Build Something Great Together</h3>
+                <p className="opacity-80">Open to internships, full-time roles, and exciting collaborations</p>
+              </div>
+              <a href="mailto:kjeevankumar944@gmail.com">
+                <Button size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 rounded-2xl px-8 h-14 font-semibold shadow-lg group">
+                  <Mail className="w-5 h-5 mr-2" />
+                  Email Me
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Form */}
-           <Card className={`bg-card border border-border/50 rounded-3xl overflow-hidden transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-             <CardContent className="p-8 md:p-10">
-               <h3 className="text-2xl font-bold text-foreground mb-2">Send a Message</h3>
-               <p className="text-muted-foreground mb-8">Fill out the form and I'll get back to you soon.</p>
+          <Card className={`card-interactive border-0 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
+            <CardContent className="p-8">
+              <h3 className="text-2xl font-bold text-foreground mb-2">Send a Message</h3>
+              <p className="text-muted-foreground mb-8">Fill out the form and I'll get back to you soon.</p>
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-2">
-                   <Label htmlFor="name" className="text-sm font-semibold text-foreground">Name</Label>
+                  <Label htmlFor="name" className="text-sm font-semibold text-foreground">Name</Label>
                   <Input
                     id="name"
                     name="name"
@@ -151,13 +150,13 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
                     placeholder="Your name"
                     value={formData.name}
                     onChange={handleInputChange}
-                     className="h-14 rounded-2xl border-border bg-secondary/30 focus:border-primary focus:bg-background transition-colors"
+                    className="h-12 rounded-xl border-border bg-secondary/30 focus:border-primary focus:bg-background transition-all"
                     disabled={isSubmitting}
                   />
                 </div>
 
                 <div className="space-y-2">
-                   <Label htmlFor="email" className="text-sm font-semibold text-foreground">Email</Label>
+                  <Label htmlFor="email" className="text-sm font-semibold text-foreground">Email</Label>
                   <Input
                     id="email"
                     name="email"
@@ -165,20 +164,20 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
                     placeholder="your@email.com"
                     value={formData.email}
                     onChange={handleInputChange}
-                     className="h-14 rounded-2xl border-border bg-secondary/30 focus:border-primary focus:bg-background transition-colors"
+                    className="h-12 rounded-xl border-border bg-secondary/30 focus:border-primary focus:bg-background transition-all"
                     disabled={isSubmitting}
                   />
                 </div>
 
                 <div className="space-y-2">
-                   <Label htmlFor="message" className="text-sm font-semibold text-foreground">Message</Label>
+                  <Label htmlFor="message" className="text-sm font-semibold text-foreground">Message</Label>
                   <Textarea
                     id="message"
                     name="message"
                     placeholder="Your message..."
                     value={formData.message}
                     onChange={handleInputChange}
-                     className="min-h-[140px] rounded-2xl border-border bg-secondary/30 focus:border-primary focus:bg-background resize-none transition-colors"
+                    className="min-h-[120px] rounded-xl border-border bg-secondary/30 focus:border-primary focus:bg-background resize-none transition-all"
                     disabled={isSubmitting}
                   />
                 </div>
@@ -186,7 +185,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                   className="w-full h-14 bg-primary hover:bg-primary/90 text-primary-foreground rounded-2xl font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:scale-[1.02]"
+                  className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-[1.02]"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center gap-2">
@@ -206,24 +205,24 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
 
           {/* Contact Info */}
           <div className={`space-y-6 transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-             <Card className="bg-card border border-border/50 rounded-3xl">
-               <CardContent className="p-8 md:p-10">
-                 <h3 className="text-2xl font-bold text-foreground mb-6">Contact Information</h3>
-                
-                 <div className="space-y-6">
+            <Card className="card-interactive border-0">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-foreground mb-6">Contact Information</h3>
+               
+                <div className="space-y-5">
                   {contactInfo.map((item, index) => (
-                     <div key={index} className="flex items-center gap-4 group">
-                       <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                         <item.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" />
+                    <div key={index} className="flex items-center gap-4 group">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                        <item.icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors" />
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">{item.label}</p>
                         {item.href ? (
-                           <a href={item.href} className="font-semibold text-foreground hover:text-primary transition-colors">
+                          <a href={item.href} className="font-semibold text-foreground hover:text-primary transition-colors">
                             {item.value}
                           </a>
                         ) : (
-                           <p className="font-semibold text-foreground">{item.value}</p>
+                          <p className="font-semibold text-foreground">{item.value}</p>
                         )}
                       </div>
                     </div>
@@ -232,24 +231,24 @@ const ContactSection: React.FC<ContactSectionProps> = ({ isVisible }) => {
               </CardContent>
             </Card>
 
-             <Card className="bg-gradient-to-br from-primary to-accent text-primary-foreground rounded-3xl overflow-hidden">
-               <CardContent className="p-8 md:p-10">
-                <h3 className="text-xl font-semibold mb-4">Let's Connect</h3>
+            <Card className="overflow-hidden bg-gradient-to-br from-primary to-accent text-primary-foreground border-0">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-bold mb-4">Let's Connect</h3>
                 <p className="text-primary-foreground/80 mb-6">
                   Follow me on social media for updates on my latest projects and insights.
                 </p>
-                
-                 <div className="flex gap-4">
+               
+                <div className="flex gap-3">
                   {socialLinks.map((social, index) => (
                     <a
                       key={index}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                       className="flex items-center justify-center w-14 h-14 rounded-2xl bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-all duration-300 hover:scale-110"
+                      className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-all duration-300 hover:scale-110"
                       aria-label={social.label}
                     >
-                       <social.icon className="w-6 h-6" />
+                      <social.icon className="w-5 h-5" />
                     </a>
                   ))}
                 </div>

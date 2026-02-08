@@ -1,7 +1,7 @@
- import React, { useState, useEffect } from 'react';
- import { Button } from "@/components/ui/button";
- import { Download, Menu, X, Github, Linkedin } from 'lucide-react';
- import ThemeToggle from './ThemeToggle';
+import React, { useState } from 'react';
+import { Button } from "@/components/ui/button";
+import { Download, Menu, X, Github, Linkedin } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 interface FloatingNavProps {
   scrollToSection: (sectionId: string) => void;
@@ -15,17 +15,16 @@ const FloatingNav: React.FC<FloatingNavProps> = ({ scrollToSection }) => {
   const navItems = [
     { id: 'hero', label: 'Home' },
     { id: 'about', label: 'About' },
-     { id: 'services', label: 'Services' },
-    { id: 'experience', label: 'Experience' },
-     { id: 'skills', label: 'Skills' },
+    { id: 'internships', label: 'Internships' },
     { id: 'projects', label: 'Projects' },
-     { id: 'achievements', label: 'Achievements' },
-     { id: 'certifications', label: 'Certs' },
-     { id: 'testimonials', label: 'Reviews' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'certifications', label: 'Certs' },
+    { id: 'achievements', label: 'Achievements' },
     { id: 'contact', label: 'Contact' }
   ];
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       setIsVisible(scrollPosition > 50);
@@ -65,28 +64,28 @@ const FloatingNav: React.FC<FloatingNavProps> = ({ scrollToSection }) => {
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isVisible 
-           ? 'py-2 bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-sm' 
-           : 'py-4 bg-transparent'
+          ? 'py-2 bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-sm' 
+          : 'py-4 bg-transparent'
       }`}>
-         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <button 
               onClick={() => handleNavClick('hero')}
-               className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+              className="text-2xl font-bold text-foreground hover:text-primary transition-colors"
             >
               JK<span className="text-primary">.</span>
             </button>
 
             {/* Desktop Navigation */}
-             <div className="hidden lg:flex items-center gap-1">
+            <div className="hidden lg:flex items-center gap-1">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                   className={`px-3 py-2 text-sm font-medium rounded-xl transition-all duration-200 ${
+                  className={`px-3 py-2 text-sm font-medium rounded-xl transition-all duration-200 ${
                     activeSection === item.id
-                       ? 'text-primary bg-primary/10'
+                      ? 'text-primary bg-primary/10'
                       : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
                   }`}
                 >
@@ -95,29 +94,29 @@ const FloatingNav: React.FC<FloatingNavProps> = ({ scrollToSection }) => {
               ))}
             </div>
 
-             {/* Right side actions */}
-             <div className="hidden lg:flex items-center gap-2">
-               <a 
-                 href="https://github.com/kjeevankumar?tab=repositories"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 className="w-10 h-10 rounded-xl bg-secondary hover:bg-secondary/80 flex items-center justify-center transition-colors"
-               >
-                 <Github className="w-4 h-4" />
-               </a>
-               <a 
-                 href="http://www.linkedin.com/in/k-jeevan-kumar-5333b32b8"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 className="w-10 h-10 rounded-xl bg-secondary hover:bg-secondary/80 flex items-center justify-center transition-colors"
-               >
-                 <Linkedin className="w-4 h-4" />
-               </a>
-               <ThemeToggle />
-               <Button
+            {/* Right side actions */}
+            <div className="hidden lg:flex items-center gap-2">
+              <a 
+                href="https://github.com/kjeevankumar?tab=repositories"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-xl bg-secondary hover:bg-secondary/80 flex items-center justify-center transition-all duration-200 hover:scale-105"
+              >
+                <Github className="w-4 h-4" />
+              </a>
+              <a 
+                href="http://www.linkedin.com/in/k-jeevan-kumar-5333b32b8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-xl bg-secondary hover:bg-secondary/80 flex items-center justify-center transition-all duration-200 hover:scale-105"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+              <ThemeToggle />
+              <Button
                 onClick={handleResumeClick}
                 size="sm"
-                 className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl px-5 h-10 font-semibold shadow-sm hover:shadow-md transition-all duration-200"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl px-5 h-10 font-semibold shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
               >
                 <Download className="w-4 h-4 mr-2" />
                 Resume
@@ -125,43 +124,61 @@ const FloatingNav: React.FC<FloatingNavProps> = ({ scrollToSection }) => {
             </div>
 
             {/* Mobile Menu Button */}
-            <button 
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-               className="lg:hidden p-2 rounded-xl hover:bg-secondary transition-colors"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-5 h-5 text-foreground" />
-              ) : (
-                <Menu className="w-5 h-5 text-foreground" />
-              )}
-            </button>
+            <div className="lg:hidden flex items-center gap-2">
+              <ThemeToggle />
+              <button 
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 rounded-xl hover:bg-secondary transition-colors"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="w-5 h-5 text-foreground" />
+                ) : (
+                  <Menu className="w-5 h-5 text-foreground" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Mobile Menu */}
-         <div className={`lg:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-lg transition-all duration-300 ${
+        <div className={`lg:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-lg transition-all duration-300 ${
           isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}>
-           <div className="container mx-auto px-4 py-4 space-y-1">
+          <div className="container mx-auto px-4 py-4 space-y-1">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                 className={`block w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
+                className={`block w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
                   activeSection === item.id
-                     ? 'text-primary bg-primary/10'
+                    ? 'text-primary bg-primary/10'
                     : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
                 }`}
               >
                 {item.label}
               </button>
             ))}
-             <div className="flex items-center gap-2 pt-4 border-t border-border/50">
-               <ThemeToggle />
-             </div>
+            <div className="flex items-center gap-3 pt-4 border-t border-border/50">
+              <a 
+                href="https://github.com/kjeevankumar?tab=repositories"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center"
+              >
+                <Github className="w-4 h-4" />
+              </a>
+              <a 
+                href="http://www.linkedin.com/in/k-jeevan-kumar-5333b32b8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+            </div>
             <Button 
               onClick={handleResumeClick}
-               className="w-full mt-4 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-semibold h-12"
+              className="w-full mt-4 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-semibold h-12"
             >
               <Download className="w-4 h-4 mr-2" />
               Download Resume
