@@ -11,7 +11,7 @@ const AchievementsSection: React.FC<AchievementsSectionProps> = ({ isVisible }) 
     {
       icon: Briefcase,
       title: 'AICTE Internships',
-      value: '3',
+      value: '2',
       description: 'Completed industry internships in AI/ML',
       highlight: 'Industry Experience'
     },
@@ -25,8 +25,8 @@ const AchievementsSection: React.FC<AchievementsSectionProps> = ({ isVisible }) 
     {
       icon: Award,
       title: 'Certifications',
-      value: '6+',
-      description: 'From Microsoft, IBM, Infosys, Cisco',
+      value: '5+',
+      description: 'From Microsoft, IBM, Infosys, Cisco, GeeksforGeeks',
       highlight: 'Industry Recognized'
     },
     {
@@ -39,7 +39,7 @@ const AchievementsSection: React.FC<AchievementsSectionProps> = ({ isVisible }) 
     {
       icon: GraduationCap,
       title: 'Academic CGPA',
-      value: '8.26',
+      value: '8.43',
       description: 'Strong performance in B.Tech AI/ML',
       highlight: 'Final Year'
     },

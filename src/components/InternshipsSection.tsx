@@ -15,50 +15,33 @@ const InternshipsSection: React.FC<InternshipsSectionProps> = ({ isVisible }) =>
       duration: 'July 2025 – Present',
       location: 'Remote',
       type: 'Sustainability & AI',
-      description: 'Sustainability and climate action internship program focused on environmental impact using technology.',
+      description: 'Completed Green Internship program including Sustainable Mindset training, Tableau training, and Live Project work.',
       highlights: [
-        'Working on LeakGuard AI project for pipeline/tank leak detection',
-        'Implementing computer vision techniques for real-time monitoring',
-        'Contributing to climate action initiatives through tech solutions'
+        'Worked on Leak Guard AI project to detect underground pipeline and tank leaks using computer vision techniques',
+        'Completed sustainability and climate action training modules',
+        'Applied data visualization skills using Tableau for project insights'
       ],
-      skills: ['Python', 'OpenCV', 'Machine Learning'],
+      skills: ['Python', 'OpenCV', 'Computer Vision', 'Tableau'],
       certificateLink: '#',
       current: true,
       logo: '🌍'
     },
     {
-      title: 'AI Intern',
-      company: 'Shell Edunet Foundation (AICTE)',
+      title: 'AI & Data Analytics Virtual Intern',
+      company: 'AICTE Shell Edunet Foundation',
       duration: 'May 2025 – June 2025',
       location: 'Remote',
       type: 'AI/ML',
-      description: '4-week AI internship focused on green skills and sustainable technology using machine learning.',
+      description: 'Completed a 4-week virtual internship in Artificial Intelligence and Data Analytics focused on Green Skills.',
       highlights: [
-        'Built EV Adoption Forecasting model with predictive analytics',
-        'Developed interactive Streamlit dashboard for data visualization',
-        'Applied ML techniques for sustainable technology solutions'
+        'Learned data analysis techniques and AI applications for sustainability-based solutions',
+        'Applied machine learning models to real-world green technology datasets',
+        'Gained hands-on experience with AI tools and data analytics workflows'
       ],
-      skills: ['Python', 'Streamlit', 'Pandas', 'Scikit-learn'],
+      skills: ['Python', 'Data Analytics', 'Machine Learning'],
       certificateLink: '#',
       current: false,
       logo: '🐚'
-    },
-    {
-      title: 'AI Intern',
-      company: 'Codec Technologies Pvt. Ltd (AICTE)',
-      duration: 'Apr 2025 – May 2025',
-      location: 'Remote',
-      type: 'AI/ML',
-      description: 'Hands-on AI internship with real-world machine learning tasks under expert guidance.',
-      highlights: [
-        'Worked on real-world ML implementation projects',
-        'Gained hands-on experience with industry practices',
-        'Collaborated with experienced AI professionals'
-      ],
-      skills: ['Python', 'ML', 'Data Processing'],
-      certificateLink: '#',
-      current: false,
-      logo: '💻'
     }
   ];
 

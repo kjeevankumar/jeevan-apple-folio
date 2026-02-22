@@ -13,7 +13,7 @@ const EducationSection: React.FC<EducationSectionProps> = ({ isVisible }) => {
       institution: 'Malla Reddy Institute of Engineering and Technology (MRIET)',
       location: 'Hyderabad, Telangana, India',
       duration: '2022 – 2026',
-      score: 'CGPA: 8.26/10',
+      score: 'CGPA: 8.43/10',
       status: 'Final Year',
       highlights: ['AI/ML Specialization', 'Active in coding competitions', 'Technical society member'],
       current: true

@@ -52,11 +52,11 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
     { icon: Rocket, label: 'Problem Solver', description: 'Creative technical solutions' },
   ];
 
-  const coreStack = ['Python', 'Machine Learning', 'React', 'MySQL'];
+  const coreStack = ['Python', 'Machine Learning', 'OpenCV', 'Scikit-learn'];
 
   const currentWork = [
     { icon: '🤖', label: 'LeakGuard AI - CV-based leak detection' },
-    { icon: '📊', label: 'EV Forecasting Dashboard' },
+    { icon: '📊', label: 'Currency Recognition System' },
     { icon: '💻', label: 'DSA & System Design Prep' },
   ];
 
@@ -92,7 +92,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
                 <div className="absolute top-4 right-4">
                   <span className="px-4 py-2 bg-primary/90 text-primary-foreground rounded-full text-sm font-bold flex items-center gap-2">
                     <Trophy className="w-4 h-4" />
-                    8.26 CGPA
+                    8.43 CGPA
                   </span>
                 </div>
               </div>
@@ -113,7 +113,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                <span>Built real-world projects like <strong className="text-foreground">LeakGuard AI</strong> and <strong className="text-foreground">EV Forecasting Dashboard</strong>.</span>
+                <span>Built real-world projects like <strong className="text-foreground">LeakGuard AI</strong> and <strong className="text-foreground">Currency Recognition System</strong>.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
