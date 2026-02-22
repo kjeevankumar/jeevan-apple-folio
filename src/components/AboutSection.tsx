@@ -47,12 +47,12 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
 
   const highlights = [
     { icon: Brain, label: 'AI/ML Focus', description: 'Machine learning & intelligent systems' },
-    { icon: Globe, label: 'Full Stack', description: 'End-to-end web applications' },
+    { icon: Globe, label: 'Computer Vision', description: 'OpenCV & image processing' },
     { icon: Zap, label: 'Fast Learner', description: 'Quick technology adoption' },
     { icon: Rocket, label: 'Problem Solver', description: 'Creative technical solutions' },
   ];
 
-  const coreStack = ['Python', 'Machine Learning', 'OpenCV', 'Scikit-learn'];
+  const coreStack = ['Python', 'Machine Learning', 'OpenCV', 'Pandas'];
 
   const currentWork = [
     { icon: '🤖', label: 'LeakGuard AI - CV-based leak detection' },
@@ -105,19 +105,23 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isVisible }) => {
             <ul className="space-y-4 text-muted-foreground">
               <li className="flex items-start gap-3">
                 <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                <span>Final year B.Tech student specializing in <strong className="text-foreground">Artificial Intelligence and Machine Learning</strong> at MRIET, Hyderabad.</span>
+                <span>Final year B.Tech student specializing in <strong className="text-foreground">AI & Machine Learning</strong> at MRIET, Hyderabad.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                <span>Strong in <strong className="text-foreground">ML + Python + Full Stack Development</strong> with hands-on project experience.</span>
+                <span>Strong in <strong className="text-foreground">Python, Computer Vision, and Machine Learning</strong> with hands-on project experience.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                <span>Built real-world projects like <strong className="text-foreground">LeakGuard AI</strong> and <strong className="text-foreground">Currency Recognition System</strong>.</span>
+                <span>Built real-world projects like <strong className="text-foreground">LeakGuard AI</strong>, <strong className="text-foreground">Intra-Vehicle Security</strong>, and <strong className="text-foreground">Currency Recognition</strong>.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                <span>Passionate about <strong className="text-foreground">problem-solving</strong> and actively preparing for placements.</span>
+                <span>Aiming to develop intelligent systems involving <strong className="text-foreground">LLMs, deep learning, and predictive modeling</strong>.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                <span><strong className="text-foreground">Soft Skills:</strong> Good communication, teamwork, problem-solving, teaching & presentation, adaptability, time management.</span>
               </li>
             </ul>
 

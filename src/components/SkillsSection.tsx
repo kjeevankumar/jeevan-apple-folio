@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
-import { Code, Database, Brain, Wrench, Server, Layout } from 'lucide-react';
+import { Code, Database, Brain, Wrench, Eye, Network } from 'lucide-react';
 
 interface SkillsSectionProps {
   isVisible: boolean;
@@ -25,12 +25,11 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
         { name: 'Supervised Learning', level: 'Intermediate' },
         { name: 'Unsupervised Learning', level: 'Intermediate' },
         { name: 'Model Evaluation', level: 'Intermediate' },
-        { name: 'Neural Networks', level: 'Intermediate' },
       ]
     },
     {
       title: 'Computer Vision',
-      icon: Layout,
+      icon: Eye,
       color: 'from-green-500/10 to-emerald-500/10',
       skills: [
         { name: 'OpenCV', level: 'Intermediate' },
@@ -40,7 +39,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
     },
     {
       title: 'Libraries',
-      icon: Server,
+      icon: Network,
       color: 'from-orange-500/10 to-yellow-500/10',
       skills: [
         { name: 'Scikit-learn', level: 'Intermediate' },
@@ -50,21 +49,22 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
       ]
     },
     {
-      title: 'Databases & Concepts',
-      icon: Database,
-      color: 'from-red-500/10 to-rose-500/10',
+      title: 'Concepts',
+      icon: Brain,
+      color: 'from-violet-500/10 to-indigo-500/10',
       skills: [
-        { name: 'SQL', level: 'Intermediate' },
-        { name: 'MySQL', level: 'Basic' },
+        { name: 'Neural Networks', level: 'Intermediate' },
         { name: 'Data Preprocessing', level: 'Advanced' },
         { name: 'Feature Engineering', level: 'Intermediate' },
       ]
     },
     {
-      title: 'Tools',
-      icon: Wrench,
-      color: 'from-gray-500/10 to-slate-500/10',
+      title: 'Databases & Tools',
+      icon: Database,
+      color: 'from-red-500/10 to-rose-500/10',
       skills: [
+        { name: 'SQL', level: 'Intermediate' },
+        { name: 'MySQL', level: 'Basic' },
         { name: 'Git', level: 'Intermediate' },
         { name: 'Tableau', level: 'Basic' },
       ]
@@ -76,7 +76,6 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
       case 'Advanced': return 'bg-primary/10 text-primary';
       case 'Intermediate': return 'bg-accent/10 text-accent';
       case 'Basic': return 'bg-secondary text-muted-foreground';
-      case 'Beginner': return 'bg-secondary text-muted-foreground';
       default: return 'bg-secondary text-secondary-foreground';
     }
   };
@@ -86,9 +85,9 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
       <div className="container mx-auto max-w-6xl">
         <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <span className="section-badge">Skills</span>
-          <h2 className="section-title">Skills & Expertise</h2>
+          <h2 className="section-title">Technical Skills</h2>
           <p className="section-subtitle">
-            Technologies and tools I work with to build amazing products
+            Technologies and tools I work with
           </p>
         </div>
 
@@ -96,15 +95,12 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
           {skillCategories.map((category, index) => (
             <Card key={index} className="group card-interactive border-0 overflow-hidden">
               <CardContent className="p-6">
-                {/* Header */}
                 <div className="flex items-center gap-3 mb-6">
                   <div className={`p-3 rounded-xl bg-gradient-to-br ${category.color} group-hover:scale-110 transition-transform duration-300`}>
                     <category.icon className="w-5 h-5 text-primary" />
                   </div>
                   <h3 className="text-lg font-bold text-foreground">{category.title}</h3>
                 </div>
-
-                {/* Skills List */}
                 <div className="space-y-3">
                   {category.skills.map((skill, skillIndex) => (
                     <div key={skillIndex} className="flex items-center justify-between group/skill">
