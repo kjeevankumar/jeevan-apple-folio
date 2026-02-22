@@ -9,57 +9,55 @@ interface SkillsSectionProps {
 const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
   const skillCategories = [
     {
-      title: 'Frontend',
-      icon: Layout,
+      title: 'Programming',
+      icon: Code,
       color: 'from-blue-500/10 to-cyan-500/10',
       skills: [
-        { name: 'React', level: 'Advanced' },
-        { name: 'JavaScript', level: 'Advanced' },
-        { name: 'TypeScript', level: 'Intermediate' },
-        { name: 'HTML/CSS', level: 'Advanced' },
-        { name: 'Tailwind CSS', level: 'Advanced' },
-      ]
-    },
-    {
-      title: 'Backend',
-      icon: Server,
-      color: 'from-green-500/10 to-emerald-500/10',
-      skills: [
         { name: 'Python', level: 'Advanced' },
-        { name: 'Node.js', level: 'Intermediate' },
-        { name: 'Express.js', level: 'Intermediate' },
-        { name: 'REST APIs', level: 'Intermediate' },
       ]
     },
     {
-      title: 'AI/ML',
+      title: 'AI & ML',
       icon: Brain,
       color: 'from-purple-500/10 to-pink-500/10',
       skills: [
-        { name: 'Regression', level: 'Intermediate' },
-        { name: 'Classification', level: 'Intermediate' },
+        { name: 'Machine Learning', level: 'Advanced' },
+        { name: 'Supervised Learning', level: 'Intermediate' },
+        { name: 'Unsupervised Learning', level: 'Intermediate' },
+        { name: 'Model Evaluation', level: 'Intermediate' },
+        { name: 'Neural Networks', level: 'Intermediate' },
+      ]
+    },
+    {
+      title: 'Computer Vision',
+      icon: Layout,
+      color: 'from-green-500/10 to-emerald-500/10',
+      skills: [
+        { name: 'OpenCV', level: 'Intermediate' },
+        { name: 'Image Processing', level: 'Intermediate' },
+        { name: 'Feature Extraction', level: 'Intermediate' },
+      ]
+    },
+    {
+      title: 'Libraries',
+      icon: Server,
+      color: 'from-orange-500/10 to-yellow-500/10',
+      skills: [
         { name: 'Scikit-learn', level: 'Intermediate' },
         { name: 'Pandas', level: 'Advanced' },
         { name: 'NumPy', level: 'Advanced' },
+        { name: 'Matplotlib', level: 'Intermediate' },
       ]
     },
     {
-      title: 'Databases',
+      title: 'Databases & Concepts',
       icon: Database,
-      color: 'from-orange-500/10 to-yellow-500/10',
-      skills: [
-        { name: 'MySQL', level: 'Advanced' },
-        { name: 'MongoDB', level: 'Intermediate' },
-      ]
-    },
-    {
-      title: 'CS Fundamentals',
-      icon: Code,
       color: 'from-red-500/10 to-rose-500/10',
       skills: [
-        { name: 'DSA', level: 'Intermediate' },
-        { name: 'OOP', level: 'Advanced' },
-        { name: 'Operating System', level: 'Intermediate' },
+        { name: 'SQL', level: 'Intermediate' },
+        { name: 'MySQL', level: 'Basic' },
+        { name: 'Data Preprocessing', level: 'Advanced' },
+        { name: 'Feature Engineering', level: 'Intermediate' },
       ]
     },
     {
@@ -67,10 +65,8 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
       icon: Wrench,
       color: 'from-gray-500/10 to-slate-500/10',
       skills: [
-        { name: 'Git', level: 'Advanced' },
-        { name: 'VS Code', level: 'Advanced' },
-        { name: 'Postman', level: 'Intermediate' },
-        { name: 'Streamlit', level: 'Intermediate' },
+        { name: 'Git', level: 'Intermediate' },
+        { name: 'Tableau', level: 'Basic' },
       ]
     },
   ];
@@ -79,6 +75,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isVisible }) => {
     switch (level) {
       case 'Advanced': return 'bg-primary/10 text-primary';
       case 'Intermediate': return 'bg-accent/10 text-accent';
+      case 'Basic': return 'bg-secondary text-muted-foreground';
       case 'Beginner': return 'bg-secondary text-muted-foreground';
       default: return 'bg-secondary text-secondary-foreground';
     }

@@ -14,11 +14,11 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
 
   const projects = [
     {
-      title: 'LeakGuard AI',
-      description: 'AI-based pipeline and tank leakage detection system using computer vision for real-time monitoring and early leak detection.',
-      tech: ['Python', 'OpenCV', 'Machine Learning'],
+      title: 'Leak Guard AI',
+      description: 'AI-driven leak detection system for pipeline monitoring using machine learning techniques with data preprocessing and feature engineering.',
+      tech: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Matplotlib'],
       category: 'AI/ML',
-      features: ['Real-time leak detection using CV', 'Pipeline & tank monitoring system', 'Automated alert generation'],
+      features: ['Developed AI-based leak detection system for pipeline monitoring', 'Performed data cleaning, preprocessing, and feature engineering to improve model accuracy', 'Applied machine learning techniques for predictive leak detection'],
       impact: 'Preventing environmental damage through early detection',
       duration: 'July 2025 – Present',
       demo: '#',
@@ -28,46 +28,18 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
       metrics: { accuracy: '94%', type: 'Detection Rate' },
       caseStudy: {
         problem: 'Industrial pipelines and storage tanks are prone to leaks that can cause environmental damage and financial losses. Traditional monitoring methods are often delayed and reactive.',
-        solution: 'Developed an AI-powered system using computer vision to detect leaks in real-time through visual analysis of pipeline infrastructure.',
-        methodology: 'Implemented using Python and OpenCV with custom ML models trained on leak detection datasets.',
-        results: ['Real-time leak detection using CV', 'Pipeline & tank monitoring system', 'Automated alert generation', '94% detection accuracy achieved'],
-        futureImprovements: ['Integration with IoT sensors', 'Mobile app for alerts', 'Multi-camera support', 'Cloud-based monitoring dashboard']
+        solution: 'Developed an AI-powered system using machine learning to detect leaks through data-driven analysis of pipeline infrastructure.',
+        methodology: 'Implemented using Python with Pandas, NumPy, and Scikit-learn. Performed data cleaning, preprocessing, and feature engineering to improve model accuracy.',
+        results: ['AI-based leak detection for pipeline monitoring', 'Improved model accuracy through feature engineering', 'Data preprocessing pipeline for real-time analysis', '94% detection accuracy achieved'],
+        futureImprovements: ['Integration with IoT sensors', 'Mobile app for alerts', 'Computer vision enhancement', 'Cloud-based monitoring dashboard']
       }
     },
     {
-      title: 'EV Adoption Forecasting Dashboard',
-      description: 'Interactive Streamlit dashboard for predicting electric vehicle adoption trends using time-series analysis and ML models.',
-      tech: ['Python', 'Streamlit', 'Pandas', 'Scikit-learn'],
-      category: 'AI/ML',
-      features: ['Time-series forecasting', 'Interactive data visualization', 'Regional adoption predictions'],
-      impact: 'Supporting sustainable transportation planning',
-      duration: 'May 2025 – June 2025',
-      demo: '#',
-      github: 'https://github.com/kjeevankumar?tab=repositories',
-      image: 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&h=400&fit=crop',
-      hasDemo: false,
-      metrics: { accuracy: '89%', type: 'Forecast Accuracy' }
-    },
-    {
-      title: 'Portfolio Website',
-      description: 'Premium personal portfolio showcasing skills and projects with modern design, smooth animations, and dark mode support.',
-      tech: ['React', 'TypeScript', 'TailwindCSS'],
-      category: 'Web',
-      features: ['Responsive premium design', 'Dark/Light mode toggle', 'Smooth scroll animations'],
-      impact: 'Showcasing technical expertise to recruiters',
-      duration: 'Feb 2025 – Mar 2025',
-      demo: 'https://jeevan-portfolio.lovable.app',
-      github: 'https://github.com/kjeevankumar?tab=repositories',
-      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop',
-      hasDemo: true,
-      metrics: { accuracy: '100%', type: 'Mobile Responsive' }
-    },
-    {
-      title: 'Intelligent Security Model for In-Car Communication',
-      description: 'ML-based intrusion detection model for electric vehicles using CAN bus data with SVM and Social Spider Optimization algorithm.',
-      tech: ['Python', 'Scikit-learn', 'Pandas', 'NumPy'],
+      title: 'Intelligent Data-Driven Model for Intra-Vehicle Security',
+      description: 'ML-based security model to protect intra-vehicle communication systems from cyber-attacks using Intrusion Detection System on CAN protocol.',
+      tech: ['Python', 'Scikit-learn', 'Pandas', 'NumPy', 'Matplotlib'],
       category: 'Security',
-      features: ['DoS attack detection with high accuracy', 'SVM + Social Spider Optimization', 'CAN bus data analysis'],
+      features: ['Built ML-based security model to protect intra-vehicle communication systems from cyber-attacks', 'Designed Intrusion Detection System (IDS) to detect abnormal and malicious message patterns', 'Analyzed CAN protocol data for vehicle network security'],
       impact: 'Enhancing automotive cybersecurity',
       duration: 'Nov 2024 – Dec 2024',
       demo: '#',
@@ -76,12 +48,47 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isVisible }) => {
       hasDemo: false,
       metrics: { accuracy: '97%', type: 'Detection Accuracy' },
       caseStudy: {
-        problem: 'Modern electric vehicles rely on CAN bus for internal communication, making them vulnerable to cyber attacks like DoS attacks that can compromise vehicle safety.',
-        solution: 'Developed an ML-based intrusion detection system using SVM optimized with Social Spider Optimization algorithm for high-accuracy threat detection.',
-        methodology: 'Used Python with Scikit-learn for model development, analyzing CAN bus data patterns to identify anomalies.',
-        results: ['97% DoS attack detection accuracy', 'Real-time threat identification', 'Low false positive rate', 'Optimized model performance with SSO'],
+        problem: 'Modern vehicles rely on CAN bus for internal communication, making them vulnerable to cyber attacks like DoS attacks that can compromise vehicle safety.',
+        solution: 'Developed an ML-based intrusion detection system to detect abnormal and malicious message patterns in vehicle networks.',
+        methodology: 'Used Python with Scikit-learn for model development, analyzing CAN bus data patterns to identify anomalies in intra-vehicle communications.',
+        results: ['97% DoS attack detection accuracy', 'Real-time threat identification via IDS', 'Low false positive rate', 'CAN protocol security analysis'],
         futureImprovements: ['Deep learning implementation', 'Real-time vehicle integration', 'Multi-attack type detection', 'Edge computing deployment']
       }
+    },
+    {
+      title: 'Currency Recognition & Classification',
+      description: 'Computer vision-based currency recognition system to classify different denominations using OpenCV and machine learning techniques.',
+      tech: ['Python', 'OpenCV', 'Scikit-learn', 'Image Processing'],
+      category: 'AI/ML',
+      features: ['Developed CV-based currency recognition system for accurate denomination classification', 'Implemented OpenCV techniques: grayscale conversion, edge detection, contour detection, and segmentation', 'Applied feature extraction and ML classification for recognition accuracy'],
+      impact: 'Automating currency identification for accessibility',
+      duration: '2024',
+      demo: '#',
+      github: 'https://github.com/kjeevankumar?tab=repositories',
+      image: 'https://images.unsplash.com/photo-1553729459-uj4fds8sf3ij?w=600&h=400&fit=crop',
+      hasDemo: false,
+      metrics: { accuracy: '92%', type: 'Classification Rate' },
+      caseStudy: {
+        problem: 'Manual currency identification is time-consuming and error-prone, especially for visually impaired individuals.',
+        solution: 'Developed a computer vision-based system using OpenCV and ML to automatically classify currency denominations.',
+        methodology: 'Implemented grayscale conversion, edge detection, contour detection, and segmentation using OpenCV. Applied feature extraction and Scikit-learn classifiers.',
+        results: ['Accurate denomination classification', 'Real-time image processing pipeline', 'Multiple OpenCV technique integration', '92% classification accuracy'],
+        futureImprovements: ['Deep learning with CNNs', 'Mobile app deployment', 'Multi-currency support', 'Real-time video processing']
+      }
+    },
+    {
+      title: 'Portfolio Website',
+      description: 'Premium personal portfolio showcasing skills and projects with modern design, smooth animations, and dark mode support.',
+      tech: ['React', 'TypeScript', 'TailwindCSS'],
+      category: 'Web',
+      features: ['Responsive premium design with dark/light mode', 'Smooth scroll animations and transitions', 'Case study modals for project deep-dives'],
+      impact: 'Showcasing technical expertise to recruiters',
+      duration: 'Feb 2025 – Mar 2025',
+      demo: 'https://jeevan-portfolio.lovable.app',
+      github: 'https://github.com/kjeevankumar?tab=repositories',
+      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop',
+      hasDemo: true,
+      metrics: { accuracy: '100%', type: 'Mobile Responsive' }
     }
   ];
 

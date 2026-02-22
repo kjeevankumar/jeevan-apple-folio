@@ -8,19 +8,20 @@ interface TrustSectionProps {
 
 const TrustSection: React.FC<TrustSectionProps> = ({ isVisible }) => {
   const stats = [
-    { icon: Briefcase, value: 3, suffix: '', label: 'Internships Completed' },
+    { icon: Briefcase, value: 2, suffix: '', label: 'Internships Completed' },
     { icon: FolderKanban, value: 15, suffix: '+', label: 'Projects Built' },
-    { icon: Award, value: 6, suffix: '+', label: 'Certifications' },
+    { icon: Award, value: 5, suffix: '+', label: 'Certifications' },
     { icon: Users, value: 20, suffix: '+', label: 'Students Mentored' },
   ];
 
   const tools = [
     { name: 'Python', icon: '🐍' },
-    { name: 'React', icon: '⚛️' },
-    { name: 'MongoDB', icon: '🍃' },
+    { name: 'OpenCV', icon: '👁️' },
+    { name: 'Scikit-learn', icon: '🧠' },
+    { name: 'Pandas', icon: '🐼' },
     { name: 'MySQL', icon: '🐬' },
     { name: 'Git', icon: '📦' },
-    { name: 'TensorFlow', icon: '🧠' },
+    { name: 'Tableau', icon: '📊' },
   ];
 
   return (

@@ -25,7 +25,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
 
   const miniAchievements = [
     { icon: GraduationCap, label: 'Final Year B.Tech AI/ML' },
-    { icon: Trophy, label: 'CGPA 8.26' },
+    { icon: Trophy, label: 'CGPA 8.43' },
     { icon: Code, label: '15+ Projects' },
     { icon: Briefcase, label: 'AI Internships' },
   ];
@@ -64,13 +64,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
               
               {/* Professional Title */}
               <p className="text-lg md:text-xl font-semibold text-muted-foreground">
-                AI/ML Developer <span className="text-primary">•</span> Full Stack Developer <span className="text-primary">•</span> Python Enthusiast
+                AI/ML Developer <span className="text-primary">•</span> Computer Vision <span className="text-primary">•</span> Python Enthusiast
               </p>
             </div>
 
             {/* Tagline */}
             <p className="text-base md:text-lg text-muted-foreground max-w-lg mx-auto lg:mx-0 leading-relaxed">
-              Building intelligent systems and scalable web applications that make a difference.
+              Building intelligent systems with AI, Computer Vision, and Machine Learning that make a difference.
             </p>
 
             {/* Mini Achievements Row */}
@@ -175,7 +175,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-6 py-2.5 bg-card border border-border/50 rounded-full shadow-lg">
                 <span className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-primary" />
-                  AI/ML + Full Stack
+                  AI/ML + Computer Vision
                 </span>
               </div>
             </div>

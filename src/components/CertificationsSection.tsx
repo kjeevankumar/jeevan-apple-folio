@@ -31,25 +31,18 @@ const CertificationsSection: React.FC<CertificationsSectionProps> = ({ isVisible
       logo: '🔷'
     },
     { 
-      title: 'Project Management', 
-      platform: 'Accenture Forage',
-      date: 'February 2025',
-      status: 'Recent',
-      logo: '📊'
-    },
-    { 
-      title: 'Mastering Python Programming', 
-      platform: 'Infosys Springboard',
-      date: 'February 2025',
-      status: 'Recent',
-      logo: '💻'
-    },
-    { 
       title: 'Introduction to Data Science', 
       platform: 'Cisco Networking Academy',
+      date: 'February 2025',
+      status: 'Recent',
+      logo: '📈'
+    },
+    { 
+      title: 'Mastering Python', 
+      platform: 'Infosys Springboard',
       date: 'February 2024',
       status: 'Certified',
-      logo: '📈'
+      logo: '💻'
     }
   ];
 
@@ -119,7 +112,7 @@ const CertificationsSection: React.FC<CertificationsSectionProps> = ({ isVisible
         <div className={`text-center mt-12 transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="inline-flex items-center gap-3 px-6 py-3 bg-card rounded-full border border-border shadow-lg">
             <Award className="w-5 h-5 text-primary" />
-            <span className="font-semibold text-foreground">6 Professional Certifications from Industry Leaders</span>
+            <span className="font-semibold text-foreground">5 Professional Certifications from Industry Leaders</span>
           </div>
         </div>
       </div>
