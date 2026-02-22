@@ -18,9 +18,9 @@ const AchievementsSection: React.FC<AchievementsSectionProps> = ({ isVisible }) 
     {
       icon: Code,
       title: 'Projects Built',
-      value: '15+',
-      description: 'Web applications, ML models, and dashboards',
-      highlight: 'Full Stack + AI/ML'
+      value: '3+',
+      description: 'AI/ML models, security systems, and CV applications',
+      highlight: 'AI/ML + CV'
     },
     {
       icon: Award,
